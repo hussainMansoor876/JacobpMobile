@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './Redux/store';
 
 class App extends React.Component {
   constructor() {
@@ -8,9 +10,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <View>
-        <Text>Hello JacobpMobile</Text>
-      </View>
+      <Provider store={store} >
+        <View>
+          <Text>Hello JacobpMobile</Text>
+        </View>
+      </Provider>
     );
   }
 }
