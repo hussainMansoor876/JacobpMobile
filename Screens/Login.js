@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Dimensions, Text, Image } from 'react-native';
+import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
+import Reinput from 'reinput'
 
 const { w } = Dimensions
 
@@ -18,30 +19,39 @@ class Login extends React.Component {
   }
 
   render() {
-    const { screenHeight } = this.state
+    const { screenHeight, screenWidth } = this.state
     return (
-      <View style={{ flex: 1, marginLeft: 30, marginRight: 20 }}>
-        <View style={{ flex: 1 }}>
-          <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>
-            <Image
-              source={require('../assets/images/login-fav.png')}
-              style={{ margin: 5, height: 50, width: 50, resizeMode: 'contain' }}
-            />
+      <ScrollView style={{ marginLeft: 30, marginRight: 20, width: screenWidth }}>
+        <KeyboardAvoidingView 
+        behavior="padding" 
+        enabled 
+        resetScrollToCoords={{ x: 0, y: 0 }} >
+          <View style={{ height: screenHeight / 4 }}>
+            <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>
+              <Image
+                source={require('../assets/images/login-fav.png')}
+                style={{ margin: 5, height: 50, width: 50, resizeMode: 'contain' }}
+              />
 
-            <Text style={{ margin: 10, fontSize: 18, color: '#7540EE', marginTop: 27, marginLeft: 0 }}>Simple</Text>
-            <Text style={{ margin: 10, fontSize: 18, color: '#7540EE', marginTop: 27, marginLeft: 0 }}>Hub</Text>
+              <Text style={{ margin: 10, fontSize: 18, color: '#7540EE', marginTop: 27, marginLeft: 0 }}>Simple</Text>
+              <Text style={{ margin: 10, fontSize: 18, color: '#7540EE', marginTop: 27, marginLeft: 0 }}>Hub</Text>
+            </View>
           </View>
-        </View>
-        <View style={{ flex: 2 }}>
-          <Text style={{ fontSize: 24, color: '#25265E', marginBottom: 10 }}>Hello!</Text>
-          <Text style={{ fontSize: 16, color: '#25265E' }}>You can use <Text style={{ color: '#7540EE' }}>Face ID</Text>
-            {'\n'}to authenticate in the future
+          <View style={{ height: screenHeight / 2, marginRight: 30 }}>
+            <Text style={{ fontSize: 24, color: '#25265E', marginBottom: 10 }}>Hello!</Text>
+            <Text style={{ fontSize: 16, color: '#25265E' }}>You can use <Text style={{ color: '#7540EE' }}>Face ID</Text>
+              {'\n'}to authenticate in the future
           </Text>
-        </View>
-        <View style={{ flex: 1 }}>
+            <View style={{ marginTop: 20, marginRight: 30 }}>
+              <Reinput label='Email address' keyboardType="email-address" />
+              <Reinput label='Password' secureTextEntry={true} />
+            </View>
+          </View>
+          <View style={{ height: screenHeight / 4 }}>
 
-        </View>
-      </View>
+          </View>
+        </KeyboardAvoidingView>
+      </ScrollView>
     );
   }
 }
