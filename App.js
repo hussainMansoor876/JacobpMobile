@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
-import { Splash } from './Screens'
+import { Login } from './Screens'
 
 class App extends React.Component {
   constructor() {
@@ -12,13 +12,12 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store} >
-        <View>
-          <Splash />
+        <View style={{ flex: 1 }}>
+          <Login />
         </View>
       </Provider>
     );
   }
 }
-import { from } from 'rxjs';
 
 export default App;
