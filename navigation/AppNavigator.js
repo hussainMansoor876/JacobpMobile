@@ -11,8 +11,13 @@ const StackNavigator = createStackNavigator({
     }
 },
     {
-        initialRouteName: "Login"
-    })
+        initialRouteName: "Login",
+        headerMode: 'none',
+        navigationOptions: {
+            headerVisible: false,
+        }
+    }
+)
 
 
 

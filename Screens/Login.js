@@ -22,10 +22,10 @@ class Login extends React.Component {
     const { screenHeight, screenWidth } = this.state
     return (
       <ScrollView style={{ width: screenWidth, height: screenHeight }}>
-        <KeyboardAvoidingView
+        {/* <KeyboardAvoidingView
           behavior="padding"
           enabled
-          resetScrollToCoords={{ x: 0, y: 0 }} >
+          resetScrollToCoords={{ x: 0, y: 0 }} > */}
           <View style={{ height: screenHeight / 4, marginLeft: 30, marginRight: 20 }}>
             <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>
               <Image
@@ -43,7 +43,7 @@ class Login extends React.Component {
               {'\n'}to authenticate in the future
           </Text>
             <View style={{ marginTop: 20, marginRight: 30 }}>
-              <Reinput label='Email address' keyboardType="email-address" />
+              <Reinput label='E-mail address' keyboardType="email-address" />
               <Reinput label='Password' secureTextEntry={true} />
             </View>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginRight: 30 }}>
@@ -62,7 +62,7 @@ class Login extends React.Component {
               <Text style={{ fontFamily: 'MaisonNeue-Medium', fontSize: 16, color: '#FF7052' }}>Create one</Text>
             </TouchableOpacity>
           </View>
-        </KeyboardAvoidingView>
+        {/* </KeyboardAvoidingView> */}
       </ScrollView>
     );
   }

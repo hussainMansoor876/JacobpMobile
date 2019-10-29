@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store} >
-        <View style={{ flex: 1, marginTop: -70 }}>
+        <View style={{ flex: 1 }}>
           <Navigator />
         </View>
       </Provider>
