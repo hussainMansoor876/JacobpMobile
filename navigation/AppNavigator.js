@@ -8,10 +8,16 @@ const StackNavigator = createStackNavigator({
     },
     Signup: {
         screen: Screen.Signup
+    },
+    OnBoardSlideOne: {
+        screen: Screen.OnBoardSlideOne
+    },
+    OnBoardSlideTwo: {
+        screen: Screen.OnBoardSlideTwo
     }
 },
     {
-        initialRouteName: "Login",
+        initialRouteName: "OnBoardSlideOne",
         headerMode: 'none',
         navigationOptions: {
             headerVisible: false,

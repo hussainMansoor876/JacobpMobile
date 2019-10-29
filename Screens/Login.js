@@ -22,10 +22,10 @@ class Login extends React.Component {
     const { screenHeight, screenWidth } = this.state
     return (
       <ScrollView style={{ width: screenWidth, height: screenHeight }}>
-        {/* <KeyboardAvoidingView
+        <KeyboardAvoidingView
           behavior="padding"
           enabled
-          resetScrollToCoords={{ x: 0, y: 0 }} > */}
+          resetScrollToCoords={{ x: 0, y: 0 }} >
           <View style={{ height: screenHeight / 4, marginLeft: 30, marginRight: 20 }}>
             <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>
               <Image
@@ -62,7 +62,7 @@ class Login extends React.Component {
               <Text style={{ fontFamily: 'MaisonNeue-Medium', fontSize: 16, color: '#FF7052' }}>Create one</Text>
             </TouchableOpacity>
           </View>
-        {/* </KeyboardAvoidingView> */}
+        </KeyboardAvoidingView>
       </ScrollView>
     );
   }

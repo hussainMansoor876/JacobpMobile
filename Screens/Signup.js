@@ -14,10 +14,6 @@ class Signup extends React.Component {
         }
     }
 
-    componentDidMount() {
-        SplashScreen.hide();
-    }
-
     render() {
         const { screenHeight, screenWidth } = this.state
         return (
