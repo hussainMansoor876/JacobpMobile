@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import Reinput from 'reinput'
+import { Button, Content } from 'native-base'
 
-const { w } = Dimensions
 
 class Login extends React.Component {
   constructor() {
@@ -22,10 +22,10 @@ class Login extends React.Component {
     const { screenHeight, screenWidth } = this.state
     return (
       <ScrollView style={{ marginLeft: 30, marginRight: 20, width: screenWidth }}>
-        <KeyboardAvoidingView 
-        behavior="padding" 
-        enabled 
-        resetScrollToCoords={{ x: 0, y: 0 }} >
+        <KeyboardAvoidingView
+          behavior="padding"
+          enabled
+          resetScrollToCoords={{ x: 0, y: 0 }} >
           <View style={{ height: screenHeight / 4 }}>
             <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>
               <Image
@@ -45,6 +45,14 @@ class Login extends React.Component {
             <View style={{ marginTop: 20, marginRight: 30 }}>
               <Reinput label='Email address' keyboardType="email-address" />
               <Reinput label='Password' secureTextEntry={true} />
+            </View>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <Button rounded light style={{ width: screenWidth / 4, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ textAlign: 'center' }}>Login</Text>
+              </Button>
+              <Button transparent>
+                <Text>Light</Text>
+              </Button>
             </View>
           </View>
           <View style={{ height: screenHeight / 4 }}>
