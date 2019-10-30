@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
-import AppIntro from './Screens/OnBoardSlideOne'
+import AppIntro from './Screens/AppIntro'
 
 class App extends React.Component {
   constructor() {

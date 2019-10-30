@@ -48,7 +48,7 @@ const slides = [
   }
 ];
 
-export default class OnBoardSlideOne extends React.Component {
+export default class AppIntro extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
