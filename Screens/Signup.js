@@ -33,10 +33,12 @@ class Signup extends React.Component {
                 >
                     <View style={{ height: screenHeight / 3.2, marginLeft: 30, marginRight: 20 }}>
                         <View style={{ flex: 1, paddingTop: 50 }}>
-                            <Image
-                                source={require('../assets/images/arrow.png')}
-                                style={{ margin: 5, height: 30, width: 40, resizeMode: 'contain' }}
-                            />
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+                                <Image
+                                    source={require('../assets/images/arrow.png')}
+                                    style={{ margin: 5, height: 30, width: 40, resizeMode: 'contain' }}
+                                />
+                            </TouchableOpacity>
                             <Text style={{ fontSize: 24, marginTop: 20, marginLeft: 0 }}>Sign up</Text>
                             <View style={{ marginTop: 20 }}>
                                 <Text style={{ fontSize: 18, color: '#787993' }}>Create an account to use{'\t\t'}
