@@ -3,7 +3,6 @@ import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, Toucha
 import SplashScreen from 'react-native-splash-screen'
 import Reinput from 'reinput'
 import { Button } from 'native-base'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 class Login extends React.Component {
@@ -27,6 +26,7 @@ class Login extends React.Component {
           resetScrollToCoords={{ x: 0, y: 0 }}
           behavior={Platform.OS === "ios" ? "padding" : null}
           keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+          style={{ flex: 1 }}
         >
           <View style={{ height: screenHeight / 4, marginLeft: 30, marginRight: 20 }}>
             <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>

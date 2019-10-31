@@ -4,7 +4,6 @@ import SplashScreen from 'react-native-splash-screen'
 import Reinput from 'reinput'
 import { Button } from 'native-base'
 import AppIntro from './AppIntro'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 class Signup extends React.Component {
@@ -30,6 +29,7 @@ class Signup extends React.Component {
                     resetScrollToCoords={{ x: 0, y: 0 }}
                     behavior={Platform.OS === "ios" ? "padding" : null}
                     keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+                    style={{ flex: 1 }}
                 >
                     <View style={{ height: screenHeight / 3.2, marginLeft: 30, marginRight: 20 }}>
                         <View style={{ flex: 1, paddingTop: 50 }}>
