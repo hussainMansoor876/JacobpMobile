@@ -3,6 +3,7 @@ import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, Toucha
 import SplashScreen from 'react-native-splash-screen'
 import Reinput from 'reinput'
 import { Button } from 'native-base'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 class Login extends React.Component {
@@ -23,9 +24,10 @@ class Login extends React.Component {
     return (
       <ScrollView style={{ width: screenWidth, height: screenHeight }}>
         <KeyboardAvoidingView
-          behavior="padding"
-          enabled
-          resetScrollToCoords={{ x: 0, y: 0 }} >
+          resetScrollToCoords={{ x: 0, y: 0 }}
+          behavior={Platform.OS === "ios" ? "padding" : null}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+        >
           <View style={{ height: screenHeight / 4, marginLeft: 30, marginRight: 20 }}>
             <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>
               <Image
@@ -37,14 +39,15 @@ class Login extends React.Component {
               <Text style={{ margin: 10, fontSize: 18, color: '#7540EE', marginTop: 27, marginLeft: 0 }}>Hub</Text>
             </View>
           </View>
-          <View style={{ height: screenHeight / 1.7, marginRight: 20, marginLeft: 30, }}>
+          <View style={{ height: screenHeight / 1.8, marginRight: 20, marginLeft: 30, }}>
             <Text style={{ fontSize: 24, color: '#25265E', marginBottom: 10 }}>Hello!</Text>
             <Text style={{ fontSize: 16, color: '#25265E' }}>You can use <Text style={{ color: '#7540EE' }}>Face ID</Text>
               {'\n'}to authenticate in the future
           </Text>
             <View style={{ marginTop: 20, marginRight: 30 }}>
               <Reinput label='E-mail address' keyboardType="email-address" />
-              <Reinput label='Password' secureTextEntry={true} />
+              <Reinput label='Password' secureTextEntry={true}
+              />
             </View>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginRight: 30 }}>
               <Button rounded light style={{ width: screenWidth / 4, justifyContent: 'center', alignItems: 'center' }}>
