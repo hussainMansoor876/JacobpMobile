@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, Dimensions, TouchableOpacity } from 'rea
 import LinearGradient from 'react-native-linear-gradient';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import SplashScreen from 'react-native-splash-screen'
-import { Icon } from 'react-native-elements'
+import { Icon, Button } from 'react-native-elements'
 import Navigator from '../navigation/AppNavigator'
 
 const styles = StyleSheet.create({
@@ -44,7 +44,14 @@ const slides = [
     title: 'Everything in one place',
     text: 'Hub is your tool. The workplace, centralized.',
     url: '../assets/images/stack.png',
-    colors: ['#7540EE', '#B066FE'],
+    colors: ['#7540EE', '#7540EE'],
+  },
+  {
+    key: '3',
+    title: 'RULE OF THIRDS',
+    text: 'The rule of thirds states that an image is most pleasing when its subjects or regions are ...',
+    url: '../assets/images/stack.png',
+    colors: ['#7540EE', '#7540EE'],
   }
 ];
 
@@ -83,12 +90,15 @@ export default class AppIntro extends React.Component {
 
   _renderDoneButton = () => {
     return (
-      <View style={{ justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-        <Icon
-          name='arrow-forward'
-          color='#fff'
-          containerStyle={{ backgroundColor: '#35225C', borderRadius: 30, width: 140, height: 50, justifyContent: 'center', alignItems: 'center' }}
-        />
+      <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+        <View style={{ width: 300, backgroundColor: '#35225C', flexDirection: 'row', borderRadius: 10, height: 50, justifyContent: 'center', alignItems: 'center', }}>
+          <Text style={{ color: 'white', paddingLeft: 90, paddingRight: 20 }}>Get Started</Text>
+          <Icon
+            name='arrow-forward'
+            color='#fff'
+            containerStyle={{ backgroundColor: '#35225C', borderRadius: 10, width: 90, justifyContent: 'center', alignItems: 'flex-start' }}
+          />
+        </View>
       </View>
     );
   };
@@ -113,10 +123,13 @@ export default class AppIntro extends React.Component {
           {item.key == 1 ? <Image
             source={require('../assets/images/stack.png')}
             style={{ margin: 5, height: screenHeight / 2.3, width: screenHeight / 2.3, resizeMode: 'contain' }}
+          /> : item.key == 2 ? <Image
+            source={require('../assets/images/Device.png')}
+            style={{ margin: 5, marginTop: -40, marginBottom: -30, height: screenHeight / 1.5, width: screenHeight / 1.5, resizeMode: 'contain' }}
           /> : <Image
-              source={require('../assets/images/Device.png')}
-              style={{ margin: 5, marginTop: -40, marginBottom: -30, height: screenHeight / 1.5, width: screenHeight / 1.5, resizeMode: 'contain' }}
-            />}
+                source={require('../assets/images/Device2.png')}
+                style={{ margin: 5, height: screenHeight / 2, width: screenHeight / 2, resizeMode: 'contain' }}
+              />}
           <Text style={{ color: '#FFFFFF', fontSize: 30 }}>{item.title}
           </Text>
           <Text style={{ marginTop: 20, marginRight: 50, marginLeft: 50, color: '#FFFFFF', fontSize: 18, fontFamily: 'Montserrat' }}>{item.text}</Text>

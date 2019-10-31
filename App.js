@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
-import AppIntro from './Screens/AppIntro'
+import Navigator from './navigation/AppNavigator'
 
 class App extends React.Component {
   constructor() {
@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <Provider store={store} >
         <View style={{ flex: 1 }}>
-         <AppIntro />
+         <Navigator />
         </View>
       </Provider>
     );

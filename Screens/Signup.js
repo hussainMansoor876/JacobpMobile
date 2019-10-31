@@ -3,6 +3,7 @@ import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, Toucha
 import SplashScreen from 'react-native-splash-screen'
 import Reinput from 'reinput'
 import { Button } from 'native-base'
+import AppIntro from './AppIntro'
 
 
 class Signup extends React.Component {
@@ -10,12 +11,18 @@ class Signup extends React.Component {
         super(props);
         this.state = {
             screenWidth: Dimensions.get('window').width,
-            screenHeight: Dimensions.get('window').height
+            screenHeight: Dimensions.get('window').height,
+            isUser: false
         }
     }
 
     render() {
-        const { screenHeight, screenWidth } = this.state
+        const { screenHeight, screenWidth, isUser } = this.state
+        if (isUser) {
+            return (
+                <AppIntro />
+            )
+        }
         return (
             <ScrollView style={{ width: screenWidth, height: screenHeight }}>
                 <KeyboardAvoidingView
@@ -44,7 +51,7 @@ class Signup extends React.Component {
                             <Reinput label='Confirm Password' secureTextEntry={true} />
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginRight: 30 }}>
-                            <Button rounded light style={{ width: screenWidth / 3.5, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFE2DC' }}>
+                            <Button rounded light style={{ width: screenWidth / 3.5, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFE2DC' }} onPress={() => this.setState({ isUser: true })}>
                                 <Text style={{ textAlign: 'center', fontFamily: 'Maison Neue', color: '#FF7052' }}>Sign up</Text>
                             </Button>
                         </View>
