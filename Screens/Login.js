@@ -59,7 +59,7 @@ class Login extends React.Component {
             </View>
           </View>
           <View style={{ height: screenHeight / 9, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft: -50, marginLeft: 30, marginRight: 20, marginTop: 20 }}>
-            <Text style={{ fontSize: 16 }}>No account?{'\t\t'}
+            <Text style={{ fontSize: 16, paddingRight: 5 }}>No account?
             </Text>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Signup')}>
               <Text style={{ fontSize: 16, color: '#FF7052' }}>Create one</Text>

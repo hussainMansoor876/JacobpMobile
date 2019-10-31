@@ -61,7 +61,7 @@ class Signup extends React.Component {
                         </View>
                     </View>
                     <View style={{ height: screenHeight / 9, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft: 30, marginRight: 20, marginTop: 20 }}>
-                        <Text style={{ fontSize: 18 }}>Already have an account.{'\t'}
+                        <Text style={{ fontSize: 18, paddingRight: 5 }}>Already have an account.
                         </Text>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
                             <Text style={{ fontSize: 18, color: '#7540EE' }}>Login</Text>
