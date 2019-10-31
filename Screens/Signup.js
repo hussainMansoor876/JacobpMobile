@@ -39,9 +39,9 @@ class Signup extends React.Component {
                             />
                             <Text style={{ fontSize: 24, marginTop: 20, marginLeft: 0 }}>Sign up</Text>
                             <View style={{ marginTop: 20 }}>
-                                <Text style={{ fontFamily: 'MaisonNeue-Medium', fontSize: 18, color: '#787993' }}>Create an account to use{'\t\t'}
-                                    <Text style={{ fontFamily: 'MaisonNeue-Medium', fontSize: 18, color: '#FF7052', fontWeight: 'bold' }}>Hub{'\n'}</Text>
-                                    <Text style={{ fontFamily: 'MaisonNeue-Medium', fontSize: 18, color: '#FF7052' }}> without limits</Text>
+                                <Text style={{ fontSize: 18, color: '#787993' }}>Create an account to use{'\t\t'}
+                                    <Text style={{ fontSize: 18, color: '#FF7052', fontWeight: 'bold' }}>Hub{'\n'}</Text>
+                                    <Text style={{ fontSize: 18, color: '#FF7052' }}> without limits</Text>
                                 </Text>
                             </View>
                         </View>
@@ -54,15 +54,15 @@ class Signup extends React.Component {
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginRight: 30 }}>
                             <Button rounded light style={{ width: screenWidth / 3.5, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFE2DC' }} onPress={() => this.setState({ isUser: true })}>
-                                <Text style={{ textAlign: 'center', fontFamily: 'Maison Neue', color: '#FF7052' }}>Sign up</Text>
+                                <Text style={{ textAlign: 'center', color: '#FF7052' }}>Sign up</Text>
                             </Button>
                         </View>
                     </View>
                     <View style={{ height: screenHeight / 9, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft: 30, marginRight: 20, marginTop: 20 }}>
-                        <Text style={{ fontFamily: 'MaisonNeue-Medium', fontSize: 18 }}>Already have an account.{'\t'}
+                        <Text style={{ fontSize: 18 }}>Already have an account.{'\t'}
                         </Text>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-                            <Text style={{ fontFamily: 'MaisonNeue-Medium', fontSize: 18, color: '#7540EE' }}>Login</Text>
+                            <Text style={{ fontSize: 18, color: '#7540EE' }}>Login</Text>
                         </TouchableOpacity>
                     </View>
                 </KeyboardAvoidingView>

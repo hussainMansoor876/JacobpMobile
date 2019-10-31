@@ -51,18 +51,18 @@ class Login extends React.Component {
             </View>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginRight: 30 }}>
               <Button rounded light style={{ width: screenWidth / 4, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ textAlign: 'center', fontFamily: 'Maison Neue', color: '#7540EE' }}>Login</Text>
+                <Text style={{ textAlign: 'center', color: '#7540EE' }}>Login</Text>
               </Button>
               <Button transparent>
-                <Text style={{ textAlign: 'center', fontFamily: 'Maison Neue', color: '#7540EE' }}>Forgot password?</Text>
+                <Text style={{ textAlign: 'center', color: '#7540EE' }}>Forgot password?</Text>
               </Button>
             </View>
           </View>
           <View style={{ height: screenHeight / 9, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft: -50, marginLeft: 30, marginRight: 20, marginTop: 20 }}>
-            <Text style={{ fontFamily: 'MaisonNeue-Medium', fontSize: 16 }}>No account?{'\t\t'}
+            <Text style={{ fontSize: 16 }}>No account?{'\t\t'}
             </Text>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Signup')}>
-              <Text style={{ fontFamily: 'MaisonNeue-Medium', fontSize: 16, color: '#FF7052' }}>Create one</Text>
+              <Text style={{ fontSize: 16, color: '#FF7052' }}>Create one</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
