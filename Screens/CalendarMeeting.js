@@ -7,10 +7,6 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { Icon } from 'react-native-elements'
 
 
-const vacation = { key: 'vacation', color: 'red', selectedDotColor: 'blue' };
-const massage = { key: 'massage', color: 'blue', selectedDotColor: 'blue' };
-const workout = { key: 'workout', color: 'green' };
-
 class CalendarMeeting extends React.Component {
     constructor(props) {
         super(props);
@@ -48,13 +44,12 @@ class CalendarMeeting extends React.Component {
                 items: newItems
             });
         }, 1000);
-        console.log("Hello")
         // console.log(`Load Items for ${day.year}-${day.month}`);
     }
 
     renderItem(item) {
         return (
-            <View style={[styles.item, { height: item.height }]}><Text>{item.name}</Text></View>
+            <View style={[styles.item, { height: item.height }]}><Text>{item.name} Hello</Text></View>
         );
     }
 
@@ -75,7 +70,6 @@ class CalendarMeeting extends React.Component {
 
     render() {
         const { screenHeight, screenWidth } = this.state
-        console.log('console', this.state)
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ position: 'absolute', bottom: 30, right: 0, width: 100, height: 100 }}>
@@ -87,18 +81,16 @@ class CalendarMeeting extends React.Component {
                     </Button>
                 </View>
                 <ScrollView style={{ width: screenWidth, height: screenHeight }}>
-                    <View style={{ height: 100, borderWidth: 1, borderColor: 'black' }}>
-
-                    </View>
                     <Agenda
                         items={this.state.items}
+                        ref={e => this.agendaRef = e}
                         loadItemsForMonth={this.loadItems.bind(this)}
                         selected={'2017-05-16'}
                         renderItem={this.renderItem.bind(this)}
                         renderEmptyDate={this.renderEmptyDate.bind(this)}
                         rowHasChanged={this.rowHasChanged.bind(this)}
-                        futureScrollRange={0}
-                        pastScrollRange={0}
+                        // futureScrollRange={5}
+                        // pastScrollRange={5}
                     // renderKnob={() => {
                     //     return (<View style={{ flex: 1 }} >
                     //         <Text>Hello</Text>

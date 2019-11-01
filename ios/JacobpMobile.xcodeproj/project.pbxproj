@@ -54,6 +54,7 @@
 		FCAF3F228FC14A6DBB445AC5 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECEE1184CC594DF588E12315 /* AntDesign.ttf */; };
 		FF0ACA1F5F044DC4BFBBB7DB /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7FC1D62DA8244E0835EF0A0 /* FontAwesome5_Regular.ttf */; };
 		FFB21A225F1549D6AF7A22C2 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9CA42E8EB7749F2B5D0C860 /* FontAwesome5_Solid.ttf */; };
+		BB3920D6C71C4C7E9646E170 /* feather1s.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C965D9C48A5E45A7873943E9 /* feather1s.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,7 @@
 		EEA78DA869B74FA49AB205F0 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		F02700A253F868D0A721EF50 /* libPods-JacobpMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JacobpMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF27FFABD32FBF57F786BB4 /* libPods-JacobpMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JacobpMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C965D9C48A5E45A7873943E9 /* feather1s.ttf */ = {isa = PBXFileReference; name = "feather1s.ttf"; path = "../node_modules/react-native-feather1s/Fonts/feather1s.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 				743DB5AA1C394AC5AC4361EA /* rubicon-icon-font.ttf */,
 				42CD0C4DA2774928AEFB86D1 /* SimpleLineIcons.ttf */,
 				E16549011F5646A38BA38237 /* Zocial.ttf */,
+				C965D9C48A5E45A7873943E9 /* feather1s.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -487,6 +490,7 @@
 				26EB5008037C4894BD7FE7B4 /* rubicon-icon-font.ttf in Resources */,
 				26EB83C284C843FEA5CE827E /* SimpleLineIcons.ttf in Resources */,
 				05BD6C62F75A4EEFAE012146 /* Zocial.ttf in Resources */,
+				BB3920D6C71C4C7E9646E170 /* feather1s.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 import Navigator from './navigation/AppNavigator'
 import CalendarMeeting from './Screens/CalendarMeeting'
+import Home from './Screens/Home'
 
 class App extends React.Component {
   constructor() {
@@ -14,7 +15,7 @@ class App extends React.Component {
     return (
       <Provider store={store} >
         <View style={{ flex: 1 }}>
-          <CalendarMeeting />
+          <Home />
         </View>
       </Provider>
     );
