@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Dimensions, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
+import Carousel from 'react-native-snap-carousel';
 import { Button } from 'native-base'
 import { connect } from 'react-redux';
 import { Icon, Badge } from 'react-native-elements';
@@ -13,12 +14,37 @@ class Home extends React.Component {
         this.state = {
             screenWidth: Dimensions.get('window').width,
             screenHeight: Dimensions.get('window').height,
-            items: {}
+            items: {},
+            carouselItems: [
+                {
+                    title: "Item 1"
+                },
+                {
+                    title: "Item 2"
+                },
+                {
+                    title: "Item 3"
+                },
+                {
+                    title: "Item 4"
+                },
+                {
+                    title: "Item 5"
+                }
+            ]
         }
     }
 
     componentDidMount() {
         SplashScreen.hide();
+    }
+
+    _renderItem({ item, index }) {
+        return (
+            <View style={styles.slide}>
+                <Text style={styles.title}>{item.title}</Text>
+            </View>
+        );
     }
 
     render() {
@@ -51,11 +77,19 @@ class Home extends React.Component {
                             style={{ width: 30, resizeMode: 'contain', height: 30, marginLeft: 15 }}
                             source={require('../assets/images/calendar.png')}
                         >
-                        {/* <Badge status="success" containerStyle={{ position: 'relative' }} /> */}
+                            {/* <Badge status="success" containerStyle={{ position: 'relative' }} /> */}
                         </Image>
                     </View>
                 </View>
-
+                <View style={{ paddingTop: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: 'black' }}>
+                    <Carousel
+                        ref={(c) => { this._carousel = c; }}
+                        data={this.state.carouselItems}
+                        renderItem={this._renderItem}
+                        sliderWidth={250}
+                        itemWidth={250}
+                    />
+                </View>
             </View>
         );
     }
