@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Dimensions, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Dimensions, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { Button } from 'native-base'
 import { connect } from 'react-redux';
-import { Icon } from 'react-native-elements';
+import { Icon, Badge } from 'react-native-elements';
 import FeatherIcon from "react-native-feather1s";
 
 
@@ -40,13 +40,19 @@ class Home extends React.Component {
                         // thin={true}
                         iconStyle={{ width: 200 }}
                     />
-                    <Text style={{ fontSize: 22}}>May</Text>
-                    <View style={{ flexDirection: 'row'}}>
+                    <Text style={{ fontSize: 22 }}>May</Text>
+                    <View style={{ flexDirection: 'row' }}>
                         <Icon
-                        name="search"
-                        type="font-awesome"
-                        // reverse 
+                            name="search"
+                            type="font-awesome"
+                            size={30}
                         />
+                        <Image
+                            style={{ width: 30, resizeMode: 'contain', height: 30, marginLeft: 15 }}
+                            source={require('../assets/images/calendar.png')}
+                        >
+                        {/* <Badge status="success" containerStyle={{ position: 'relative' }} /> */}
+                        </Image>
                     </View>
                 </View>
 
