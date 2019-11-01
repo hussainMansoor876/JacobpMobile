@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
 import Navigator from './navigation/AppNavigator'
+import CalendarMeeting from './Screens/CalendarMeeting'
 
 class App extends React.Component {
   constructor() {
@@ -13,7 +14,7 @@ class App extends React.Component {
     return (
       <Provider store={store} >
         <View style={{ flex: 1 }}>
-         <Navigator />
+          <CalendarMeeting />
         </View>
       </Provider>
     );
