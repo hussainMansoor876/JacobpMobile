@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "deprecated-react-native-listview": "^0.0.6",
     "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "0.61.2",
@@ -26,6 +27,7 @@
     "react-native-screens": "1.0.0-alpha.23",
     "react-native-snap-carousel": "^3.8.4",
     "react-native-splash-screen": "^3.2.0",
+    "react-native-timeline-listview": "^0.2.3",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.10.3",

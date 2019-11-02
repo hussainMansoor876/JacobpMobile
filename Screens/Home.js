@@ -4,8 +4,9 @@ import SplashScreen from 'react-native-splash-screen'
 import Carousel from 'react-native-snap-carousel';
 import { Button, Card, CardItem, Body } from 'native-base'
 import { connect } from 'react-redux';
-import { Icon, Badge } from 'react-native-elements';
+import { Icon, Badge, ListItem } from 'react-native-elements';
 import FeatherIcon from "react-native-feather1s";
+import Timeline from './ListViewData'
 
 
 
@@ -16,6 +17,13 @@ class Home extends React.Component {
             screenWidth: Dimensions.get('window').width,
             screenHeight: Dimensions.get('window').height,
             items: {},
+            data: [
+                { time: '09:00', title: 'Project Daily stand-up', meetTime: '09:00 AM to 09:30 AM' },
+                { time: '10:45', title: 'Project Daily stand-up', meetTime: '09:00 AM to 09:30 AM' },
+                { time: '12:00', title: 'Project Daily stand-up', meetTime: '09:00 AM to 09:30 AM' },
+                { time: '14:00', title: 'Project Daily stand-up', meetTime: '09:00 AM to 09:30 AM' },
+                { time: '16:30', title: 'Project Daily stand-up', meetTime: '09:00 AM to 09:30 AM' }
+            ],
             carouselItems: [
                 {
                     title: "Project Daily stand-up",
@@ -37,6 +45,18 @@ class Home extends React.Component {
                     title: "Item 5",
                     time: "10:00 AM - 10:30 AM"
                 }
+            ],
+            list: [
+                {
+                    name: 'Amy Farha',
+                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                    subtitle: 'Vice President'
+                },
+                {
+                    name: 'Chris Jackson',
+                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+                    subtitle: 'Vice Chairman'
+                },
             ]
         }
         this._renderItem = this._renderItem.bind(this)
@@ -56,9 +76,23 @@ class Home extends React.Component {
                     <CardItem style={{ flex: 1, borderTopRightRadius: 10, borderBottomRightRadius: 10 }}>
                         <Body>
                             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                <View style={{ flex: 4 }}>
-                                    <Text style={{ fontSize: 16 }}>{item.title}</Text>
-                                    <Text>{item.time}</Text>
+                                <View style={{ flex: 7 }}>
+                                    <Text style={{ fontSize: 14 }}>{item.title}</Text>
+                                    <Text style={{ color: '#979797' }}>{item.time}</Text>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <Image
+                                            source={require('../assets/images/Bitmap.png')}
+                                        />
+                                        <Image
+                                            source={require('../assets/images/Bitmap.png')}
+                                        />
+                                        <Image
+                                            source={require('../assets/images/Bitmap.png')}
+                                        />
+                                        <Image
+                                            source={require('../assets/images/Bitmap.png')}
+                                        />
+                                    </View>
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Image
@@ -84,42 +118,56 @@ class Home extends React.Component {
                             color="white" />
                     </Button>
                 </View>
-                <View style={{ flexDirection: 'row', paddingTop: 10, paddingLeft: 10, justifyContent: 'space-between', alignItems: 'center', paddingRight: 10 }}>
-                    <FeatherIcon
-                        name="arrow-left"
-                        size={40}
-                        // thin={true}
-                        iconStyle={{ width: 200 }}
-                    />
-                    <Text style={{ fontSize: 22 }}>May</Text>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Icon
-                            name="search"
-                            type="font-awesome"
-                            size={30}
+                <Card style={{ paddingBottom: 20 }}>
+                    <View style={{ flexDirection: 'row', paddingTop: 10, paddingLeft: 10, justifyContent: 'space-between', alignItems: 'center', paddingRight: 10 }}>
+                        <FeatherIcon
+                            name="arrow-left"
+                            size={40}
+                            // thin={true}
+                            iconStyle={{ width: 200 }}
                         />
-                        <Image
-                            style={{ width: 30, resizeMode: 'contain', height: 30, marginLeft: 15 }}
-                            source={require('../assets/images/calendar.png')}
-                        >
-                            {/* <Badge status="success" containerStyle={{ position: 'relative' }} /> */}
-                        </Image>
+                        <Text style={{ fontSize: 22 }}>May</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Icon
+                                name="search"
+                                type="font-awesome"
+                                size={30}
+                            />
+                            <Image
+                                style={{ width: 30, resizeMode: 'contain', height: 30, marginLeft: 15 }}
+                                source={require('../assets/images/calendar.png')}
+                            >
+                                {/* <Badge status="success" containerStyle={{ position: 'relative' }} /> */}
+                            </Image>
+                        </View>
                     </View>
-                </View>
-                <View style={{ paddingTop: 20, width: screenWidth, justifyContent: 'flex-start', alignItems: 'flex-start', marginLeft: 10, marginTop: 20 }}>
-                    <View>
-                        <Text style={{ fontSize: 24, fontWeight: 'bold'}}>Meetings</Text>
+                    <View style={{ paddingTop: 20, width: screenWidth, justifyContent: 'flex-start', alignItems: 'flex-start', marginLeft: 10, marginTop: 20 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Meetings</Text>
+                            <Badge value="4" status="success" badgeStyle={{ backgroundColor: '#7540EE', paddingRight: 5, paddingLeft: 5 }}
+                            />
+                        </View>
+                        <Carousel
+                            ref={(c) => { this._carousel = c; }}
+                            data={this.state.carouselItems}
+                            renderItem={this._renderItem}
+                            sliderWidth={250}
+                            itemWidth={250}
+                            loop={true}
+                            enableSnap={true}
+                        />
                     </View>
-                    <Carousel
-                        ref={(c) => { this._carousel = c; }}
-                        data={this.state.carouselItems}
-                        renderItem={this._renderItem}
-                        sliderWidth={250}
-                        itemWidth={250}
-                        loop={true}
-                        enableSnap={true}
+                </Card>
+                <ScrollView style={{ flex: 1 }}>
+                    <Timeline
+                        data={this.state.data}
+                        timeContainerStyle={{ minWidth: 52, marginTop: -5 }}
+                        timeStyle={{ textAlign: 'center', backgroundColor: '#ff9797', color: 'white', padding: 5, borderRadius: 13 }}
+                        // descriptionStyle={{ color: 'gray', backgroundColor: 'blue' }}
+                        detailContainerStyle={{ backgroundColor: '#E9F9F0', marginBottom: 10, borderRadius: 10 }}
+                        titleStyle={{ color: 'blue' }}
                     />
-                </View>
+                </ScrollView>
             </View>
         );
     }
