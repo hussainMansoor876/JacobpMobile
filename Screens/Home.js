@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Dimensions, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Dimensions, Text, Platform, ScrollView, SafeAreaView, StyleSheet, Image } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
-import Carousel from 'react-native-snap-carousel';
+import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import { Button, Card, CardItem, Body } from 'native-base'
 import { connect } from 'react-redux';
 import { Icon, Badge, ListItem } from 'react-native-elements';
@@ -48,12 +48,12 @@ class Home extends React.Component {
             ],
             list: [
                 {
-                    name: 'Amy Farha',
+                    title: 'Amy Farha',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
                     subtitle: 'Vice President'
                 },
                 {
-                    name: 'Chris Jackson',
+                    title: 'Chris Jackson',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
                     subtitle: 'Vice Chairman'
                 },
@@ -109,7 +109,7 @@ class Home extends React.Component {
     render() {
         const { screenHeight, screenWidth } = this.state
         return (
-            <View style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ position: 'absolute', bottom: 30, right: 0, width: 100, height: 100 }}>
                     <Button light style={{ backgroundColor: '#FF7052', justifyContent: 'center', alignItems: 'center', borderRadius: 50, height: 70, width: 70 }}>
                         <Icon
@@ -168,10 +168,11 @@ class Home extends React.Component {
                         titleStyle={{ color: 'blue' }}
                     />
                 </ScrollView>
-            </View>
+            </SafeAreaView>
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     item: {

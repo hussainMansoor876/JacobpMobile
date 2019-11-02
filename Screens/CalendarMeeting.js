@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { Button } from 'native-base'
 import { connect } from 'react-redux';
@@ -71,7 +71,7 @@ class CalendarMeeting extends React.Component {
     render() {
         const { screenHeight, screenWidth } = this.state
         return (
-            <View style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ position: 'absolute', bottom: 30, right: 0, width: 100, height: 100 }}>
                     <Button light style={{ backgroundColor: '#FF7052', justifyContent: 'center', alignItems: 'center', borderRadius: 50, height: 70, width: 70 }}>
                         <Icon
@@ -89,8 +89,8 @@ class CalendarMeeting extends React.Component {
                         renderItem={this.renderItem.bind(this)}
                         renderEmptyDate={this.renderEmptyDate.bind(this)}
                         rowHasChanged={this.rowHasChanged.bind(this)}
-                        // futureScrollRange={5}
-                        // pastScrollRange={5}
+                    // futureScrollRange={5}
+                    // pastScrollRange={5}
                     // renderKnob={() => {
                     //     return (<View style={{ flex: 1 }} >
                     //         <Text>Hello</Text>
@@ -111,7 +111,7 @@ class CalendarMeeting extends React.Component {
                     //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
                     />
                 </ScrollView>
-            </View>
+            </SafeAreaView>
         );
     }
 }
