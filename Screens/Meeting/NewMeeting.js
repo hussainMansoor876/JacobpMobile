@@ -131,12 +131,38 @@ class NewMeeting extends React.Component {
                     </View>
                     <View style={{ marginTop: 20 }}>
                         <Text style={{ fontSize: 18, marginBottom: 10, opacity: 0.5 }}>Choose Meeting Type</Text>
-                        <View style={{ marginTop: 5 }}>
-                            <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, paddingTop: 2, borderRadius: 5 }}>
+                        <View style={{ marginTop: 5, flexDirection: 'row', marginRight: 20 }}>
+                            <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, paddingTop: 2, borderRadius: 5, width: '45%', marginRight: 15 }}>
                                 <Image
                                     style={{ marginRight: 10 }}
                                     source={require('../../assets/images/Bitmap1.png')} />
                                 <Text style={{ color: '#22D369', fontSize: 16 }}>Project Meeting</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, paddingTop: 2, borderRadius: 5, width: '35%' }}>
+                                <Image
+                                    style={{ marginRight: 10 }}
+                                    source={require('../../assets/images/message.png')} />
+                                <Text style={{ color: '#22D369', fontSize: 16 }}>Meeting</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ marginTop: 5, flexDirection: 'row', marginRight: 20 }}>
+                            <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, paddingTop: 2, borderRadius: 5, marginRight: 15, width: '30%' }}>
+                                <Image
+                                    style={{ marginRight: 10 }}
+                                    source={require('../../assets/images/Bitmap1.png')} />
+                                <Text style={{ color: '#22D369', fontSize: 16 }}>Webinar</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, paddingTop: 2, borderRadius: 5, marginRight: 15, width: '30%' }}>
+                                <Image
+                                    style={{ marginRight: 10 }}
+                                    source={require('../../assets/images/Bitmap1.png')} />
+                                <Text style={{ color: '#22D369', fontSize: 16 }}>Status</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, paddingTop: 2, borderRadius: 5, marginRight: 15, width: '30%' }}>
+                                <Image
+                                    style={{ marginRight: 10 }}
+                                    source={require('../../assets/images/Bitmap1.png')} />
+                                <Text style={{ color: '#22D369', fontSize: 16 }}>Other</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
