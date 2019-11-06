@@ -3,11 +3,25 @@ import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, Toucha
 import SplashScreen from 'react-native-splash-screen'
 import { Form, Item, Label, Input, Textarea } from 'native-base'
 import { connect } from 'react-redux';
-import { Icon } from 'react-native-elements'
+import { Icon, ListItem } from 'react-native-elements'
 import Moment from 'moment'
+import TouchableScale from 'react-native-touchable-scale';
 import { Calendar } from 'react-native-calendars';
 
 const { height, width } = Dimensions.get('window')
+
+const list = [
+    {
+        name: 'Amy Farha',
+        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+        subtitle: 'Vice President'
+    },
+    {
+        name: 'Chris Jackson',
+        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+        subtitle: 'Vice Chairman'
+    }
+]
 
 
 class NewMeeting extends React.Component {
@@ -303,6 +317,27 @@ class NewMeeting extends React.Component {
                                     type="font-awesome"
                                 />
                             </TouchableOpacity>
+                        </View>
+                        <View>
+                            <Text>Recent</Text>
+                            {list.map((l, i) => {
+                                return (
+                                    <ListItem
+                                        key={i}
+                                        Component={TouchableScale}
+                                        friction={90}
+                                        tension={100}
+                                        activeScale={0.95} //
+                                        badge={{ value: 1, textStyle: { color: 'white' }, containerStyle: { marginTop: -20 } }}
+                                        leftAvatar={{ rounded: true, source: { uri: l.avatar_url } }}
+                                        title={"Mansoor"}
+                                        subtitle={l.subtitle}
+                                        containerStyle={{ borderColor: 'white', borderWidth: 0.5, borderStyle: 'solid', marginLeft: 5, marginRight: 5, borderRadius: 5 }}
+                                        // onPress={() => this.chatStart(l)}
+                                    />
+                                )
+                            })
+                            }
                         </View>
                     </View>
                 </Animated.View>
