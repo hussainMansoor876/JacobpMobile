@@ -3,9 +3,7 @@ import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, Toucha
 import SplashScreen from 'react-native-splash-screen'
 import { Form, Item, Label, Input, Textarea } from 'native-base'
 import { connect } from 'react-redux';
-import DateTimePicker from "react-native-modal-datetime-picker";
 import { Icon } from 'react-native-elements'
-import FeatherIcon from "react-native-feather1s";
 import Moment from 'moment'
 import { Calendar } from 'react-native-calendars';
 
@@ -159,7 +157,7 @@ class NewMeeting extends React.Component {
                                 iconStyle={{ width: 200 }}
                             />
                         </TouchableOpacity>
-                            <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', paddingBottom: 10, width: '100%' }}>DashSync project kick-off</Text>
+                        <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', paddingBottom: 10, width: '100%' }}>DashSync project kick-off</Text>
                     </View>}
                 <Animated.ScrollView>
                     <KeyboardAvoidingView
@@ -200,7 +198,7 @@ class NewMeeting extends React.Component {
                                 <View style={{ marginTop: 20 }}>
                                     <Text style={{ fontSize: 18, marginBottom: 10, opacity: 0.5 }}>Choose Meeting Type</Text>
                                     <View style={{ marginTop: 5, flexDirection: 'row', marginRight: 20 }}>
-                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, paddingTop: 2, borderRadius: 15, width: '45%', marginRight: 15 }}>
+                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, paddingTop: 2, borderRadius: 15, width: '48%', marginRight: 15 }}>
                                             <Image
                                                 style={{ marginRight: 10 }}
                                                 source={require('../../assets/images/Bitmap1.png')} />
@@ -247,7 +245,7 @@ class NewMeeting extends React.Component {
                 </Animated.ScrollView>
 
                 <Animated.View style={{ height: calendarHeight, opacity: calendarOpacity, backgroundColor: '#d3d3df' }}>
-                    <View style={{ backgroundColor: 'white', height: height * 5 / 6, borderTopRightRadius: 30, borderTopLeftRadius: 30 }}>
+                    <View style={{ backgroundColor: 'white', height: height * 5 / 6, borderTopRightRadius: 15, borderTopLeftRadius: 15 }}>
                         <View style={{ flexDirection: 'row', paddingLeft: 20, justifyContent: 'space-between', paddingRight: 20, paddingTop: 10 }}>
                             <Text style={{ fontSize: 18, marginBottom: 10 }}>Choose Date</Text>
                             <TouchableOpacity onPress={this.hideDateTimePicker}>
