@@ -24,6 +24,8 @@ class NewMeeting extends React.Component {
             isDateTimePickerVisible: new Animated.Value(0),
             calendarHeight: new Animated.Value(0),
             calendarOpacity: new Animated.Value(0),
+            inviteHeight: new Animated.Value(0),
+            inviteOpacity: new Animated.Value(0),
             showHeader: false
         }
     }
@@ -88,6 +90,32 @@ class NewMeeting extends React.Component {
     };
 
 
+    showInvite = () => {
+        Animated.timing(this.state.screenHeight, {
+            toValue: 0,
+            duration: 500,
+        }).start()
+        Animated.timing(this.state.screenOpacity, {
+            toValue: 0,
+            duration: 500
+        }).start()
+        Animated.timing(this.state.inviteHeight, {
+            // delay: 500,
+            toValue: height,
+            duration: 500,
+        }).start()
+        Animated.timing(this.state.inviteOpacity, {
+            // delay: 1000,
+            toValue: 1,
+            duration: 500
+        }).start()
+
+        setTimeout(() => {
+            this.setState({ showHeader: true })
+        }, 200)
+    };
+
+
 
     hideDateTimePicker = () => {
         Animated.timing(this.state.calendarHeight, {
@@ -138,7 +166,7 @@ class NewMeeting extends React.Component {
     }
 
     render() {
-        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items, screenWidth } = this.state
+        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items, inviteHeight, inviteOpacity } = this.state
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 {!showHeader ? <View style={{ paddingTop: 20, paddingLeft: 20, flexDirection: 'row' }}>
@@ -178,7 +206,9 @@ class NewMeeting extends React.Component {
                             <View style={{ paddingLeft: 30, marginTop: 20 }}>
                                 <Text style={{ fontSize: 20, opacity: 0.6 }}>Invite People</Text>
                                 <View style={{ marginTop: 10 }}>
-                                    <TouchableOpacity activeOpacity={0.5} style={{ borderColor: 'grey', borderStyle: 'dashed', borderWidth: 1, height: 60, width: 60, justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}>
+                                    <TouchableOpacity
+                                        onPress={this.showInvite}
+                                        activeOpacity={0.5} style={{ borderColor: 'grey', borderStyle: 'dashed', borderWidth: 1, height: 60, width: 60, justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}>
                                         <Icon
                                             name="add"
                                             iconStyle={{ fontSize: 32, opacity: 0.2 }}
@@ -257,12 +287,23 @@ class NewMeeting extends React.Component {
                         </View>
                         <Calendar
                             onDayPress={(e) => this.updateDate(e)}
-                            // markedDates={{
-                            //     '2019-11-16': { selected: true, selectedColor: '#7540EE', activeOpacity: 0 }
-                            // }}
                             minDate={new Date()}
                             markedDates={items}
                         />
+                    </View>
+                </Animated.View>
+
+                <Animated.View style={{ height: inviteHeight, opacity: inviteOpacity, backgroundColor: '#d3d3df' }}>
+                    <View style={{ backgroundColor: 'white', height: height * 5 / 6, borderTopRightRadius: 15, borderTopLeftRadius: 15 }}>
+                        <View style={{ flexDirection: 'row', paddingLeft: 20, justifyContent: 'space-between', paddingRight: 20, paddingTop: 10 }}>
+                            <Text style={{ fontSize: 18, marginBottom: 10 }}>Invite people</Text>
+                            <TouchableOpacity onPress={this.hideDateTimePicker}>
+                                <Icon
+                                    name="angle-down"
+                                    type="font-awesome"
+                                />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </Animated.View>
             </SafeAreaView>
