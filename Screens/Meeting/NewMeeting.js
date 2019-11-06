@@ -131,25 +131,35 @@ class NewMeeting extends React.Component {
         });
     }
 
+    updateDate(e) {
+        console.log(e['dateString'])
+        var obj = {}
+        obj[e['dateString']] = { selected: true, selectedColor: '#7540EE' }
+
+        this.setState({ items: obj })
+    }
+
     render() {
-        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader } = this.state
+        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items } = this.state
         return (
             <SafeAreaView style={{ flex: 1 }}>
-                {!showHeader ? <View style={{ flexDirection: 'row', paddingTop: 20, paddingLeft: 10, justifyContent: 'space-between', alignItems: 'center', paddingRight: 10 }}>
-                    <FeatherIcon
+                {!showHeader ? <View style={{ paddingTop: 20, paddingLeft: 20, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                    <Icon
                         name="arrow-left"
                         size={40}
-                        // thin={true}
-                        // type="font-awesome"
-                        iconStyle={{ width: 200 }}
+                        type="feather"
+                    // thin={true}]
                     />
                 </View> :
-                    <View style={{ paddingTop: 10, paddingLeft: 10, paddingRight: 10, height: height / 6, justifyContent: 'space-around', backgroundColor: '#d3d3df' }}>
-                        <FeatherIcon
-                            name="arrow-left"
-                            size={40}
-                            iconStyle={{ width: 200 }}
-                        />
+                    <View style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 10, height: height / 6, alignItems: 'flex-start', backgroundColor: '#d3d3df' }}>
+                        <TouchableOpacity activeOpacity={0.5} onPress={this.hideDateTimePicker}>
+                            <Icon
+                                name="arrow-left"
+                                size={40}
+                                type="feather"
+                                iconStyle={{ width: 200 }}
+                            />
+                        </TouchableOpacity>
                         <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', paddingBottom: 10 }}>DashSync project kick-off</Text>
                     </View>}
                 <Animated.ScrollView>
@@ -249,10 +259,11 @@ class NewMeeting extends React.Component {
                             </TouchableOpacity>
                         </View>
                         <Calendar
-                            onDayPress={(e) => console.log(e)}
-                            markedDates={{
-                                '2019-11-16': { selected: true, selectedColor: '#7540EE', activeOpacity: 0 }
-                            }}
+                            onDayPress={(e) => this.updateDate(e)}
+                            // markedDates={{
+                            //     '2019-11-16': { selected: true, selectedColor: '#7540EE', activeOpacity: 0 }
+                            // }}
+                            markedDates={items}
                         />
                     </View>
                 </Animated.View>
