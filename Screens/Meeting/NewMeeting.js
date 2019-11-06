@@ -140,18 +140,17 @@ class NewMeeting extends React.Component {
     }
 
     render() {
-        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items } = this.state
+        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items, screenWidth } = this.state
         return (
             <SafeAreaView style={{ flex: 1 }}>
-                {!showHeader ? <View style={{ paddingTop: 20, paddingLeft: 20, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                {!showHeader ? <View style={{ paddingTop: 20, paddingLeft: 20, flexDirection: 'row' }}>
                     <Icon
                         name="arrow-left"
                         size={40}
                         type="feather"
-                    // thin={true}]
                     />
                 </View> :
-                    <View style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 10, height: height / 6, alignItems: 'flex-start', backgroundColor: '#d3d3df' }}>
+                    <View style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 10, height: height / 6, backgroundColor: '#d3d3df', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                         <TouchableOpacity activeOpacity={0.5} onPress={this.hideDateTimePicker}>
                             <Icon
                                 name="arrow-left"
@@ -160,7 +159,7 @@ class NewMeeting extends React.Component {
                                 iconStyle={{ width: 200 }}
                             />
                         </TouchableOpacity>
-                        <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', paddingBottom: 10 }}>DashSync project kick-off</Text>
+                            <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', paddingBottom: 10, width: '100%' }}>DashSync project kick-off</Text>
                     </View>}
                 <Animated.ScrollView>
                     <KeyboardAvoidingView
@@ -181,7 +180,7 @@ class NewMeeting extends React.Component {
                             <View style={{ paddingLeft: 30, marginTop: 20 }}>
                                 <Text style={{ fontSize: 20, opacity: 0.6 }}>Invite People</Text>
                                 <View style={{ marginTop: 10 }}>
-                                    <TouchableOpacity activeOpacity={0.6} style={{ borderColor: 'grey', borderStyle: 'dashed', borderWidth: 1, height: 60, width: 60, justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}>
+                                    <TouchableOpacity activeOpacity={0.5} style={{ borderColor: 'grey', borderStyle: 'dashed', borderWidth: 1, height: 60, width: 60, justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}>
                                         <Icon
                                             name="add"
                                             iconStyle={{ fontSize: 32, opacity: 0.2 }}
@@ -190,7 +189,7 @@ class NewMeeting extends React.Component {
                                 </View>
                                 <Animated.View style={{ marginTop: 10 }}>
                                     <Text style={{ fontSize: 18, marginBottom: 10, opacity: 0.4 }}>Choose Date</Text>
-                                    <TouchableOpacity onPress={this.showDateTimePicker} style={{ flexDirection: 'row' }}>
+                                    <TouchableOpacity activeOpacity={0.5} onPress={this.showDateTimePicker} style={{ flexDirection: 'row' }}>
                                         <Text style={{ fontSize: 18, marginRight: 30 }}>{today}, {currentTime} --- {futureDate}</Text>
                                         <Icon
                                             name="angle-down"
@@ -263,6 +262,7 @@ class NewMeeting extends React.Component {
                             // markedDates={{
                             //     '2019-11-16': { selected: true, selectedColor: '#7540EE', activeOpacity: 0 }
                             // }}
+                            minDate={new Date()}
                             markedDates={items}
                         />
                     </View>
