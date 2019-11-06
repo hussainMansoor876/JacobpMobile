@@ -3,7 +3,7 @@ import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, Toucha
 import SplashScreen from 'react-native-splash-screen'
 import { Form, Item, Label, Input, Textarea } from 'native-base'
 import { connect } from 'react-redux';
-import { Icon, ListItem } from 'react-native-elements'
+import { Icon, ListItem, SearchBar } from 'react-native-elements'
 import Moment from 'moment'
 import TouchableScale from 'react-native-touchable-scale';
 import { Calendar } from 'react-native-calendars';
@@ -318,8 +318,16 @@ class NewMeeting extends React.Component {
                                 />
                             </TouchableOpacity>
                         </View>
-                        <View>
-                            <Text>Recent</Text>
+                        <View style={{ paddingTop: 10 }}>
+                            <SearchBar
+                                placeholder="Type Here..."
+                                containerStyle={{ backgroundColor: 'white' }}
+                                inputContainerStyle={{ backgroundColor: 'white' }}
+                                inputStyle={{ backgroundColor: 'white' }}
+                            // onChangeText={this.updateSearch}
+                            // value={search}
+                            />
+                            <Text style={{ paddingLeft: 20 }}>Recent</Text>
                             {list.map((l, i) => {
                                 return (
                                     <ListItem
@@ -333,7 +341,7 @@ class NewMeeting extends React.Component {
                                         title={"Mansoor"}
                                         subtitle={l.subtitle}
                                         containerStyle={{ borderColor: 'white', borderWidth: 0.5, borderStyle: 'solid', marginLeft: 5, marginRight: 5, borderRadius: 5 }}
-                                        // onPress={() => this.chatStart(l)}
+                                    // onPress={() => this.chatStart(l)}
                                     />
                                 )
                             })
