@@ -89,10 +89,20 @@ class NewMeeting extends React.Component {
     hideDateTimePicker = () => {
         Animated.timing(this.state.calendarHeight, {
             toValue: 0,
-            duration: 1000
+            duration: 500,
         }).start()
-        Animated.timing(this.state.isDateTimePickerVisible, {
+        Animated.timing(this.state.calendarOpacity, {
             toValue: 0,
+            duration: 500
+        }).start()
+        Animated.timing(this.state.screenHeight, {
+            // delay: 500,
+            toValue: height,
+            duration: 500
+        }).start()
+        Animated.timing(this.state.screenOpacity, {
+            // delay: 1000,
+            toValue: 1,
             duration: 500
         }).start()
     };
@@ -126,7 +136,7 @@ class NewMeeting extends React.Component {
                         iconStyle={{ width: 200 }}
                     />
                 </View>
-                {calendarHeight && <Animated.ScrollView style={{ height: 50 }}>
+                <Animated.ScrollView style={{ height: 50 }}>
                     <KeyboardAvoidingView
                         resetScrollToCoords={{ x: 0, y: 0 }}
                         behavior={Platform.OS === "ios" ? "padding" : null}
@@ -209,15 +219,17 @@ class NewMeeting extends React.Component {
                             </View>
                         </Animated.View>
                     </KeyboardAvoidingView>
-                </Animated.ScrollView>}
+                </Animated.ScrollView>
 
                 <Animated.View style={{ marginTop: 10, height: calendarHeight, opacity: calendarOpacity }}>
                     <View style={{ flexDirection: 'row', paddingLeft: 20, justifyContent: 'space-between', paddingRight: 20 }}>
                         <Text style={{ fontSize: 18, marginBottom: 10, opacity: 0.4 }}>Choose Date</Text>
-                        <Icon
-                            name="angle-down"
-                            type="font-awesome"
-                        />
+                        <TouchableOpacity onPress={this.hideDateTimePicker}>
+                            <Icon
+                                name="angle-down"
+                                type="font-awesome"
+                            />
+                        </TouchableOpacity>
                     </View>
                     <Calendar
                         // Collection of dates that have to be marked. Default = {}
