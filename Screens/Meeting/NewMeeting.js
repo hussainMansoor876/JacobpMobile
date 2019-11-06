@@ -25,7 +25,8 @@ class NewMeeting extends React.Component {
             futureDate: '',
             isDateTimePickerVisible: new Animated.Value(0),
             calendarHeight: new Animated.Value(0),
-            calendarOpacity: new Animated.Value(0)
+            calendarOpacity: new Animated.Value(0),
+            showHeader: false
         }
     }
 
@@ -75,13 +76,17 @@ class NewMeeting extends React.Component {
         Animated.timing(this.state.calendarHeight, {
             // delay: 500,
             toValue: height,
-            duration: 500
+            duration: 500,
         }).start()
         Animated.timing(this.state.calendarOpacity, {
             // delay: 1000,
             toValue: 1,
             duration: 500
         }).start()
+
+        setTimeout(() => {
+            this.setState({ showHeader: true })
+        }, 200)
     };
 
 
@@ -105,6 +110,10 @@ class NewMeeting extends React.Component {
             toValue: 1,
             duration: 500
         }).start()
+
+        setTimeout(() => {
+            this.setState({ showHeader: false })
+        }, 200)
     };
 
     handleDatePicked = date => {
@@ -123,11 +132,10 @@ class NewMeeting extends React.Component {
     }
 
     render() {
-        const { today, currentTime, futureDate, calendarHeight, isDateTimePickerVisible, screenHeight, screenOpacity, calendarOpacity } = this.state
-        console.log(this.state.isDateTimePickerVisible)
+        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader } = this.state
         return (
             <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ flexDirection: 'row', paddingTop: 10, paddingLeft: 10, justifyContent: 'space-between', alignItems: 'center', paddingRight: 10 }}>
+                {!showHeader ? <View style={{ flexDirection: 'row', paddingTop: 20, paddingLeft: 10, justifyContent: 'space-between', alignItems: 'center', paddingRight: 10 }}>
                     <FeatherIcon
                         name="arrow-left"
                         size={40}
@@ -135,8 +143,16 @@ class NewMeeting extends React.Component {
                         // type="font-awesome"
                         iconStyle={{ width: 200 }}
                     />
-                </View>
-                <Animated.ScrollView style={{ height: 50 }}>
+                </View> :
+                    <View style={{ paddingTop: 10, paddingLeft: 10, paddingRight: 10, height: height / 6, justifyContent: 'space-around', backgroundColor: '#d3d3df' }}>
+                        <FeatherIcon
+                            name="arrow-left"
+                            size={40}
+                            iconStyle={{ width: 200 }}
+                        />
+                        <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', paddingBottom: 10 }}>DashSync project kick-off</Text>
+                    </View>}
+                <Animated.ScrollView>
                     <KeyboardAvoidingView
                         resetScrollToCoords={{ x: 0, y: 0 }}
                         behavior={Platform.OS === "ios" ? "padding" : null}
@@ -221,26 +237,24 @@ class NewMeeting extends React.Component {
                     </KeyboardAvoidingView>
                 </Animated.ScrollView>
 
-                <Animated.View style={{ marginTop: 10, height: calendarHeight, opacity: calendarOpacity }}>
-                    <View style={{ flexDirection: 'row', paddingLeft: 20, justifyContent: 'space-between', paddingRight: 20 }}>
-                        <Text style={{ fontSize: 18, marginBottom: 10, opacity: 0.4 }}>Choose Date</Text>
-                        <TouchableOpacity onPress={this.hideDateTimePicker}>
-                            <Icon
-                                name="angle-down"
-                                type="font-awesome"
-                            />
-                        </TouchableOpacity>
+                <Animated.View style={{ height: calendarHeight, opacity: calendarOpacity, backgroundColor: '#d3d3df' }}>
+                    <View style={{ backgroundColor: 'white', height: height * 5 / 6, borderTopRightRadius: 30, borderTopLeftRadius: 30 }}>
+                        <View style={{ flexDirection: 'row', paddingLeft: 20, justifyContent: 'space-between', paddingRight: 20, paddingTop: 10 }}>
+                            <Text style={{ fontSize: 18, marginBottom: 10 }}>Choose Date</Text>
+                            <TouchableOpacity onPress={this.hideDateTimePicker}>
+                                <Icon
+                                    name="angle-down"
+                                    type="font-awesome"
+                                />
+                            </TouchableOpacity>
+                        </View>
+                        <Calendar
+                            onDayPress={(e) => console.log(e)}
+                            markedDates={{
+                                '2019-11-16': { selected: true, selectedColor: '#7540EE', activeOpacity: 0 }
+                            }}
+                        />
                     </View>
-                    <Calendar
-                        // Collection of dates that have to be marked. Default = {}
-                        onDayPress={(e) => console.log(e)}
-                        markedDates={{
-                            '2012-05-16': { selected: true, marked: true, selectedColor: 'blue' },
-                            '2012-05-17': { marked: true },
-                            '2012-05-18': { marked: true, dotColor: 'red', activeOpacity: 0 },
-                            '2012-05-19': { disabled: true, disableTouchEvent: true }
-                        }}
-                    />
                 </Animated.View>
             </SafeAreaView>
         );
