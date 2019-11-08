@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Icon, SearchBar } from 'react-native-elements'
 import Moment from 'moment'
 // import TouchableScale from 'react-native-touchable-scale';
+import Modal from "react-native-modal";
 import { Calendar } from 'react-native-calendars';
 
 const { height, width } = Dimensions.get('window')
@@ -29,6 +30,7 @@ class NewMeeting extends React.Component {
             inviteOpacity: new Animated.Value(0),
             showHeader: false,
             invite: false,
+            isModalVisible: false,
             list: [
                 {
                     name: 'Amy Farha',
@@ -224,10 +226,86 @@ class NewMeeting extends React.Component {
         this.setState({ items: obj })
     }
 
+    toggleModal = () => {
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+    };
+
     render() {
         const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items, inviteHeight, inviteOpacity, invite, list } = this.state
         return (
             <SafeAreaView style={{ flex: 1 }}>
+                <Modal
+                    animationIn="fadeInUp"
+                    animationInTiming={500}
+                    animationOut="fadeOutDown"
+                    animationOutTiming={200}
+                    isVisible={this.state.isModalVisible}
+                    style={{ backgroundColor: 'white', margin: 0, marginTop: height / 6, borderTopRightRadius: 10, borderTopLeftRadius: 10 }}
+                >
+                    <View style={{ paddingLeft: 20, flex: 1 }}>
+                        <View>
+                            <TouchableOpacity
+                                activeOpacity={0.5}
+                                onPress={this.toggleModal}
+                                style={{
+                                    paddingTop: 30,
+                                    flexDirection: 'row'
+                                }} >
+                                <Icon
+                                    name="angle-down"
+                                    type="font-awesome"
+                                />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ marginTop: 10 }}>
+                            <View>
+                                <Text
+                                    style={{
+                                        fontSize: 26
+                                    }}
+                                >F2F with Dawid Wozniak</Text>
+                                <Text style={{ color: 'rgba(0,0,0,0.5)', fontSize: 16 }}>Wednesday, 01/22/2020</Text>
+                                <Text style={{ color: 'rgba(0,0,0,0.5)', fontSize: 16 }}>12:00 AM — 1:00 PM</Text>
+                            </View>
+                            <View style={{ marginTop: 30 }}>
+                                <Text style={{ color: 'rgba(0,0,0,0.5)', fontSize: 14 }}>People invited</Text>
+                                <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                                    {list.map((v, i) => {
+                                        return (
+                                            <Image
+                                                key={i}
+                                                style={{ width: 50, height: 50, borderRadius: 50, margin: 5 }}
+                                                source={{ uri: list[i].avatar_url }} />
+                                        )
+                                    })}
+                                </View>
+                                <Text style={{ color: 'rgba(0,0,0,0.5)', fontSize: 14, marginTop: 20 }}>Type</Text>
+                                <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#D5DFF7', height: 30, alignItems: 'center', borderRadius: 15, width: '35%', marginTop: 10 }}>
+                                    <Image
+                                        style={{ marginRight: 10 }}
+                                        source={require('../../assets/images/message.png')} />
+                                    <Text style={{ color: '#2F61D5', fontSize: 16, fontWeight: '700' }}>Meeting</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={{ marginTop: 20 }}>
+                            <Text style={{ color: 'rgba(0,0,0,0.5)', fontSize: 16 }}>Short description</Text>
+                            <Text style={{ marginTop: 10, fontSize: 18 }}>
+                                We’ll have small feedback session
+                                and talk about your future objectives
+                            </Text>
+                            <TouchableOpacity
+                                style={{ marginTop: 10, backgroundColor: '#d5dff7', padding: 3, paddingRight: 8, borderRadius: 20, paddingTop: 10, paddingBottom: 10, width: width / 2, alignItems: 'center' }}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Icon name="check"
+                                        color="#2F61D5"
+                                        size={22} />
+                                    <Text style={{ fontSize: 18, color: '#2F61D5', fontWeight: '700' }}>You’ve joined</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
                 {!showHeader && !invite ? <View style={{ paddingTop: 20, paddingLeft: 20, flexDirection: 'row' }}>
                     <Icon
                         name="arrow-left"
@@ -297,13 +375,13 @@ class NewMeeting extends React.Component {
                                 <View style={{ marginTop: 20 }}>
                                     <Text style={{ fontSize: 18, marginBottom: 10, opacity: 0.5 }}>Choose Meeting Type</Text>
                                     <View style={{ marginTop: 5, flexDirection: 'row', marginRight: 20 }}>
-                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, paddingTop: 2, borderRadius: 15, width: '48%', marginRight: 15 }}>
+                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E9F9F0', height: 30, alignItems: 'center', borderRadius: 15, width: '48%', marginRight: 15 }}>
                                             <Image
                                                 style={{ marginRight: 10 }}
                                                 source={require('../../assets/images/Bitmap1.png')} />
                                             <Text style={{ color: '#22D369', fontSize: 16, fontWeight: '700' }}>Project Meeting</Text>
                                         </TouchableOpacity>
-                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#DFDFF7', height: 30, paddingTop: 2, borderRadius: 15, width: '35%' }}>
+                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#D5DFF7', height: 30, alignItems: 'center', borderRadius: 15, width: '35%' }}>
                                             <Image
                                                 style={{ marginRight: 10 }}
                                                 source={require('../../assets/images/message.png')} />
@@ -311,19 +389,19 @@ class NewMeeting extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                     <View style={{ marginTop: 5, flexDirection: 'row', marginRight: 20 }}>
-                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#FFE2DC', height: 30, paddingTop: 2, borderRadius: 15, marginRight: 15, width: '30%' }}>
+                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#FFE2DC', height: 30, alignItems: 'center', borderRadius: 15, marginRight: 15, width: '30%' }}>
                                             <Image
                                                 style={{ marginRight: 10 }}
                                                 source={require('../../assets/images/webinar.png')} />
                                             <Text style={{ color: '#FF7052', fontSize: 16, fontWeight: '700' }}>Webinar</Text>
                                         </TouchableOpacity>
-                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E3D9FC', height: 30, paddingTop: 2, borderRadius: 15, marginRight: 15, width: '30%' }}>
+                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#E3D9FC', height: 30, alignItems: 'center', borderRadius: 15, marginRight: 15, width: '30%' }}>
                                             <Image
                                                 style={{ marginRight: 10 }}
                                                 source={require('../../assets/images/status.png')} />
                                             <Text style={{ color: '#7540EE', fontSize: 16, fontWeight: '700' }}>Status</Text>
                                         </TouchableOpacity>
-                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#D8F0F8', height: 30, paddingTop: 2, borderRadius: 15, marginRight: 15, width: '30%' }}>
+                                        <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: '#D8F0F8', height: 30, alignItems: 'center', borderRadius: 15, marginRight: 15, width: '30%' }}>
                                             <Image
                                                 style={{ marginRight: 10 }}
                                                 source={require('../../assets/images/other.png')} />
@@ -336,7 +414,10 @@ class NewMeeting extends React.Component {
                                     <Textarea rowSpan={4}
                                         style={{ borderWidth: 1, borderColor: 'white', borderBottomColor: 'rgba(0,0,0,0.3)', backgroundColor: 'rgba(0,0,0,0.009)' }}
                                         placeholder="Message..." />
-                                    <Text style={{ color: 'rgba(0,0,0,0.5)', fontSize: 18, fontWeight: 'bold', marginTop: 15, marginLeft: 30 }}>Schedule meeting</Text>
+                                    <TouchableOpacity
+                                        onPress={this.toggleModal} >
+                                        <Text style={{ color: 'rgba(0,0,0,0.5)', fontSize: 18, fontWeight: 'bold', marginTop: 15, marginLeft: 30 }}>Schedule meeting</Text>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </Animated.View>
@@ -383,7 +464,7 @@ class NewMeeting extends React.Component {
                                 <Input
                                     placeholder="Search by name"
                                     placeholderTextColor="rgba(0,0,0,0.1)"
-                                     />
+                                />
                             </Item>
                         </View>
                         <View style={{ paddingTop: 10 }}>
