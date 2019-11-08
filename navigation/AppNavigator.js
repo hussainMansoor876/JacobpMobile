@@ -1,6 +1,8 @@
 import * as Screen from '../Screens'
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
+import { createDrawerNavigator } from 'react-navigation-drawer'
+import SideBar from '../Screens/SideBar/SideBar'
 
 const StackNavigator = createStackNavigator({
     Login: {
@@ -19,9 +21,21 @@ const StackNavigator = createStackNavigator({
     }
 )
 
+const Drawer = createDrawerNavigator(
+    {
+      Home: { screen: Screen.HomeScreen },
+      Chat: { screen: Screen.Signup },
+      Profile: { screen: Screen.Login }
+    },
+    {
+      contentComponent: props => <SideBar {...props} />
+    }
+  );
+
 
 
 const StackNavigatorApp = createAppContainer(StackNavigator)
+const DrawerNavigatorApp = createAppContainer(Drawer)
 
 
 
