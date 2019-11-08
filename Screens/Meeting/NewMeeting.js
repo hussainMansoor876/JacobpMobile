@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Platform, SafeAreaView, StyleSheet, Animated, Easing } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
-import { Form, Item, Label, Input, Textarea } from 'native-base'
+import { Form, Item, Label, Input, Textarea, List, ListItem, Content, Body, Right, Left, Thumbnail, Container, Header } from 'native-base'
 import { connect } from 'react-redux';
-import { Icon, ListItem, SearchBar } from 'react-native-elements'
+import { Icon, SearchBar } from 'react-native-elements'
 import Moment from 'moment'
-import TouchableScale from 'react-native-touchable-scale';
+// import TouchableScale from 'react-native-touchable-scale';
 import { Calendar } from 'react-native-calendars';
 
 const { height, width } = Dimensions.get('window')
@@ -15,6 +15,16 @@ const list = [
         name: 'Amy Farha',
         avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
         subtitle: 'Vice President'
+    },
+    {
+        name: 'Chris Jackson',
+        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+        subtitle: 'Vice Chairman'
+    },
+    {
+        name: 'Chris Jackson',
+        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+        subtitle: 'Vice Chairman'
     },
     {
         name: 'Chris Jackson',
@@ -308,7 +318,7 @@ class NewMeeting extends React.Component {
                 </Animated.View>
 
                 <Animated.View style={{ height: inviteHeight, opacity: inviteOpacity, backgroundColor: '#d3d3df' }}>
-                    <View style={{ backgroundColor: 'white', height: height * 5 / 6, borderTopRightRadius: 15, borderTopLeftRadius: 15 }}>
+                    <View style={{ backgroundColor: 'white', height: height, borderTopRightRadius: 15, borderTopLeftRadius: 15 }}>
                         <View style={{ flexDirection: 'row', paddingLeft: 20, justifyContent: 'space-between', paddingRight: 20, paddingTop: 10 }}>
                             <Text style={{ fontSize: 18, marginBottom: 10 }}>Invite people</Text>
                             <TouchableOpacity onPress={this.hideDateTimePicker}>
@@ -319,34 +329,31 @@ class NewMeeting extends React.Component {
                             </TouchableOpacity>
                         </View>
                         <View style={{ paddingTop: 10 }}>
-                            <SearchBar
-                                placeholder="Type Here..."
-                                containerStyle={{ backgroundColor: 'white' }}
-                                inputContainerStyle={{ backgroundColor: 'white' }}
-                                inputStyle={{ backgroundColor: 'white' }}
-                            // onChangeText={this.updateSearch}
-                            // value={search}
-                            />
                             <Text style={{ paddingLeft: 20 }}>Recent</Text>
-                            {list.map((l, i) => {
-                                return (
-                                    <ListItem
-                                        key={i}
-                                        Component={TouchableScale}
-                                        friction={90}
-                                        tension={100}
-                                        activeScale={0.95} //
-                                        badge={{ value: 1, textStyle: { color: 'white' }, containerStyle: { marginTop: -20 } }}
-                                        leftAvatar={{ rounded: true, source: { uri: l.avatar_url } }}
-                                        title={"Mansoor"}
-                                        subtitle={l.subtitle}
-                                        containerStyle={{ borderColor: 'white', borderWidth: 0.5, borderStyle: 'solid', marginLeft: 5, marginRight: 5, borderRadius: 5 }}
-                                    // onPress={() => this.chatStart(l)}
-                                    />
-                                )
-                            })
-                            }
                         </View>
+
+                        <Container style={{ flex: 1, borderColor: 1, borderWidth: 1 }}>
+                            <Content>
+                                <List>
+                                    {list.map((v, i) => {
+                                        return (
+                                            <ListItem avatar key={i} style={{ paddingTop: 2, paddingBottom: 2 }} noBorder={true}>
+                                                <Left>
+                                                    <Thumbnail source={{ uri: v.avatar_url }} />
+                                                </Left>
+                                                <Body>
+                                                    <Text style={{ marginTop: 10 }}>{v.name}</Text>
+                                                    <Text style={{ color: 'rgba(0,0,0,0.5)', marginTop: 5 }} note>{v.subtitle}</Text>
+                                                </Body>
+                                                {/* <Right>
+                                                    <Text note>{new Date().getMinutes()}</Text>
+                                                </Right> */}
+                                            </ListItem>
+                                        )
+                                    })}
+                                </List>
+                            </Content>
+                        </Container>
                     </View>
                 </Animated.View>
             </SafeAreaView>
