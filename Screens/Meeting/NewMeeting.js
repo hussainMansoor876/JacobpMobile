@@ -10,39 +10,6 @@ import { Calendar } from 'react-native-calendars';
 
 const { height, width } = Dimensions.get('window')
 
-const list = [
-    {
-        name: 'Amy Farha',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        subtitle: 'Vice President',
-        add: true
-    },
-    {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman',
-        add: false
-    },
-    {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman',
-        add: true
-    },
-    {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman',
-        add: false
-    },
-    {
-        name: 'Amy Farha',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        subtitle: 'Vice President',
-        add: true
-    }
-]
-
 
 class NewMeeting extends React.Component {
     constructor(props) {
@@ -61,7 +28,39 @@ class NewMeeting extends React.Component {
             inviteHeight: new Animated.Value(0),
             inviteOpacity: new Animated.Value(0),
             showHeader: false,
-            invite: false
+            invite: false,
+            list: [
+                {
+                    name: 'Amy Farha',
+                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                    subtitle: 'Vice President',
+                    add: true
+                },
+                {
+                    name: 'Chris Jackson',
+                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+                    subtitle: 'Vice Chairman',
+                    add: false
+                },
+                {
+                    name: 'Chris Jackson',
+                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+                    subtitle: 'Vice Chairman',
+                    add: true
+                },
+                {
+                    name: 'Chris Jackson',
+                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+                    subtitle: 'Vice Chairman',
+                    add: false
+                },
+                {
+                    name: 'Amy Farha',
+                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                    subtitle: 'Vice President',
+                    add: true
+                }
+            ]
         }
     }
 
@@ -226,7 +225,7 @@ class NewMeeting extends React.Component {
     }
 
     render() {
-        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items, inviteHeight, inviteOpacity, invite } = this.state
+        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items, inviteHeight, inviteOpacity, invite, list } = this.state
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 {!showHeader && !invite ? <View style={{ paddingTop: 20, paddingLeft: 20, flexDirection: 'row' }}>
@@ -392,14 +391,30 @@ class NewMeeting extends React.Component {
                                                     <Text style={{ color: 'rgba(0,0,0,0.5)', marginTop: 5 }} note>{v.subtitle}</Text>
                                                 </Body>
                                                 <Right>
-                                                    {v.add ? <TouchableOpacity style={{ marginTop: 10, backgroundColor: '#e9f9f0', padding: 3, paddingRight: 8, borderRadius: 20 }}>
+                                                    {v.add ? <TouchableOpacity
+                                                        onPress={() => {
+                                                            var l1 = list
+                                                            list[i].add = !v.add
+                                                            this.setState({
+                                                                list: l1
+                                                            })
+                                                        }}
+                                                        style={{ marginTop: 10, backgroundColor: '#e9f9f0', padding: 3, paddingRight: 8, borderRadius: 20 }}>
                                                         <View style={{ flexDirection: 'row' }}>
                                                             <Icon name="check"
                                                                 color="#2DC76D"
                                                                 size={22} />
                                                             <Text style={{ fontSize: 18, color: '#2DC76D' }}>Added</Text>
                                                         </View>
-                                                    </TouchableOpacity> : <TouchableOpacity style={{ marginTop: 10, backgroundColor: '#f1ebfe', padding: 3, paddingRight: 8, borderRadius: 20 }}>
+                                                    </TouchableOpacity> : <TouchableOpacity
+                                                        onPress={() => {
+                                                            var l1 = list
+                                                            list[i].add = !v.add
+                                                            this.setState({
+                                                                list: l1
+                                                            })
+                                                        }}
+                                                        style={{ marginTop: 10, backgroundColor: '#f1ebfe', padding: 3, paddingRight: 8, borderRadius: 20 }}>
                                                             <View style={{ flexDirection: 'row' }}>
                                                                 <Icon name="add"
                                                                     color="#7540EE"
