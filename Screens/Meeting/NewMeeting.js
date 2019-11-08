@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Platform, SafeAreaView, StyleSheet, Animated, Easing } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
-import { Form, Item, Label, Input, Textarea, List, ListItem, Content, Body, Right, Left, Thumbnail, Container, Header } from 'native-base'
+import { Form, Item, Label, Input, Textarea, List, ListItem, Content, Body, Right, Left, Thumbnail, Container, Button } from 'native-base'
 import { connect } from 'react-redux';
 import { Icon, SearchBar } from 'react-native-elements'
 import Moment from 'moment'
@@ -372,6 +372,19 @@ class NewMeeting extends React.Component {
                                     type="font-awesome"
                                 />
                             </TouchableOpacity>
+                        </View>
+                        <View style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <Item>
+                                <Icon
+                                    type="feather"
+                                    color="rgba(0,0,0,0.2)"
+                                    name="search"
+                                />
+                                <Input
+                                    placeholder="Search by name"
+                                    placeholderTextColor="rgba(0,0,0,0.1)"
+                                     />
+                            </Item>
                         </View>
                         <View style={{ paddingTop: 10 }}>
                             <Text style={{ paddingLeft: 20 }}>Recent</Text>
