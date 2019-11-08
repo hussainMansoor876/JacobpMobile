@@ -14,22 +14,32 @@ const list = [
     {
         name: 'Amy Farha',
         avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        subtitle: 'Vice President'
+        subtitle: 'Vice President',
+        add: true
     },
     {
         name: 'Chris Jackson',
         avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
+        subtitle: 'Vice Chairman',
+        add: false
     },
     {
         name: 'Chris Jackson',
         avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
+        subtitle: 'Vice Chairman',
+        add: true
     },
     {
         name: 'Chris Jackson',
         avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
+        subtitle: 'Vice Chairman',
+        add: false
+    },
+    {
+        name: 'Amy Farha',
+        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+        subtitle: 'Vice President',
+        add: true
     }
 ]
 
@@ -50,7 +60,8 @@ class NewMeeting extends React.Component {
             calendarOpacity: new Animated.Value(0),
             inviteHeight: new Animated.Value(0),
             inviteOpacity: new Animated.Value(0),
-            showHeader: false
+            showHeader: false,
+            invite: false
         }
     }
 
@@ -135,7 +146,7 @@ class NewMeeting extends React.Component {
         }).start()
 
         setTimeout(() => {
-            this.setState({ showHeader: true })
+            this.setState({ showHeader: true, invite: true })
         }, 200)
     };
 
@@ -162,7 +173,32 @@ class NewMeeting extends React.Component {
         }).start()
 
         setTimeout(() => {
-            this.setState({ showHeader: false })
+            this.setState({ showHeader: false, invite: false })
+        }, 200)
+    };
+
+    hideDateTimePicker1 = () => {
+        Animated.timing(this.state.inviteHeight, {
+            toValue: 0,
+            duration: 500,
+        }).start()
+        Animated.timing(this.state.inviteOpacity, {
+            toValue: 0,
+            duration: 500
+        }).start()
+        Animated.timing(this.state.screenHeight, {
+            // delay: 500,
+            toValue: height,
+            duration: 500
+        }).start()
+        Animated.timing(this.state.screenOpacity, {
+            // delay: 1000,
+            toValue: 1,
+            duration: 500
+        }).start()
+
+        setTimeout(() => {
+            this.setState({ showHeader: false, invite: false })
         }, 200)
     };
 
@@ -190,27 +226,37 @@ class NewMeeting extends React.Component {
     }
 
     render() {
-        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items, inviteHeight, inviteOpacity } = this.state
+        const { today, currentTime, futureDate, calendarHeight, screenHeight, screenOpacity, calendarOpacity, showHeader, items, inviteHeight, inviteOpacity, invite } = this.state
         return (
             <SafeAreaView style={{ flex: 1 }}>
-                {!showHeader ? <View style={{ paddingTop: 20, paddingLeft: 20, flexDirection: 'row' }}>
+                {!showHeader && !invite ? <View style={{ paddingTop: 20, paddingLeft: 20, flexDirection: 'row' }}>
                     <Icon
                         name="arrow-left"
                         size={40}
                         type="feather"
                     />
+                </View> : showHeader && invite ? <View style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 10, height: height / 6, backgroundColor: '#d3d3df', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                    <TouchableOpacity activeOpacity={0.5} onPress={this.hideDateTimePicker1}>
+                        <Icon
+                            name="arrow-left"
+                            size={40}
+                            type="feather"
+                            iconStyle={{ width: 200 }}
+                        />
+                    </TouchableOpacity>
+                    <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', paddingBottom: 10, width: '100%' }}>DashSync project kick-off</Text>
                 </View> :
-                    <View style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 10, height: height / 6, backgroundColor: '#d3d3df', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                        <TouchableOpacity activeOpacity={0.5} onPress={this.hideDateTimePicker}>
-                            <Icon
-                                name="arrow-left"
-                                size={40}
-                                type="feather"
-                                iconStyle={{ width: 200 }}
-                            />
-                        </TouchableOpacity>
-                        <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', paddingBottom: 10, width: '100%' }}>DashSync project kick-off</Text>
-                    </View>}
+                        <View style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 10, height: height / 6, backgroundColor: '#d3d3df', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                            <TouchableOpacity activeOpacity={0.5} onPress={this.hideDateTimePicker}>
+                                <Icon
+                                    name="arrow-left"
+                                    size={40}
+                                    type="feather"
+                                    iconStyle={{ width: 200 }}
+                                />
+                            </TouchableOpacity>
+                            <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', paddingBottom: 10, width: '100%' }}>DashSync project kick-off</Text>
+                        </View>}
                 <Animated.ScrollView>
                     <KeyboardAvoidingView
                         resetScrollToCoords={{ x: 0, y: 0 }}
@@ -321,7 +367,7 @@ class NewMeeting extends React.Component {
                     <View style={{ backgroundColor: 'white', height: height, borderTopRightRadius: 15, borderTopLeftRadius: 15 }}>
                         <View style={{ flexDirection: 'row', paddingLeft: 20, justifyContent: 'space-between', paddingRight: 20, paddingTop: 10 }}>
                             <Text style={{ fontSize: 18, marginBottom: 10 }}>Invite people</Text>
-                            <TouchableOpacity onPress={this.hideDateTimePicker}>
+                            <TouchableOpacity onPress={this.hideDateTimePicker1}>
                                 <Icon
                                     name="angle-down"
                                     type="font-awesome"
@@ -345,9 +391,23 @@ class NewMeeting extends React.Component {
                                                     <Text style={{ marginTop: 10 }}>{v.name}</Text>
                                                     <Text style={{ color: 'rgba(0,0,0,0.5)', marginTop: 5 }} note>{v.subtitle}</Text>
                                                 </Body>
-                                                {/* <Right>
-                                                    <Text note>{new Date().getMinutes()}</Text>
-                                                </Right> */}
+                                                <Right>
+                                                    {v.add ? <TouchableOpacity style={{ marginTop: 10, backgroundColor: '#e9f9f0', padding: 3, paddingRight: 8, borderRadius: 20 }}>
+                                                        <View style={{ flexDirection: 'row' }}>
+                                                            <Icon name="check"
+                                                                color="#2DC76D"
+                                                                size={22} />
+                                                            <Text style={{ fontSize: 18, color: '#2DC76D' }}>Added</Text>
+                                                        </View>
+                                                    </TouchableOpacity> : <TouchableOpacity style={{ marginTop: 10, backgroundColor: '#f1ebfe', padding: 3, paddingRight: 8, borderRadius: 20 }}>
+                                                            <View style={{ flexDirection: 'row' }}>
+                                                                <Icon name="add"
+                                                                    color="#7540EE"
+                                                                    size={22} />
+                                                                <Text style={{ fontSize: 18, color: '#7540EE' }}>Add</Text>
+                                                            </View>
+                                                        </TouchableOpacity>}
+                                                </Right>
                                             </ListItem>
                                         )
                                     })}
