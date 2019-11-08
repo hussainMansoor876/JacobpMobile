@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 import Navigator from './navigation/AppNavigator'
 import CalendarMeeting from './Screens/CalendarMeeting'
-import NewMeeting from './Screens/Meeting/NewMeeting'
+import NewMeeting from './Screens/Meeting/Falcon'
 
 class App extends React.Component {
   constructor() {
