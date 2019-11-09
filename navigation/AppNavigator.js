@@ -1,7 +1,9 @@
 import * as Screen from '../Screens'
-import { createAppContainer, createDrawerNavigator } from 'react-navigation';
+import { SafeAreaView, ScrollView, View } from 'react-native'
+import { createAppContainer } from 'react-navigation';
+import Sidebar from '../Components/Sidebar'
 // import { createStackNavigator } from 'react-navigation-stack'
-// import { createDrawerNavigator } from 'react-navigation-drawer'
+import { createDrawerNavigator } from 'react-navigation-drawer'
 // import SideBar from '../Screens/SideBar/SideBar'
 
 // const StackNavigator = createStackNavigator({
@@ -22,48 +24,55 @@ import { createAppContainer, createDrawerNavigator } from 'react-navigation';
 //     }
 // )
 
-// const Drawer = createDrawerNavigator(
-//     {
-//         Home: { screen: Screen.Home },
-//         Chat: { screen: Screen.Signup },
-//         Profile: { screen: Screen.Login }
-//     },
-//     {
-//         initialRouteName: "Profile",
-//         drawerType: 'back',
-//         drawerWidth: 230,
-//         contentOptions: {
-//             activeTintColor: '#e91e63',
-//         }
-//         // contentComponent: props => <SideBar {...props} />
-//     }
-// );
+// const CustomDrawerComponent = (props) => (
+//     <SafeAreaView style={{ flex: 1 }}>
+//         <DrawerItems {...props} />
+//     </SafeAreaView>
+// )
 
-const DrawerNavigator = createDrawerNavigator({
-    Home: {
-        screen: Screen.Login
+
+const Drawer = createDrawerNavigator(
+    {
+        Home: { screen: Screen.Home },
+        Chat: { screen: Screen.Signup },
+        Profile: { screen: Screen.Login }
     },
-    Services: {
-        screen: Screen.Login
-    },
-    Requests: {
-        screen: Screen.Signup
-    },
-    Inbox: {
-        screen: Screen.Login
-    },
-    Chat: {
-        screen: Screen.Home
+    {
+        initialRouteName: "Profile",
+        drawerType: 'back',
+        drawerWidth: 230,
+        contentOptions: {
+            activeTintColor: '#e91e63',
+        },
+        contentComponent: props => <Sidebar {...props} />
     }
-},{
-    drawerWidth: 230,
-    drawerType: 'back'
-})
+);
+
+// const DrawerNavigator = createDrawerNavigator({
+//     Home: {
+//         screen: Screen.Login
+//     },
+//     Services: {
+//         screen: Screen.Login
+//     },
+//     Requests: {
+//         screen: Screen.Signup
+//     },
+//     Inbox: {
+//         screen: Screen.Login
+//     },
+//     Chat: {
+//         screen: Screen.Home
+//     }
+// }, {
+//     drawerWidth: 230,
+//     drawerType: 'back'
+// })
 
 
 
 // const StackNavigatorApp = createAppContainer(StackNavigator)
-const DrawerNavigatorApp = createAppContainer(DrawerNavigator)
+const DrawerNavigatorApp = createAppContainer(Drawer)
 
 
 

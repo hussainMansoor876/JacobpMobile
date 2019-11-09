@@ -2,11 +2,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
-// import Navigator from './navigation/AppNavigator'
+import Navigator from './navigation/AppNavigator'
 import SplashScreen from 'react-native-splash-screen'
-import HomeScreen from './Components/HomeScreen'
-import SettingScreen from './Components/Setting'
-import { createDrawerNavigator, createAppContainer } from 'react-navigation'
+import { enableScreens } from 'react-native-screens';
+
+
+enableScreens();
 
 class App extends React.Component {
   constructor() {
@@ -20,31 +21,12 @@ class App extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <AppConatiner />
+        <Provider store={store} >
+          <Navigator />
+        </Provider>
       </View>
-    )
+    );
   }
-
-  // render() {
-  //   return (
-  //     <View style={{ flex: 1 }}>
-  //       <Provider store={store} >
-  //         <Navigator />
-  //       </Provider>
-  //     </View>
-  //   );
-  // }
 }
 
 export default App;
-
-
-const AppDrawerNavigator = createDrawerNavigator({
-  HomeScreen: HomeScreen,
-  SettingScreen: SettingScreen
-}, {
-  drawerWidth: 230
-})
-
-
-const AppConatiner = createAppContainer(AppDrawerNavigator)
