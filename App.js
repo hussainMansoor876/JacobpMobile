@@ -3,15 +3,15 @@ import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
 import Navigator from './navigation/AppNavigator'
+import { screensEnabled } from 'react-native-screens';
+
+screensEnabled();
+
 import SplashScreen from 'react-native-splash-screen'
-import { enableScreens } from 'react-native-screens';
-
-
-enableScreens();
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   componentDidMount() {

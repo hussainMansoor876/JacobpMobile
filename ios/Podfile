@@ -40,6 +40,8 @@ target 'JacobpMobileAndroidAndIos' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+
+
   pod 'RNScreens', :path => '../node_modules/react-native-screens'
 
   target 'JacobpMobileAndroidAndIosTests' do

@@ -1,9 +1,10 @@
 import * as Screen from '../Screens'
+import React from 'react'
 import { SafeAreaView, ScrollView, View } from 'react-native'
 import { createAppContainer } from 'react-navigation';
-import Sidebar from '../Components/Sidebar'
+// import Sidebar from '../Components/Sidebar'
 // import { createStackNavigator } from 'react-navigation-stack'
-import { createDrawerNavigator } from 'react-navigation-drawer'
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'
 // import SideBar from '../Screens/SideBar/SideBar'
 
 // const StackNavigator = createStackNavigator({
@@ -24,11 +25,17 @@ import { createDrawerNavigator } from 'react-navigation-drawer'
 //     }
 // )
 
-// const CustomDrawerComponent = (props) => (
-//     <SafeAreaView style={{ flex: 1 }}>
-//         <DrawerItems {...props} />
-//     </SafeAreaView>
-// )
+class Siderbar extends React.Component {
+    render() {
+        return (
+            <SafeAreaView>
+                <ScrollView>
+                    <Text>Hello</Text>
+                </ScrollView>
+            </SafeAreaView>
+        )
+    }
+}
 
 
 const Drawer = createDrawerNavigator(
@@ -38,13 +45,13 @@ const Drawer = createDrawerNavigator(
         Profile: { screen: Screen.Login }
     },
     {
-        initialRouteName: "Profile",
-        drawerType: 'back',
-        drawerWidth: 230,
-        contentOptions: {
-            activeTintColor: '#e91e63',
-        },
-        contentComponent: props => <Sidebar {...props} />
+        // initialRouteName: "Profile",
+        // drawerType: 'back',
+        // drawerWidth: 230,
+        // contentOptions: {
+        //     activeTintColor: '#e91e63',
+        // },
+        contentComponent: <Siderbar />
     }
 );
 
