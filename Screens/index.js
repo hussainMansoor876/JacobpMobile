@@ -1,11 +1,11 @@
 import Login from './Login'
 import Signup from './Signup'
 import CalendarMeeting from './CalendarMeeting'
-import HomeScreen from './HomeScreen'
+import Home from './Home'
 
 export {
     Login,
     Signup,
     CalendarMeeting,
-    HomeScreen
+    Home
 }

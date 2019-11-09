@@ -63,6 +63,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        console.log('this', this.props.navigation)
         SplashScreen.hide();
     }
 
@@ -111,7 +112,8 @@ class Home extends React.Component {
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ position: 'absolute', bottom: 30, right: 0, width: 100, height: 100 }}>
-                    <Button light style={{ backgroundColor: '#FF7052', justifyContent: 'center', alignItems: 'center', borderRadius: 50, height: 70, width: 70 }}>
+                    <Button light style={{ backgroundColor: '#FF7052', justifyContent: 'center', alignItems: 'center', borderRadius: 50, height: 70, width: 70 }}
+                    >
                         <Icon
                             name="add"
                             iconStyle={{ fontSize: 32 }}
@@ -192,7 +194,7 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => {
-    console.log("mapToState", state.authReducer)
+    // console.log("mapToState", state.authReducer)
     return {
         user: "state.authReducer.user"
     }

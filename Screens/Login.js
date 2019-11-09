@@ -21,7 +21,7 @@ class Login extends React.Component {
   render() {
     const { screenHeight, screenWidth } = this.state
     return (
-      <ScrollView style={{ width: screenWidth, height: screenHeight }}>
+      <ScrollView style={{ width: screenWidth, height: screenHeight, backgroundColor: '#fff' }}>
         <KeyboardAvoidingView
           resetScrollToCoords={{ x: 0, y: 0 }}
           behavior={Platform.OS === "ios" ? "padding" : null}
