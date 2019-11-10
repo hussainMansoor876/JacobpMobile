@@ -8,15 +8,15 @@ import SideBar from '../Screens/SideBar/SideBar'
 
 const Drawer = createDrawerNavigator(
     {
-        Home: { screen: Screen.Home },
-        Anatomy: { screen: Screen.CalendarMeeting },
-        Header: { screen: Screen.Falcon },
-        Footer: { screen: Screen.Login },
-        NHBadge: { screen: Screen.Signup },
-        NHButton: { screen: Screen.NewMeeting },
-        NHCard: { screen: Screen.Home },
-        NHCheckbox: { screen: Screen.Home },
-        NHDeckSwiper: { screen: Screen.Home },
+        Schedule: { screen: Screen.Home },
+        Day: { screen: Screen.CalendarMeeting },
+        day3: { screen: Screen.Falcon },
+        Week: { screen: Screen.Login },
+        Month: { screen: Screen.Signup },
+        Invitation: { screen: Screen.NewMeeting },
+        Events: { screen: Screen.Home },
+        Birthdays: { screen: Screen.Home },
+        Holidays: { screen: Screen.Home },
         NHFab: { screen: Screen.Home },
         NHForm: { screen: Screen.Home },
         NHIcon: { screen: Screen.Home },
@@ -37,7 +37,7 @@ const Drawer = createDrawerNavigator(
         NHDatePicker: { screen: Screen.Home }
     },
     {
-        initialRouteName: "Home",
+        initialRouteName: "Schedule",
         contentOptions: {
             activeTintColor: "#e91e63"
         },
