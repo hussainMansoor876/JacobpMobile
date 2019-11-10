@@ -10,7 +10,8 @@ import {
   Container,
   Left,
   Right,
-  Badge
+  Badge,
+  CheckBox
 } from "native-base";
 import styles from "./style";
 
@@ -385,10 +386,7 @@ class SideBar extends Component {
                     onPress={() => this.props.navigation.navigate(v.route)}
                   >
                     <Left>
-                      <Image
-                        style={{ height: 20, width: 20 }}
-                        source={v.image}
-                      />
+                      <CheckBox style={{ marginLeft: -8, marginRight: 8, borderRadius: 8 }} checked={false} />
                       <Text style={styles.text}>
                         {v.name}
                       </Text>

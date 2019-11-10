@@ -5,6 +5,7 @@ import { Button } from 'native-base'
 import { connect } from 'react-redux';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { Icon } from 'react-native-elements'
+import { DrawerActions } from 'react-navigation-drawer'
 
 
 class CalendarMeeting extends React.Component {
@@ -19,7 +20,7 @@ class CalendarMeeting extends React.Component {
 
     componentDidMount() {
         SplashScreen.hide();
-        // console.log('this***', this.state)
+        console.log('this***', this.props)
     }
 
     loadItems(day) {
@@ -73,7 +74,8 @@ class CalendarMeeting extends React.Component {
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ position: 'absolute', bottom: 30, right: 0, width: 100, height: 100 }}>
-                    <Button light style={{ backgroundColor: '#FF7052', justifyContent: 'center', alignItems: 'center', borderRadius: 50, height: 70, width: 70 }}>
+                    <Button light style={{ backgroundColor: '#FF7052', justifyContent: 'center', alignItems: 'center', borderRadius: 50, height: 70, width: 70 }}
+                    >
                         <Icon
                             name="add"
                             iconStyle={{ fontSize: 32 }}
@@ -111,7 +113,7 @@ class CalendarMeeting extends React.Component {
                     //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
                     />
                 </ScrollView>
-            </SafeAreaView>
+            </SafeAreaView >
         );
     }
 }
