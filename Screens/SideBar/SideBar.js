@@ -227,11 +227,88 @@ class SideBar extends Component {
     super(props);
     this.state = {
       shadowOffsetWidth: 1,
-      shadowRadius: 4
-    };
+      shadowRadius: 4,
+      listData: [
+        {
+          name: "Schedule",
+          route: "Schedule",
+          icon: "phone-portrait",
+          bg: "#C5F442",
+          image: require("../../assets/images/schedule.png")
+        },
+        {
+          name: "Day",
+          route: "Day",
+          icon: "arrow-up",
+          bg: "#477EEA",
+          types: "11",
+          image: require('../../assets/images/day.png')
+
+        },
+        {
+          name: "3 day",
+          route: "day3",
+          icon: "arrow-down",
+          bg: "#DA4437",
+          types: "4",
+          image: require('../../assets/images/day3.png')
+
+        },
+        {
+          name: "Week",
+          route: "Week",
+          icon: "repeat",
+          bg: "#C5F442",
+          types: "5",
+          image: require('../../assets/images/week.png')
+
+        },
+        {
+          name: "Month",
+          route: "Month",
+          icon: "easel",
+          bg: "#C5F442",
+          image: require('../../assets/images/minus.png')
+
+        },
+        {
+          name: "Invitation",
+          route: "Invitation",
+          icon: "notifications",
+          bg: "#4DCAE0",
+          image: require('../../assets/images/minus.png')
+
+        }],
+      listBottom: [
+        {
+          name: "Events",
+          route: "Events",
+          icon: "radio-button-off",
+          bg: "#1EBC7C",
+          types: "9",
+          image: require('../../assets/images/minus.png')
+        },
+        {
+          name: "Birthdays",
+          route: "Birthdays",
+          icon: "keypad",
+          bg: "#B89EF5",
+          types: "8",
+          image: require('../../assets/images/minus.png')
+        },
+        {
+          name: "Holidays",
+          route: "Holidays",
+          icon: "checkmark-circle",
+          bg: "#EB6B23",
+          image: require('../../assets/images/minus.png')
+        }
+      ]
+    }
   }
 
   render() {
+    const { listData, listBottom } = this.state
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <Container>
@@ -255,29 +332,30 @@ class SideBar extends Component {
             <Image source={drawerCover} style={styles.drawerCover} />
             {/* <Image square style={styles.drawerImage} source={drawerImage} /> */}
             <Text style={{ textAlign: 'center' }}>View</Text>
-            <List
-              dataArray={datas}
-              renderRow={data =>
-                <ListItem
-                  button
-                  noBorder
-                  onPress={() => this.props.navigation.navigate(data.route)}
-                >
-                  <Left>
-                    {/* <Icon
+            <List>
+              {
+                listData.map((v, i) => {
+                  return (
+                    <ListItem
+                      button
+                      noBorder
+                      onPress={() => this.props.navigation.navigate(v.route)}
+                    >
+                      <Left>
+                        {/* <Icon
                     active
                     name={data.icon}
                     style={{ color: "#777", fontSize: 26, width: 30 }}
                   /> */}
-                    <Image
-                      style={{ height: 20, width: 20 }}
-                      source={data.image}
-                    />
-                    <Text style={styles.text}>
-                      {data.name}
-                    </Text>
-                  </Left>
-                  {/* {data.types &&
+                        <Image
+                          style={{ height: 20, width: 20 }}
+                          source={v.image}
+                        />
+                        <Text style={styles.text}>
+                          {v.name}
+                        </Text>
+                      </Left>
+                      {/* {data.types &&
                   <Right style={{ flex: 1 }}>
                     <Badge
                       style={{
@@ -292,8 +370,33 @@ class SideBar extends Component {
                       >{`${data.types} Types`}</Text>
                     </Badge>
                   </Right>} */}
-                </ListItem>}
-            />
+                    </ListItem>
+                  )
+                })
+              }
+            </List>
+            <Text style={{ textAlign: 'center' }}>Show</Text>
+            <List>
+              {listBottom.map((v, i) => {
+                return (
+                  <ListItem
+                    button
+                    noBorder
+                    onPress={() => this.props.navigation.navigate(v.route)}
+                  >
+                    <Left>
+                      <Image
+                        style={{ height: 20, width: 20 }}
+                        source={v.image}
+                      />
+                      <Text style={styles.text}>
+                        {v.name}
+                      </Text>
+                    </Left>
+                  </ListItem>
+                )
+              })}
+            </List>
           </Content>
         </Container>
       </SafeAreaView>
