@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Image, Dimensions, SafeAreaView, ScrollView } from 'react-native'
+import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet } from 'react-native'
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import ToggleSwitch from 'toggle-switch-react-native'
+import ActionButton from 'react-native-action-button';
+import { Icon } from 'react-native-elements'
 
 const { width, height } = Dimensions.get('window')
 
@@ -14,56 +16,67 @@ export default class ChatList extends Component {
             label: "Dark Mode",
             chatColor: 'black',
             chatBackground: '#fff',
+            create: false,
             list: [
                 {
                     title: 'Amy Farha',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
                 {
                     title: 'Chris Jackson',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
                 {
                     title: 'Farha',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
                 {
                     title: 'Chris Jackson',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
                 {
                     title: 'Amy',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
                 {
                     title: 'Chris',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
                 {
                     title: 'Amy Jackson',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
                 {
                     title: 'Jackson Jackson',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
                 {
                     title: 'Jackson Farha',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
                 {
                     title: 'Chris Farha',
                     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .'
+                    subtitle: 'Doing what you like will always keep you happy . .',
+                    status: 'Designer'
                 },
             ]
         }
@@ -71,7 +84,7 @@ export default class ChatList extends Component {
 
 
     render() {
-        const { on, list, chatColor, chatBackground } = this.state
+        const { on, list, chatColor, chatBackground, create } = this.state
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0 }}>
@@ -87,33 +100,57 @@ export default class ChatList extends Component {
                             // label="Switch to Dark Mode"
                             // labelStyle={{ color: "black", fontWeight: "900" }}
                             size="medium"
-                            onToggle={isOn => this.setState({ on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? 'black' : '#fff' })}
+                            onToggle={isOn => this.setState({ on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? 'black' : '#fff',  })}
                         />
                     </Body>
                 </Header>
                 <ScrollView>
                     <List style={{ borderTopColor: 'white', borderTopWidth: 0.3 }}>
-                        {
-                            list.map((v, i) => {
-                                return (
-                                    <ListItem avatar key={i}>
-                                        <Left>
-                                            <Thumbnail source={{ uri: v.avatar_url }} />
-                                        </Left>
-                                        <Body>
-                                            <Text style={{ color: chatColor }}>{v.title}</Text>
-                                            <Text note style={{ color: chatColor }}>{v.subtitle}</Text>
-                                        </Body>
-                                        <Right>
-                                            <Text note>3:43 pm</Text>
-                                        </Right>
-                                    </ListItem>
-                                )
-                            })
+                        {!create ? list.map((v, i) => {
+                            return (
+                                <ListItem avatar key={i}>
+                                    <Left>
+                                        <Thumbnail source={{ uri: v.avatar_url }} />
+                                    </Left>
+                                    <Body>
+                                        <Text style={{ color: chatColor }}>{v.title}</Text>
+                                        <Text note>{v.subtitle}</Text>
+                                    </Body>
+                                    <Right>
+                                        <Text note>3:43 pm</Text>
+                                    </Right>
+                                </ListItem>
+                            )
+                        }) : list.map((v, i) => {
+                            return (
+                                <ListItem avatar key={i}>
+                                    <Left>
+                                        <Thumbnail source={{ uri: v.avatar_url }} />
+                                    </Left>
+                                    <Body>
+                                        <Text style={{ color: chatColor }}>{v.title}</Text>
+                                        <Text note style={{ paddingBottom: 5, paddingTop: 5 }}>{v.status}</Text>
+                                    </Body>
+                                    <Right>
+                                        <Text note>3:43 pm</Text>
+                                    </Right>
+                                </ListItem>
+                            )
+                        })
                         }
                     </List>
                 </ScrollView>
-            </SafeAreaView>
+                {!create && <ActionButton buttonColor="#009FFF" size={62} renderIcon={() => <Icon name="add" color="#fff" />} onPress={() => this.setState({ create: true })} />}
+            </SafeAreaView >
         );
     }
 }
+
+
+const styles = StyleSheet.create({
+    actionButtonIcon: {
+        fontSize: 20,
+        height: 22,
+        color: 'white',
+    },
+});
