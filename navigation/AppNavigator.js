@@ -2,83 +2,51 @@ import * as Screen from '../Screens'
 import React from 'react'
 import { SafeAreaView, ScrollView, View } from 'react-native'
 import { createAppContainer } from 'react-navigation';
-// import Sidebar from '../Components/Sidebar'
-// import { createStackNavigator } from 'react-navigation-stack'
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'
-// import SideBar from '../Screens/SideBar/SideBar'
-
-// const StackNavigator = createStackNavigator({
-//     Login: {
-//         screen: Screen.Login
-//     },
-//     Signup: {
-//         screen: Screen.Signup
-//     }
-// },
-//     {
-//         initialRouteName: "Login",
-//         headerMode: 'none',
-//         // statusBarAnimation,
-//         navigationOptions: {
-//             headerVisible: false,
-//         }
-//     }
-// )
-
-class Siderbar extends React.Component {
-    render() {
-        return (
-            <SafeAreaView>
-                <ScrollView>
-                    <Text>Hello</Text>
-                </ScrollView>
-            </SafeAreaView>
-        )
-    }
-}
+import SideBar from '../Screens/SideBar/SideBar'
 
 
 const Drawer = createDrawerNavigator(
     {
         Home: { screen: Screen.Home },
-        Chat: { screen: Screen.Signup },
-        Profile: { screen: Screen.Login }
+        Anatomy: { screen: Screen.CalendarMeeting },
+        Header: { screen: Screen.Falcon },
+        Footer: { screen: Screen.Login },
+        NHBadge: { screen: Screen.Signup },
+        NHButton: { screen: Screen.NewMeeting },
+        NHCard: { screen: Screen.Home },
+        NHCheckbox: { screen: Screen.Home },
+        NHDeckSwiper: { screen: Screen.Home },
+        NHFab: { screen: Screen.Home },
+        NHForm: { screen: Screen.Home },
+        NHIcon: { screen: Screen.Home },
+        NHLayout: { screen: Screen.Home },
+        NHList: { screen: Screen.Home },
+        ListSwipe: { screen: Screen.Home },
+        NHRadio: { screen: Screen.Home },
+        NHSearchbar: { screen: Screen.Home },
+        NHSpinner: { screen: Screen.Home },
+        NHPicker: { screen: Screen.Home },
+        NHTab: { screen: Screen.Home },
+        NHThumbnail: { screen: Screen.Home },
+        NHTypography: { screen: Screen.Home },
+        Segment: { screen: Screen.Home },
+        NHToast: { screen: Screen.Home },
+        Actionsheet: { screen: Screen.Home },
+        NHAccordion: { screen: Screen.Home },
+        NHDatePicker: { screen: Screen.Home }
     },
     {
-        // initialRouteName: "Profile",
-        // drawerType: 'back',
-        // drawerWidth: 230,
-        // contentOptions: {
-        //     activeTintColor: '#e91e63',
-        // },
-        contentComponent: <Siderbar />
+        initialRouteName: "Home",
+        contentOptions: {
+            activeTintColor: "#e91e63"
+        },
+        contentComponent: props => <SideBar {...props} />
     }
 );
 
-// const DrawerNavigator = createDrawerNavigator({
-//     Home: {
-//         screen: Screen.Login
-//     },
-//     Services: {
-//         screen: Screen.Login
-//     },
-//     Requests: {
-//         screen: Screen.Signup
-//     },
-//     Inbox: {
-//         screen: Screen.Login
-//     },
-//     Chat: {
-//         screen: Screen.Home
-//     }
-// }, {
-//     drawerWidth: 230,
-//     drawerType: 'back'
-// })
 
 
-
-// const StackNavigatorApp = createAppContainer(StackNavigator)
 const DrawerNavigatorApp = createAppContainer(Drawer)
 
 
