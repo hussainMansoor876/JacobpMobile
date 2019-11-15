@@ -4,6 +4,7 @@ import SplashScreen from 'react-native-splash-screen'
 import { Button } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux';
+import { Icon } from 'react-native-elements'
 
 
 
@@ -21,18 +22,31 @@ class Manage extends React.Component {
     }
 
     render() {
-        const { screenHeight, screenWidth } = this.state
         return (
             <View style={{ flex: 1, backgroundColor: '#1C162E' }}>
                 <LinearGradient colors={['#1C162E', '#1C162E']} style={styles.linearGradient}>
-                    <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1, paddingLeft: 15 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
                             <TouchableOpacity>
-                                <Text style={styles.buttonText}>Hello</Text>
+                                <Icon
+                                    name="arrow-left"
+                                    size={40}
+                                    type="feather"
+                                    color="#ffffff"
+                                    iconStyle={{ width: 200 }}
+                                />
                             </TouchableOpacity>
                             <TouchableOpacity>
-                                <Text style={styles.buttonText}>Hello</Text>
+                                <Text style={styles.buttonText}>Add all</Text>
                             </TouchableOpacity>
+                        </View>
+                        <View style={{ marginTop: 20 }}>
+                            <Text style={{ color: '#ffffff', fontSize: 24, fontWeight: 'bold', fontFamily: 'Gill Sans', paddingBottom: 5 }}>
+                                Manage your tools
+                        </Text>
+                            <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14 }}>
+                                3 interests selected
+                        </Text>
                         </View>
                     </View>
                 </LinearGradient>
