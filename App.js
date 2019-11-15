@@ -5,6 +5,7 @@ import store from './Redux/store';
 import Navigator from './navigation/AppNavigator'
 import { screensEnabled } from 'react-native-screens';
 import Chat from './Screens/FacebookChat/ChatList'
+import Manage from './Screens/Manage'
 
 screensEnabled();
 
@@ -23,7 +24,7 @@ class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Provider store={store} >
-          <Chat />
+          <Manage />
         </Provider>
       </View>
     );
