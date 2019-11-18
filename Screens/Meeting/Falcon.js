@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Dimensions, Image, Text, TouchableOpacity } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { Icon } from 'react-native-elements'
+import { connect } from 'react-redux';
 
 class Falcon extends React.Component {
     constructor(props) {
@@ -41,4 +42,18 @@ class Falcon extends React.Component {
     }
 }
 
-export default Falcon;
+const mapStateToProps = (state) => {
+    console.log("mapToState", state.authReducer)
+    return {
+        user: "state.authReducer.user"
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateUser: (user) => dispatch(loginUser(user))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Falcon)

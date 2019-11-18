@@ -6,7 +6,6 @@ import ActionButton from 'react-native-action-button';
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 
-
 const { width, height } = Dimensions.get('window')
 
 class ChatList extends Component {
@@ -102,47 +101,11 @@ class ChatList extends Component {
                             // label="Switch to Dark Mode"
                             // labelStyle={{ color: "black", fontWeight: "900" }}
                             size="medium"
-                            onToggle={isOn => this.setState({ on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? 'black' : '#fff', })}
+                            onToggle={isOn => this.setState({ on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? 'black' : '#fff',  })}
                         />
                     </Body>
                 </Header>
-                <ScrollView>
-                    <List style={{ borderTopColor: 'white', borderTopWidth: 0.3 }}>
-                        {!create ? list.map((v, i) => {
-                            return (
-                                <ListItem avatar key={i}>
-                                    <Left>
-                                        <Thumbnail source={{ uri: v.avatar_url }} />
-                                    </Left>
-                                    <Body>
-                                        <Text style={{ color: chatColor }}>{v.title}</Text>
-                                        <Text note>{v.subtitle}</Text>
-                                    </Body>
-                                    <Right>
-                                        <Text note>3:43 pm</Text>
-                                    </Right>
-                                </ListItem>
-                            )
-                        }) : list.map((v, i) => {
-                            return (
-                                <ListItem avatar key={i}>
-                                    <Left>
-                                        <Thumbnail source={{ uri: v.avatar_url }} />
-                                    </Left>
-                                    <Body>
-                                        <Text style={{ color: chatColor }}>{v.title}</Text>
-                                        <Text note style={{ paddingBottom: 5, paddingTop: 5 }}>{v.status}</Text>
-                                    </Body>
-                                    <Right>
-                                        <Text note>3:43 pm</Text>
-                                    </Right>
-                                </ListItem>
-                            )
-                        })
-                        }
-                    </List>
-                </ScrollView>
-                {!create && <ActionButton buttonColor="#009FFF" size={62} renderIcon={() => <Icon name="add" color="#fff" />} onPress={() => this.setState({ create: true })} />}
+                
             </SafeAreaView >
         );
     }
@@ -157,6 +120,7 @@ const styles = StyleSheet.create({
     },
 });
 
+
 const mapStateToProps = (state) => {
     console.log("mapToState", state.authReducer)
     return {
@@ -169,5 +133,6 @@ const mapDispatchToProps = (dispatch) => {
         updateUser: (user) => dispatch(loginUser(user))
     }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList)
