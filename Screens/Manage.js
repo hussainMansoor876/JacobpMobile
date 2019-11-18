@@ -48,7 +48,158 @@ class Manage extends React.Component {
                                 3 interests selected
                         </Text>
                         </View>
-                        
+                        <View style={{ flexDirection: 'row', paddingTop: 20 }}>
+                            <TouchableOpacity style={{ marginRight: 10 }}>
+                                <LinearGradient
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    colors={['#f44d60', '#ed3c8f']}
+                                    style={{ flexDirection: 'row', paddingTop: 1, paddingBottom: 2, borderRadius: 50 }}>
+                                    <Text style={{ color: '#fff', fontSize: 16, marginRight: 10, paddingLeft: 10 }}>
+                                        Helpdesk Management
+                                </Text>
+                                    <Icon
+                                        name="x-circle"
+                                        type="feather"
+                                        color="#fff"
+                                        size={20}
+                                        containerStyle={{ paddingRight: 10, paddingTop: 2, paddingBottom: 2 }}
+                                    />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ marginRight: 10 }}>
+                                <LinearGradient
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    colors={['#f44d60', '#ed3c8f']}
+                                    style={{ flexDirection: 'row', paddingTop: 1, paddingBottom: 2, borderRadius: 50 }}>
+                                    <Text style={{ color: '#fff', fontSize: 16, marginRight: 10, paddingLeft: 10 }}>
+                                        Helpdesk
+                                </Text>
+                                    <Icon
+                                        name="x-circle"
+                                        type="feather"
+                                        color="#fff"
+                                        size={20}
+                                        containerStyle={{ paddingRight: 10, paddingTop: 2, paddingBottom: 2 }}
+                                    />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ flexDirection: 'row', paddingTop: 20 }}>
+                            <TouchableOpacity style={{ marginRight: 10 }}>
+                                <LinearGradient
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    colors={['#f44d60', '#ed3c8f']}
+                                    style={{ flexDirection: 'row', paddingTop: 1, paddingBottom: 2, borderRadius: 50 }}>
+                                    <Text style={{ color: '#fff', fontSize: 16, marginRight: 10, paddingLeft: 10 }}>
+                                        Website Analytics
+                                </Text>
+                                    <Icon
+                                        name="x-circle"
+                                        type="feather"
+                                        color="#fff"
+                                        size={20}
+                                        containerStyle={{ paddingRight: 10, paddingTop: 2, paddingBottom: 2 }}
+                                    />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ marginRight: 10 }}>
+                                <LinearGradient
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    colors={['#f44d60', '#ed3c8f']}
+                                    style={{ flexDirection: 'row', paddingTop: 1, paddingBottom: 2, borderRadius: 50 }}>
+                                    <Text style={{ color: '#fff', fontSize: 16, marginRight: 10, paddingLeft: 10 }}>
+                                        Cloud Storage
+                                </Text>
+                                    <Icon
+                                        name="x-circle"
+                                        type="feather"
+                                        color="#fff"
+                                        size={20}
+                                        containerStyle={{ paddingRight: 10, paddingTop: 2, paddingBottom: 2 }}
+                                    />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ flexDirection: 'row', paddingTop: 20 }}>
+                            <TouchableOpacity style={{ marginRight: 10 }}>
+                                <LinearGradient
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    colors={['#f44d60', '#ed3c8f']}
+                                    style={{ flexDirection: 'row', paddingTop: 1, paddingBottom: 2, borderRadius: 50 }}>
+                                    <Text style={{ color: '#fff', fontSize: 16, marginRight: 10, paddingLeft: 10 }}>
+                                        Sales Monitoring
+                                </Text>
+                                    <Icon
+                                        name="x-circle"
+                                        type="feather"
+                                        color="#fff"
+                                        size={20}
+                                        containerStyle={{ paddingRight: 10, paddingTop: 2, paddingBottom: 2 }}
+                                    />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ marginRight: 10 }}>
+                                <LinearGradient
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    colors={['#f44d60', '#ed3c8f']}
+                                    style={{ flexDirection: 'row', paddingTop: 1, paddingBottom: 2, borderRadius: 50 }}>
+                                    <Text style={{ color: '#fff', fontSize: 16, marginRight: 10, paddingLeft: 10 }}>
+                                        Contacts
+                                </Text>
+                                    <Icon
+                                        name="x-circle"
+                                        type="feather"
+                                        color="#fff"
+                                        size={20}
+                                        containerStyle={{ paddingRight: 10, paddingTop: 2, paddingBottom: 2 }}
+                                    />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ flexDirection: 'row', paddingTop: 20 }}>
+                            <TouchableOpacity style={{ marginRight: 10 }}>
+                                <LinearGradient
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    colors={['#f44d60', '#ed3c8f']}
+                                    style={{ flexDirection: 'row', paddingTop: 1, paddingBottom: 2, borderRadius: 50 }}>
+                                    <Text style={{ color: '#fff', fontSize: 16, marginRight: 10, paddingLeft: 10 }}>
+                                        E-mail
+                                </Text>
+                                    <Icon
+                                        name="x-circle"
+                                        type="feather"
+                                        color="#fff"
+                                        size={20}
+                                        containerStyle={{ paddingRight: 10, paddingTop: 2, paddingBottom: 2 }}
+                                    />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ marginRight: 10 }}>
+                                <LinearGradient
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    colors={['#f44d60', '#ed3c8f']}
+                                    style={{ flexDirection: 'row', paddingTop: 1, paddingBottom: 2, borderRadius: 50 }}>
+                                    <Text style={{ color: '#fff', fontSize: 16, marginRight: 10, paddingLeft: 10 }}>
+                                        SMS
+                                </Text>
+                                    <Icon
+                                        name="x-circle"
+                                        type="feather"
+                                        color="#fff"
+                                        size={20}
+                                        containerStyle={{ paddingRight: 10, paddingTop: 2, paddingBottom: 2 }}
+                                    />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </LinearGradient>
             </View>
