@@ -48,6 +48,7 @@ class Manage extends React.Component {
                                 3 interests selected
                         </Text>
                         </View>
+                        
                     </View>
                 </LinearGradient>
             </View>
