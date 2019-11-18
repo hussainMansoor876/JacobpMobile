@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet } from 'react-native'
+import { Image, Dimensions, SafeAreaView, KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import ToggleSwitch from 'toggle-switch-react-native'
-import ActionButton from 'react-native-action-button';
+import { GiftedChat } from 'react-native-gifted-chat'
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 
@@ -13,74 +13,74 @@ class ChatList extends Component {
         super(props)
 
         this.state = {
-            on: false,
-            label: "Dark Mode",
-            chatColor: 'black',
-            chatBackground: '#fff',
-            create: false,
-            list: [
-                {
-                    title: 'Amy Farha',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-                {
-                    title: 'Chris Jackson',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-                {
-                    title: 'Farha',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-                {
-                    title: 'Chris Jackson',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-                {
-                    title: 'Amy',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-                {
-                    title: 'Chris',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-                {
-                    title: 'Amy Jackson',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-                {
-                    title: 'Jackson Jackson',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-                {
-                    title: 'Jackson Farha',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-                {
-                    title: 'Chris Farha',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
-                },
-            ]
+            messages: []
         }
+    }
+
+    UNSAFE_componentWillMount() {
+        this.setState({
+            messages: [
+                {
+                    _id: 1,
+                    text: 'This is a quick reply. Do you love Gifted Chat? (radio) KEEP IT',
+                    createdAt: new Date(),
+                    quickReplies: {
+                        type: 'radio', // or 'checkbox',
+                        keepIt: true,
+                        values: [
+                            {
+                                title: '😋 Yes',
+                                value: 'yes',
+                            },
+                            {
+                                title: '📷 Yes, let me show you with a picture!',
+                                value: 'yes_picture',
+                            },
+                            {
+                                title: '😞 Nope. What?',
+                                value: 'no',
+                            },
+                        ],
+                    },
+                    user: {
+                        _id: 2,
+                        name: 'React Native',
+                    },
+                },
+                {
+                    _id: 2,
+                    text: 'This is a quick reply. Do you love Gifted Chat? (checkbox)',
+                    createdAt: new Date(),
+                    quickReplies: {
+                        type: 'checkbox', // or 'radio',
+                        values: [
+                            {
+                                title: 'Yes',
+                                value: 'yes',
+                            },
+                            {
+                                title: 'Yes, let me show you with a picture!',
+                                value: 'yes_picture',
+                            },
+                            {
+                                title: 'Nope. What?',
+                                value: 'no',
+                            },
+                        ],
+                    },
+                    user: {
+                        _id: 2,
+                        name: 'React Native',
+                    },
+                }
+            ],
+        })
+    }
+
+    onSend(messages = []) {
+        this.setState(previousState => ({
+            messages: GiftedChat.append(previousState.messages, messages),
+        }))
     }
 
 
@@ -101,11 +101,27 @@ class ChatList extends Component {
                             // label="Switch to Dark Mode"
                             // labelStyle={{ color: "black", fontWeight: "900" }}
                             size="medium"
-                            onToggle={isOn => this.setState({ on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? 'black' : '#fff',  })}
+                            onToggle={isOn => this.setState({ on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? 'black' : '#fff', })}
                         />
                     </Body>
                 </Header>
-                
+                <KeyboardAvoidingView
+                    resetScrollToCoords={{ x: 0, y: 0 }}
+                    behavior={Platform.OS === "ios" ? "padding" : null}
+                    keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+                    style={{ flex: 1 }}
+                >
+                    <GiftedChat
+                        messages={this.state.messages}
+                        onSend={messages => this.onSend(messages)}
+                        isAnimated={true}
+                        showAvatarForEveryMessage={true}
+                        renderUsernameOnMessage={true}
+                        user={{
+                            _id: 1,
+                        }}
+                    />
+                </KeyboardAvoidingView>
             </SafeAreaView >
         );
     }
