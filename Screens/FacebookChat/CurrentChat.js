@@ -4,10 +4,12 @@ import { Container, Header, Body, Thumbnail, Text } from 'native-base';
 import { GiftedChat, Bubble, Send } from 'react-native-gifted-chat'
 import * as Animatable from 'react-native-animatable';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 
 const AnimatedIcon = Animatable.createAnimatableComponent(Ionicons)
+const Material = Animatable.createAnimatableComponent(MaterialCommunityIcons)
 
 const { width, height } = Dimensions.get('window')
 
@@ -128,11 +130,12 @@ class ChatList extends Component {
                 {...props}
             >
                 <View style={{ marginRight: 10, marginBottom: 5 }}>
-                    <Icon
+                    <Material
+                        // ref={this.handleSmallAnimatedIconRef}
+                        name={'arrow-right-circle'}
+                        color={'#0078FF'}
                         size={35}
-                        // color="#fff"
-                        name="arrow-right-circle"
-                        type="feather"
+                        style={styles.icon}
                     />
                 </View>
             </Send>
