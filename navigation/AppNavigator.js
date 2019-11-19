@@ -2,8 +2,17 @@ import * as Screen from '../Screens'
 import React from 'react'
 import { SafeAreaView, ScrollView, View } from 'react-native'
 import { createAppContainer } from 'react-navigation';
-import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'
+import { createDrawerNavigator } from 'react-navigation-drawer'
 import SideBar from '../Screens/SideBar/SideBar'
+import MainSideBar from '../Screens/SideBar/MainSiderBar'
+import FacebookChatScreen from '../Screens/FacebookChat/ChatList'
+import IMessageChatScreen from '../Screens/IMessageChat/ChatList'
+import InstagramChatScreen from '../Screens/InstaGramChat/ChatList'
+import TeamChatScreen from '../Screens/TeamChat/ChatList'
+import TwitterChatScreen from '../Screens/TwitterChat/ChatList'
+import WebsiteChatScreen from '../Screens/WebsiteChat/ChatList'
+import WhatsAppChatScreen from '../Screens/WhatsAppChat/ChatList'
+
 
 
 const Drawer = createDrawerNavigator(
@@ -45,10 +54,33 @@ const Drawer = createDrawerNavigator(
     }
 );
 
+const MainDrawer = createDrawerNavigator(
+    {
+        Facebook: { screen: FacebookChatScreen },
+        IMessage: { screen: IMessageChatScreen  },
+        Instagram: { screen: InstagramChatScreen },
+        Team: { screen: TeamChatScreen },
+        Twitter: { screen: TwitterChatScreen },
+        Website: { screen: WebsiteChatScreen },
+        WhatsApp: { screen: WhatsAppChatScreen }
+    },
+    {
+        initialRouteName: "Facebook",
+        contentOptions: {
+            activeTintColor: "#e91e63"
+        },
+        contentComponent: props => <MainSideBar {...props} />
+    }
+);
+
 
 
 const DrawerNavigatorApp = createAppContainer(Drawer)
+const MainDrawerNavigatorApp = createAppContainer(MainDrawer)
 
 
 
-export default DrawerNavigatorApp;
+export {
+    DrawerNavigatorApp,
+    MainDrawerNavigatorApp
+};

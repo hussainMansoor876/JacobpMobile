@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
-import Navigator from './navigation/AppNavigator'
+import { MainDrawerNavigatorApp } from './navigation/AppNavigator'
 import { screensEnabled } from 'react-native-screens';
 import Chat from './Screens/WhatsAppChat/ChatList'
 
@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Provider store={store} >
-          <Chat />
+          <MainDrawerNavigatorApp />
         </Provider>
       </View>
     );

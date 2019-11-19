@@ -30,5 +30,10 @@ export default {
     fontWeight: "400",
     textAlign: "center",
     marginTop: Platform.OS === "android" ? -3 : undefined
+  },
+  icon: {
+    width: 22,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 };
