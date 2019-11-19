@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Image, Dimensions, SafeAreaView, KeyboardAvoidingView, StyleSheet } from 'react-native'
-import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import { Image, Dimensions, SafeAreaView, KeyboardAvoidingView, StyleSheet, View } from 'react-native'
+import { Container, Header, Body, Thumbnail, Text } from 'native-base';
 import ToggleSwitch from 'toggle-switch-react-native'
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedChat, Bubble, Send, MessageImage } from 'react-native-gifted-chat'
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 
@@ -13,7 +13,10 @@ class ChatList extends Component {
         super(props)
 
         this.state = {
-            messages: []
+            messages: [],
+            chatColor: '#a3a6ae',
+            leftBubbleColor: '#f1f1f0',
+            on: false
         }
     }
 
@@ -22,57 +25,16 @@ class ChatList extends Component {
             messages: [
                 {
                     _id: 1,
-                    text: 'This is a quick reply. Do you love Gifted Chat? (radio) KEEP IT',
-                    createdAt: new Date(),
-                    quickReplies: {
-                        type: 'radio', // or 'checkbox',
-                        keepIt: true,
-                        values: [
-                            {
-                                title: '😋 Yes',
-                                value: 'yes',
-                            },
-                            {
-                                title: '📷 Yes, let me show you with a picture!',
-                                value: 'yes_picture',
-                            },
-                            {
-                                title: '😞 Nope. What?',
-                                value: 'no',
-                            },
-                        ],
-                    },
+                    text: 'My message',
+                    createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
                     user: {
-                        _id: 2,
-                        name: 'React Native',
+                      _id: 2,
+                      name: 'React Native',
+                      avatar: 'https://facebook.github.io/react/img/logo_og.png',
                     },
-                },
-                {
-                    _id: 2,
-                    text: 'This is a quick reply. Do you love Gifted Chat? (checkbox)',
-                    createdAt: new Date(),
-                    quickReplies: {
-                        type: 'checkbox', // or 'radio',
-                        values: [
-                            {
-                                title: 'Yes',
-                                value: 'yes',
-                            },
-                            {
-                                title: 'Yes, let me show you with a picture!',
-                                value: 'yes_picture',
-                            },
-                            {
-                                title: 'Nope. What?',
-                                value: 'no',
-                            },
-                        ],
-                    },
-                    user: {
-                        _id: 2,
-                        name: 'React Native',
-                    },
-                }
+                    image: 'https://facebook.github.io/react/img/logo_og.png'
+                    // Any additional custom parameters are passed through
+                  }
             ],
         })
     }
@@ -81,6 +43,94 @@ class ChatList extends Component {
         this.setState(previousState => ({
             messages: GiftedChat.append(previousState.messages, messages),
         }))
+    }
+
+    renderBubble(props) {
+        const { on } = this.state
+        console.log('on', on)
+        return (
+            <Bubble
+                {...props}
+                wrapperStyle={{
+                    right: {
+                        backgroundColor: '#0099FF'
+                    },
+                    left: {
+                        backgroundColor: '#1f3c53'
+                    }
+                }}
+                textStyle={{
+                    left: {
+                        color: '#a3a6ae'
+                    }
+                }}
+            />
+        )
+    }
+
+    renderBubbleLight(props) {
+        const { on } = this.state
+        console.log('Light', on)
+        return (
+            <Bubble
+                {...props}
+                wrapperStyle={{
+                    right: {
+                        backgroundColor: '#0099FF'
+                    },
+                    left: {
+                        backgroundColor: '#f1f1f0'
+                    }
+                }}
+                textStyle={{
+                    left: {
+                        color: '#a3a6ae'
+                    }
+                }}
+            />
+        )
+    }
+
+    renderBubbleDark(props) {
+        const { on } = this.state
+        console.log('Dark', on)
+        return (
+            <Bubble
+                {...props}
+                wrapperStyle={{
+                    right: {
+                        backgroundColor: '#0099FF'
+                    },
+                    left: {
+                        backgroundColor: '#1f3c53'
+                    }
+                }}
+                textStyle={{
+                    left: {
+                        color: '#a3a6ae'
+                    }
+                }}
+            />
+        )
+    }
+
+
+    renderSend(props) {
+        return (
+            <Send
+                containerStyle={{ flex: 1 }}
+                {...props}
+            >
+                <View style={{ marginRight: 10, marginBottom: 5 }}>
+                    <Icon
+                        size={35}
+                        // color="#fff"
+                        name="arrow-right-circle"
+                        type="feather"
+                    />
+                </View>
+            </Send>
+        );
     }
 
 
@@ -101,7 +151,10 @@ class ChatList extends Component {
                             // label="Switch to Dark Mode"
                             // labelStyle={{ color: "black", fontWeight: "900" }}
                             size="medium"
-                            onToggle={isOn => this.setState({ on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? 'black' : '#fff', })}
+                            onToggle={isOn => this.setState({
+                                on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? '#142A3B' : '#fff',
+                                leftBubbleColor: isOn ? '#1f3c53' : '#f1f1f0'
+                            })}
                         />
                     </Body>
                 </Header>
@@ -111,16 +164,32 @@ class ChatList extends Component {
                     keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
                     style={{ flex: 1 }}
                 >
-                    <GiftedChat
+                    {!on && <GiftedChat
                         messages={this.state.messages}
                         onSend={messages => this.onSend(messages)}
                         isAnimated={true}
                         showAvatarForEveryMessage={true}
-                        renderUsernameOnMessage={true}
+                        // renderUsernameOnMessage={true}
+                        renderBubble={this.renderBubbleLight.bind(this)}
+                        renderSend={this.renderSend}
+                        alwaysShowSend={true}
                         user={{
                             _id: 1,
                         }}
-                    />
+                    />}
+                    {on && <GiftedChat
+                        messages={this.state.messages}
+                        onSend={messages => this.onSend(messages)}
+                        isAnimated={true}
+                        showAvatarForEveryMessage={true}
+                        // renderUsernameOnMessage={true}
+                        renderBubble={this.renderBubbleDark.bind(this)}
+                        renderSend={this.renderSend}
+                        alwaysShowSend={true}
+                        user={{
+                            _id: 1,
+                        }}
+                    />}
                 </KeyboardAvoidingView>
             </SafeAreaView >
         );
