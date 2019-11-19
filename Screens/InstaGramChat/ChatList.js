@@ -22,7 +22,7 @@ class ChatList extends Component {
         this.state = {
             on: false,
             label: "Dark Mode",
-            chatColor: 'black',
+            chatColor: 'a3a6ae',
             chatBackground: '#fff',
             create: false,
             liked: false,

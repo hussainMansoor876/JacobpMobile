@@ -43,7 +43,7 @@ class ChatList extends Component {
                         avatar: 'https://placeimg.com/140/140/any',
                     },
                     image: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
-                },
+                }
             ],
         })
     }
