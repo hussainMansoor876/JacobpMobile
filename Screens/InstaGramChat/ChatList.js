@@ -128,16 +128,7 @@ class ChatList extends Component {
                         <Image
                             source={require('../../assets/images/left.png')}
                         />
-                        <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>Messages</Text>
-                        {/* <ToggleSwitch
-                            isOn={on}
-                            onColor="rgba(255,255,255,0.5)"
-                            offColor="rgba(0,0,0,0.1)"
-                            // label="Switch to Dark Mode"
-                            // labelStyle={{ color: "black", fontWeight: "900" }}
-                            size="medium"
-                            onToggle={isOn => this.setState({ on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? 'black' : '#fff', })}
-                        /> */}
+                        <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>Instagram</Text>
                         <TouchableOpacity
                             style={{ alignSelf: 'flex-end', paddingRight: 10 }}
                             activeOpacity={1}
@@ -189,7 +180,7 @@ class ChatList extends Component {
                         }
                     </List>
                 </ScrollView>
-                {!create && <ActionButton buttonColor="#009FFF" size={62} renderIcon={() => <Icon name="add" color="#fff" />} onPress={() => this.setState({ create: true })} />}
+                {!create && <ActionButton buttonColor="#e1306c" size={62} renderIcon={() => <Icon name="add" color="#fff" />} onPress={() => this.setState({ create: true })} />}
             </SafeAreaView >
         );
     }

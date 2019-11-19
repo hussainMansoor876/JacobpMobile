@@ -84,7 +84,7 @@ class ChatList extends Component {
                 {...props}
                 wrapperStyle={{
                     right: {
-                        backgroundColor: '#0099FF'
+                        backgroundColor: '#e1306c'
                     },
                     left: {
                         backgroundColor: '#f1f1f0'
@@ -105,7 +105,7 @@ class ChatList extends Component {
                 {...props}
                 wrapperStyle={{
                     right: {
-                        backgroundColor: '#0099FF'
+                        backgroundColor: '#e1306c'
                     },
                     left: {
                         backgroundColor: '#1f3c53'
@@ -131,7 +131,7 @@ class ChatList extends Component {
                     <Material
                         // ref={this.handleSmallAnimatedIconRef}
                         name={'arrow-right-circle'}
-                        color={'#0078FF'}
+                        color={'#e1306c'}
                         size={35}
                         style={styles.icon}
                     />
@@ -152,17 +152,8 @@ class ChatList extends Component {
         })
     }
 
-    // renderMessage(props) {
-    //     console.log('props', props.currentMessage.image)
-    //     return (
-    //         <MessageImage {...props}>
-    //             <Image source={{ uri: props.currentMessage.image }} resizeMode={'contain'} />
-    //         </MessageImage>
-    //     )
-    // }
-
     render() {
-        const { on, list, chatColor, chatBackground, liked } = this.state
+        const { chatColor, chatBackground, liked } = this.state
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0, height: 80 }}>
