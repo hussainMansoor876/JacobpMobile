@@ -129,9 +129,8 @@ class ChatList extends Component {
             >
                 <View style={{ marginRight: 10, marginBottom: 5 }}>
                     <Material
-                        // ref={this.handleSmallAnimatedIconRef}
                         name={'arrow-right-circle'}
-                        color={'#0078FF'}
+                        color={'#FF7052'}
                         size={35}
                         style={styles.icon}
                     />
@@ -152,17 +151,8 @@ class ChatList extends Component {
         })
     }
 
-    // renderMessage(props) {
-    //     console.log('props', props.currentMessage.image)
-    //     return (
-    //         <MessageImage {...props}>
-    //             <Image source={{ uri: props.currentMessage.image }} resizeMode={'contain'} />
-    //         </MessageImage>
-    //     )
-    // }
-
     render() {
-        const { on, list, chatColor, chatBackground, liked } = this.state
+        const { chatColor, chatBackground, liked } = this.state
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0, height: 80 }}>
@@ -202,26 +192,25 @@ class ChatList extends Component {
                     keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
                     style={{ flex: 1 }}
                 >
-                    {!liked && <GiftedChat
+                    {!liked ? <GiftedChat
                         messages={this.state.messages}
                         onSend={messages => this.onSend(messages)}
                         isAnimated={true}
                         showAvatarForEveryMessage={true}
                         // renderUsernameOnMessage={true}
                         renderBubble={this.renderBubbleLight.bind(this)}
+                        extraData={this.state}
                         renderSend={this.renderSend}
-                        // renderMessageImage={this.renderMessage.bind(this)}
                         alwaysShowSend={true}
                         user={{
                             _id: 1,
                         }}
-                    />}
-                    {liked && <GiftedChat
+                    /> : <GiftedChat
                         messages={this.state.messages}
                         onSend={messages => this.onSend(messages)}
                         isAnimated={true}
                         showAvatarForEveryMessage={true}
-                        // renderUsernameOnMessage={true}
+                        extraData={this.state}
                         renderBubble={this.renderBubbleDark.bind(this)}
                         renderSend={this.renderSend}
                         alwaysShowSend={true}
