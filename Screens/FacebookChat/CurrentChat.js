@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Dimensions, SafeAreaView, KeyboardAvoidingView, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { Container, Header, Body, Thumbnail, Text } from 'native-base';
-import ToggleSwitch from 'toggle-switch-react-native'
-import { GiftedChat, Bubble, Send, MessageImage } from 'react-native-gifted-chat'
+import { GiftedChat, Bubble, Send } from 'react-native-gifted-chat'
 import * as Animatable from 'react-native-animatable';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Icon } from 'react-native-elements'

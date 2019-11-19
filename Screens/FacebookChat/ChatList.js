@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet } from 'react-native'
+import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import ToggleSwitch from 'toggle-switch-react-native'
 import ActionButton from 'react-native-action-button';
+import * as Animatable from 'react-native-animatable';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
+
+const AnimatedIcon = Animatable.createAnimatableComponent(Ionicons)
+
 
 
 const { width, height } = Dimensions.get('window')
@@ -19,6 +24,7 @@ class ChatList extends Component {
             chatColor: 'black',
             chatBackground: '#fff',
             create: false,
+            liked: false,
             list: [
                 {
                     title: 'Amy Farha',
@@ -84,9 +90,24 @@ class ChatList extends Component {
         }
     }
 
+    handleSmallAnimatedIconRef = (ref) => {
+        this.smallAnimatedIcon = ref
+    }
+
+    handleOnPressLike = async () => {
+        const { liked } = this.state
+        this.smallAnimatedIcon.bounceIn()
+        this.setState({ liked: !liked }, () => {
+            const { liked } = this.state
+            this.setState({
+                chatColor: liked ? '#fff' : '#a3a6ae', chatBackground: liked ? '#142A3B' : '#fff'
+            })
+        })
+    }
+
 
     render() {
-        const { on, list, chatColor, chatBackground, create } = this.state
+        const { liked, list, chatColor, chatBackground, create } = this.state
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0 }}>
@@ -95,7 +116,7 @@ class ChatList extends Component {
                             source={require('../../assets/images/left.png')}
                         />
                         <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>Messages</Text>
-                        <ToggleSwitch
+                        {/* <ToggleSwitch
                             isOn={on}
                             onColor="rgba(255,255,255,0.5)"
                             offColor="rgba(0,0,0,0.1)"
@@ -103,7 +124,20 @@ class ChatList extends Component {
                             // labelStyle={{ color: "black", fontWeight: "900" }}
                             size="medium"
                             onToggle={isOn => this.setState({ on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? 'black' : '#fff', })}
-                        />
+                        /> */}
+                        <TouchableOpacity
+                            style={{ alignSelf: 'flex-end', paddingRight: 10 }}
+                            activeOpacity={1}
+                            onPress={this.handleOnPressLike}
+                        >
+                            <AnimatedIcon
+                                ref={this.handleSmallAnimatedIconRef}
+                                name={liked ? 'ios-sunny' : 'ios-moon'}
+                                color={liked ? 'yellow' : '#a3a6ae'}
+                                size={35}
+                                style={styles.icon}
+                            />
+                        </TouchableOpacity>
                     </Body>
                 </Header>
                 <ScrollView>
@@ -155,6 +189,11 @@ const styles = StyleSheet.create({
         height: 22,
         color: 'white',
     },
+    icon: {
+        paddingHorizontal: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 });
 
 const mapStateToProps = (state) => {
