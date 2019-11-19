@@ -170,12 +170,14 @@ class ChatList extends Component {
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0, height: 80 }}>
                     <Body style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <View style={{ flex: 5, flexDirection: 'row', alignItems: 'center' }}>
-                            <Icon
-                                name="arrow-left"
-                                type="feather"
-                                color={!liked ? 'black' : '#fff'}
-                                containerStyle={{ width: width / 8 }}
-                            />
+                            <TouchableOpacity onPress={() => this.props.changeChat()}>
+                                <Icon
+                                    name="arrow-left"
+                                    type="feather"
+                                    color={!liked ? 'black' : '#fff'}
+                                    containerStyle={{ width: width / 8 }}
+                                />
+                            </TouchableOpacity>
                             <Image style={{ height: 60, width: 60, borderRadius: 50 }} resizeMode={'contain'} source={{ uri: 'https://placeimg.com/140/140/any' }} />
                             <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor, paddingLeft: 30 }}>Jacob</Text>
                         </View>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import ToggleSwitch from 'toggle-switch-react-native'
 import ActionButton from 'react-native-action-button';
@@ -7,6 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
+import CurrentChat from './CurrentChat'
 
 const AnimatedIcon = Animatable.createAnimatableComponent(Ionicons)
 
@@ -25,6 +26,7 @@ class ChatList extends Component {
             chatBackground: '#fff',
             create: false,
             liked: false,
+            chat: false,
             list: [
                 {
                     title: 'Amy Farha',
@@ -105,9 +107,21 @@ class ChatList extends Component {
         })
     }
 
+    changeChat() {
+        console.log("Hello")
+        this.setState({
+            chat: false
+        })
+    }
+
 
     render() {
-        const { liked, list, chatColor, chatBackground, create } = this.state
+        const { liked, list, chatColor, chatBackground, create, chat } = this.state
+        if (chat) {
+            return (
+                <CurrentChat changeChat={() => this.changeChat()} />
+            )
+        }
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0 }}>
@@ -144,7 +158,7 @@ class ChatList extends Component {
                     <List style={{ borderTopColor: 'white', borderTopWidth: 0.3 }}>
                         {!create ? list.map((v, i) => {
                             return (
-                                <ListItem avatar key={i}>
+                                <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
                                     <Left>
                                         <Thumbnail source={{ uri: v.avatar_url }} />
                                     </Left>
@@ -159,7 +173,7 @@ class ChatList extends Component {
                             )
                         }) : list.map((v, i) => {
                             return (
-                                <ListItem avatar key={i}>
+                                <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
                                     <Left>
                                         <Thumbnail source={{ uri: v.avatar_url }} />
                                     </Left>
