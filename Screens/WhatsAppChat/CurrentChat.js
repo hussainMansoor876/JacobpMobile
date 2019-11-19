@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Dimensions, SafeAreaView, KeyboardAvoidingView, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { Container, Header, Body, Thumbnail, Text } from 'native-base';
-import { GiftedChat, Bubble, Send } from 'react-native-gifted-chat'
+import { GiftedChat, Bubble, Send, Time } from 'react-native-gifted-chat'
 import * as Animatable from 'react-native-animatable';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -55,28 +55,22 @@ class ChatList extends Component {
         }))
     }
 
-    renderBubble(props) {
-        const { on } = this.state
-        console.log('on', on)
+    renderTime(props) {
         return (
-            <Bubble
-                {...props}
-                wrapperStyle={{
-                    right: {
-                        backgroundColor: '#0099FF'
-                    },
-                    left: {
-                        backgroundColor: '#1f3c53'
-                    }
-                }}
-                textStyle={{
-                    left: {
-                        color: '#a3a6ae'
-                    }
-                }}
-            />
-        )
-    }
+          <Time
+            {...props}
+            timeTextStyle={{
+              right: {
+                color: "black"
+              },
+              left: {
+                color: "black"
+              }
+            }}
+          />
+        );
+      }
+
 
     renderBubbleLight(props) {
         return (
@@ -84,15 +78,15 @@ class ChatList extends Component {
                 {...props}
                 wrapperStyle={{
                     right: {
-                        backgroundColor: '#0099FF'
+                        backgroundColor: '#DCF8C6'
                     },
                     left: {
-                        backgroundColor: '#f1f1f0'
+                        backgroundColor: '#F1F6FB'
                     }
                 }}
                 textStyle={{
-                    left: {
-                        color: '#a3a6ae'
+                    right: {
+                        color: 'black'
                     }
                 }}
             />
@@ -105,10 +99,10 @@ class ChatList extends Component {
                 {...props}
                 wrapperStyle={{
                     right: {
-                        backgroundColor: '#0099FF'
+                        backgroundColor: '#DCF8C6'
                     },
                     left: {
-                        backgroundColor: '#1f3c53'
+                        backgroundColor: '#F1F6FB'
                     }
                 }}
                 textStyle={{
@@ -129,9 +123,8 @@ class ChatList extends Component {
             >
                 <View style={{ marginRight: 10, marginBottom: 5 }}>
                     <Material
-                        // ref={this.handleSmallAnimatedIconRef}
                         name={'arrow-right-circle'}
-                        color={'#0078FF'}
+                        color={'#34B7F1'}
                         size={35}
                         style={styles.icon}
                     />
@@ -151,16 +144,6 @@ class ChatList extends Component {
             })
         })
     }
-
-    // renderMessage(props) {
-    //     console.log('props', props.currentMessage.image)
-    //     return (
-    //         <MessageImage {...props}>
-    //             <Image source={{ uri: props.currentMessage.image }} resizeMode={'contain'} />
-    //         </MessageImage>
-    //     )
-    // }
-
     render() {
         const { on, list, chatColor, chatBackground, liked } = this.state
         return (
@@ -202,33 +185,35 @@ class ChatList extends Component {
                     keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
                     style={{ flex: 1 }}
                 >
-                    {!liked && <GiftedChat
+                    {!liked ? <GiftedChat
                         messages={this.state.messages}
                         onSend={messages => this.onSend(messages)}
                         isAnimated={true}
                         showAvatarForEveryMessage={true}
                         // renderUsernameOnMessage={true}
+                        renderTime={this.renderTime.bind(this)}
                         renderBubble={this.renderBubbleLight.bind(this)}
                         renderSend={this.renderSend}
-                        // renderMessageImage={this.renderMessage.bind(this)}
+                        extraData={this.state}
                         alwaysShowSend={true}
                         user={{
                             _id: 1,
                         }}
-                    />}
-                    {liked && <GiftedChat
-                        messages={this.state.messages}
-                        onSend={messages => this.onSend(messages)}
-                        isAnimated={true}
-                        showAvatarForEveryMessage={true}
-                        // renderUsernameOnMessage={true}
-                        renderBubble={this.renderBubbleDark.bind(this)}
-                        renderSend={this.renderSend}
-                        alwaysShowSend={true}
-                        user={{
-                            _id: 1,
-                        }}
-                    />}
+                    /> : <GiftedChat
+                            messages={this.state.messages}
+                            onSend={messages => this.onSend(messages)}
+                            isAnimated={true}
+                            showAvatarForEveryMessage={true}
+                            // renderUsernameOnMessage={true}
+                            renderBubble={this.renderBubbleDark.bind(this)}
+                            renderTime={this.renderTime.bind(this)}
+                            renderSend={this.renderSend}
+                            extraData={this.state}
+                            alwaysShowSend={true}
+                            user={{
+                                _id: 1,
+                            }}
+                        />}
                 </KeyboardAvoidingView>
             </SafeAreaView >
         );
