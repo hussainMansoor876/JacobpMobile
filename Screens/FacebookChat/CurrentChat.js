@@ -28,13 +28,13 @@ class ChatList extends Component {
                     text: 'My message',
                     createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
                     user: {
-                      _id: 2,
-                      name: 'React Native',
-                      avatar: 'https://facebook.github.io/react/img/logo_og.png',
+                        _id: 2,
+                        name: 'React Native',
+                        avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
                     },
-                    image: 'https://facebook.github.io/react/img/logo_og.png'
+                    image: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
                     // Any additional custom parameters are passed through
-                  }
+                }
             ],
         })
     }
@@ -133,6 +133,14 @@ class ChatList extends Component {
         );
     }
 
+    // renderMessage(props) {
+    //     console.log('props', props.currentMessage.image)
+    //     return (
+    //         <MessageImage {...props}>
+    //             <Image source={{ uri: props.currentMessage.image }} resizeMode={'contain'} />
+    //         </MessageImage>
+    //     )
+    // }
 
     render() {
         const { on, list, chatColor, chatBackground, create } = this.state
@@ -172,6 +180,7 @@ class ChatList extends Component {
                         // renderUsernameOnMessage={true}
                         renderBubble={this.renderBubbleLight.bind(this)}
                         renderSend={this.renderSend}
+                        // renderMessageImage={this.renderMessage.bind(this)}
                         alwaysShowSend={true}
                         user={{
                             _id: 1,
