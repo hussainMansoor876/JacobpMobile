@@ -69,8 +69,6 @@ class ChatList extends Component {
     }
 
     renderBubbleLight(props) {
-        const { on } = this.state
-        console.log('Light', on)
         return (
             <Bubble
                 {...props}
@@ -133,14 +131,14 @@ class ChatList extends Component {
         );
     }
 
-    renderMessage(props) {
-        console.log('props', props.currentMessage.image)
-        return (
-            <MessageImage {...props}>
-                <Image source={{ uri: props.currentMessage.image }} resizeMode={'contain'} />
-            </MessageImage>
-        )
-    }
+    // renderMessage(props) {
+    //     console.log('props', props.currentMessage.image)
+    //     return (
+    //         <MessageImage {...props}>
+    //             <Image source={{ uri: props.currentMessage.image }} resizeMode={'contain'} />
+    //         </MessageImage>
+    //     )
+    // }
 
     render() {
         const { on, list, chatColor, chatBackground, create } = this.state
@@ -148,8 +146,10 @@ class ChatList extends Component {
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0 }}>
                     <Body style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <Image
-                            source={require('../../assets/images/left.png')}
+                        <Icon 
+                        name="arrow-left"
+                        type="feather"
+                        color={!on ? 'black' : '#fff'}
                         />
                         <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>Messages</Text>
                         <ToggleSwitch
@@ -180,7 +180,7 @@ class ChatList extends Component {
                         // renderUsernameOnMessage={true}
                         renderBubble={this.renderBubbleLight.bind(this)}
                         renderSend={this.renderSend}
-                        renderMessageImage={this.renderMessage.bind(this)}
+                        // renderMessageImage={this.renderMessage.bind(this)}
                         alwaysShowSend={true}
                         user={{
                             _id: 1,
