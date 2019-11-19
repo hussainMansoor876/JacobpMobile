@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Image, Dimensions, SafeAreaView, KeyboardAvoidingView, StyleSheet, View } from 'react-native'
+import { Image, Dimensions, SafeAreaView, KeyboardAvoidingView, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { Container, Header, Body, Thumbnail, Text } from 'native-base';
 import ToggleSwitch from 'toggle-switch-react-native'
 import { GiftedChat, Bubble, Send, MessageImage } from 'react-native-gifted-chat'
+import * as Animatable from 'react-native-animatable';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
+
+const AnimatedIcon = Animatable.createAnimatableComponent(Ionicons)
 
 const { width, height } = Dimensions.get('window')
 
@@ -16,8 +20,13 @@ class ChatList extends Component {
             messages: [],
             chatColor: '#a3a6ae',
             leftBubbleColor: '#f1f1f0',
-            on: false
+            on: false,
+            liked: false
         }
+    }
+
+    handleSmallAnimatedIconRef = (ref) => {
+        this.smallAnimatedIcon = ref
     }
 
     UNSAFE_componentWillMount() {
@@ -131,6 +140,18 @@ class ChatList extends Component {
         );
     }
 
+    handleOnPressLike = async () => {
+        const { liked } = this.state
+        this.smallAnimatedIcon.bounceIn()
+        this.setState({ liked: !liked }, () => {
+            const { liked } = this.state
+            this.setState({
+                chatColor: liked ? '#fff' : '#a3a6ae', chatBackground: liked ? '#142A3B' : '#fff',
+                leftBubbleColor: liked ? '#1f3c53' : '#f1f1f0'
+            })
+        })
+    }
+
     // renderMessage(props) {
     //     console.log('props', props.currentMessage.image)
     //     return (
@@ -141,29 +162,36 @@ class ChatList extends Component {
     // }
 
     render() {
-        const { on, list, chatColor, chatBackground, create } = this.state
+        const { on, list, chatColor, chatBackground, liked } = this.state
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
-                <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0 }}>
-                    <Body style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <Icon 
-                        name="arrow-left"
-                        type="feather"
-                        color={!on ? 'black' : '#fff'}
-                        />
-                        <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>Messages</Text>
-                        <ToggleSwitch
-                            isOn={on}
-                            onColor="rgba(255,255,255,0.5)"
-                            offColor="rgba(0,0,0,0.1)"
-                            // label="Switch to Dark Mode"
-                            // labelStyle={{ color: "black", fontWeight: "900" }}
-                            size="medium"
-                            onToggle={isOn => this.setState({
-                                on: isOn, chatColor: isOn ? '#fff' : 'black', chatBackground: isOn ? '#142A3B' : '#fff',
-                                leftBubbleColor: isOn ? '#1f3c53' : '#f1f1f0'
-                            })}
-                        />
+                <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0, height: 80 }}>
+                    <Body style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <View style={{ flex: 5, flexDirection: 'row', alignItems: 'center' }}>
+                            <Icon
+                                name="arrow-left"
+                                type="feather"
+                                color={!liked ? 'black' : '#fff'}
+                                containerStyle={{ width: width / 8 }}
+                            />
+                            <Image style={{ height: 60, width: 60, borderRadius: 50 }} resizeMode={'contain'} source={{ uri: 'https://placeimg.com/140/140/any' }} />
+                            <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor, paddingLeft: 30 }}>Jacob</Text>
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <TouchableOpacity
+                                style={{ alignSelf: 'flex-end', paddingRight: 10 }}
+                                activeOpacity={1}
+                                onPress={this.handleOnPressLike}
+                            >
+                                <AnimatedIcon
+                                    ref={this.handleSmallAnimatedIconRef}
+                                    name={liked ? 'ios-sunny' : 'ios-moon'}
+                                    color={liked ? 'yellow' : '#a3a6ae'}
+                                    size={35}
+                                    style={styles.icon}
+                                />
+                            </TouchableOpacity>
+                        </View>
                     </Body>
                 </Header>
                 <KeyboardAvoidingView
@@ -172,7 +200,7 @@ class ChatList extends Component {
                     keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
                     style={{ flex: 1 }}
                 >
-                    {!on && <GiftedChat
+                    {!liked && <GiftedChat
                         messages={this.state.messages}
                         onSend={messages => this.onSend(messages)}
                         isAnimated={true}
@@ -186,7 +214,7 @@ class ChatList extends Component {
                             _id: 1,
                         }}
                     />}
-                    {on && <GiftedChat
+                    {liked && <GiftedChat
                         messages={this.state.messages}
                         onSend={messages => this.onSend(messages)}
                         isAnimated={true}
@@ -212,8 +240,12 @@ const styles = StyleSheet.create({
         height: 22,
         color: 'white',
     },
+    icon: {
+        paddingHorizontal: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 });
-
 
 const mapStateToProps = (state) => {
     console.log("mapToState", state.authReducer)
