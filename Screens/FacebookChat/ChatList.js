@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
-import ToggleSwitch from 'toggle-switch-react-native'
+import { DrawerActions } from 'react-navigation-drawer';
 import ActionButton from 'react-native-action-button';
 import * as Animatable from 'react-native-animatable';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -125,62 +125,64 @@ class ChatList extends Component {
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0 }}>
                     <Body style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <Image
+                        <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer()) }>
+                            <Image
                             source={require('../../assets/images/left.png')}
                         />
-                        <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>Facebook</Text>
-                        <TouchableOpacity
-                            style={{ alignSelf: 'flex-end', paddingRight: 10 }}
-                            activeOpacity={1}
-                            onPress={this.handleOnPressLike}
-                        >
-                            <AnimatedIcon
-                                ref={this.handleSmallAnimatedIconRef}
-                                name={liked ? 'ios-sunny' : 'ios-moon'}
-                                color={liked ? 'yellow' : '#a3a6ae'}
-                                size={35}
-                                style={styles.icon}
-                            />
                         </TouchableOpacity>
+                    <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>Facebook</Text>
+                    <TouchableOpacity
+                        style={{ alignSelf: 'flex-end', paddingRight: 10 }}
+                        activeOpacity={1}
+                        onPress={this.handleOnPressLike}
+                    >
+                        <AnimatedIcon
+                            ref={this.handleSmallAnimatedIconRef}
+                            name={liked ? 'ios-sunny' : 'ios-moon'}
+                            color={liked ? 'yellow' : '#a3a6ae'}
+                            size={35}
+                            style={styles.icon}
+                        />
+                    </TouchableOpacity>
                     </Body>
                 </Header>
-                <ScrollView>
-                    <List style={{ borderTopColor: 'white', borderTopWidth: 0.3 }}>
-                        {!create ? list.map((v, i) => {
-                            return (
-                                <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
-                                    <Left>
-                                        <Thumbnail source={{ uri: v.avatar_url }} />
-                                    </Left>
-                                    <Body>
-                                        <Text style={{ color: chatColor }}>{v.title}</Text>
-                                        <Text note>{v.subtitle}</Text>
-                                    </Body>
-                                    <Right>
-                                        <Text note>3:43 pm</Text>
-                                    </Right>
-                                </ListItem>
-                            )
-                        }) : list.map((v, i) => {
-                            return (
-                                <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
-                                    <Left>
-                                        <Thumbnail source={{ uri: v.avatar_url }} />
-                                    </Left>
-                                    <Body>
-                                        <Text style={{ color: chatColor }}>{v.title}</Text>
-                                        <Text note style={{ paddingBottom: 5, paddingTop: 5 }}>{v.status}</Text>
-                                    </Body>
-                                    <Right>
-                                        <Text note>3:43 pm</Text>
-                                    </Right>
-                                </ListItem>
-                            )
-                        })
-                        }
-                    </List>
-                </ScrollView>
-                {!create && <ActionButton buttonColor="#009FFF" size={62} renderIcon={() => <Icon name="add" color="#fff" />} onPress={() => this.setState({ create: true })} />}
+            <ScrollView>
+                <List style={{ borderTopColor: 'white', borderTopWidth: 0.3 }}>
+                    {!create ? list.map((v, i) => {
+                        return (
+                            <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
+                                <Left>
+                                    <Thumbnail source={{ uri: v.avatar_url }} />
+                                </Left>
+                                <Body>
+                                    <Text style={{ color: chatColor }}>{v.title}</Text>
+                                    <Text note>{v.subtitle}</Text>
+                                </Body>
+                                <Right>
+                                    <Text note>3:43 pm</Text>
+                                </Right>
+                            </ListItem>
+                        )
+                    }) : list.map((v, i) => {
+                        return (
+                            <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
+                                <Left>
+                                    <Thumbnail source={{ uri: v.avatar_url }} />
+                                </Left>
+                                <Body>
+                                    <Text style={{ color: chatColor }}>{v.title}</Text>
+                                    <Text note style={{ paddingBottom: 5, paddingTop: 5 }}>{v.status}</Text>
+                                </Body>
+                                <Right>
+                                    <Text note>3:43 pm</Text>
+                                </Right>
+                            </ListItem>
+                        )
+                    })
+                    }
+                </List>
+            </ScrollView>
+                { !create && <ActionButton buttonColor="#009FFF" size={62} renderIcon={() => <Icon name="add" color="#fff" />} onPress={() => this.setState({ create: true })} /> }
             </SafeAreaView >
         );
     }

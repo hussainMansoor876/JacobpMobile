@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Image, TouchableOpacity, View, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { DrawerActions } from 'react-navigation-drawer';
 import { Icon as ReactIcons } from 'react-native-elements'
 import { connect } from 'react-redux'
 import {
@@ -314,6 +315,7 @@ class MainSideBar extends Component {
                 />
               </TouchableOpacity>
               <ReactIcons
+                onPress={() => this.props.navigation.dispatch(DrawerActions.closeDrawer())}
                 containerStyle={{ padding: 15 }}
                 name="x"
                 type="feather"

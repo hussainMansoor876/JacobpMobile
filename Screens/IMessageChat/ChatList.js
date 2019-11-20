@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
-import ToggleSwitch from 'toggle-switch-react-native'
+import { DrawerActions } from 'react-navigation-drawer';
 import ActionButton from 'react-native-action-button';
 import * as Animatable from 'react-native-animatable';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -125,9 +125,11 @@ class ChatList extends Component {
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0 }}>
                     <Body style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <Image
-                            source={require('../../assets/images/left.png')}
-                        />
+                        <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}>
+                            <Image
+                                source={require('../../assets/images/left.png')}
+                            />
+                        </TouchableOpacity>
                         <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>IMessage</Text>
                         <TouchableOpacity
                             style={{ alignSelf: 'flex-end', paddingRight: 10 }}
