@@ -238,14 +238,14 @@ class MainSideBar extends Component {
       listData: [
         {
           name: "Facebook",
-          route: "FacebookChatScreen",
+          route: "Facebook",
           icon: "facebook",
           bg: "#C5F442",
           image: require("../../assets/images/schedule.png")
         },
         {
           name: "IMessage",
-          route: "IMessageChatScreen",
+          route: "IMessage",
           icon: "comment",
           bg: "#477EEA",
           types: "11",
@@ -254,7 +254,7 @@ class MainSideBar extends Component {
         },
         {
           name: "Instagram",
-          route: "InstagramChatScreen",
+          route: "Instagram",
           icon: "instagram",
           bg: "#DA4437",
           types: "4",
@@ -263,7 +263,7 @@ class MainSideBar extends Component {
         },
         {
           name: "Team",
-          route: "TeamChatScreen",
+          route: "Team",
           icon: "comments",
           bg: "#C5F442",
           types: "5",
@@ -272,7 +272,7 @@ class MainSideBar extends Component {
         },
         {
           name: "Twitter",
-          route: "TwitterChatScreen",
+          route: "Twitter",
           icon: "twitter",
           bg: "#C5F442",
           image: require('../../assets/images/minus.png')
@@ -280,7 +280,7 @@ class MainSideBar extends Component {
         },
         {
           name: "Website",
-          route: "WebsiteChatScreen",
+          route: "Website",
           icon: "commenting",
           bg: "#4DCAE0",
           image: require('../../assets/images/minus.png')
@@ -288,7 +288,7 @@ class MainSideBar extends Component {
         },
         {
           name: "WhatsApp",
-          route: "WhatsAppChatScreen",
+          route: "WhatsApp",
           icon: "whatsapp",
           bg: "#1EBC7C",
           types: "9",
