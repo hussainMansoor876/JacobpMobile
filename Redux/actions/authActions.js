@@ -1,7 +1,7 @@
-const loginUser = (isLoggedIn) => {
+const loginUser = (bool) => {
     return {
-        type: "LOGIN_USER",
-        isLoggedIn
+        type: "UPDATE_MODE",
+        bool
     }
 }
 

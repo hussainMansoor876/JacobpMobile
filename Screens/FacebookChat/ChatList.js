@@ -8,6 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 import CurrentChat from './CurrentChat'
+import { loginUser } from '../../Redux/actions/authActions'
 
 const AnimatedIcon = Animatable.createAnimatableComponent(Ionicons)
 
@@ -22,7 +23,7 @@ class ChatList extends Component {
         this.state = {
             on: false,
             label: "Dark Mode",
-            chatColor: 'black',
+            chatColor: '#a3a6ae',
             chatBackground: '#fff',
             create: false,
             liked: false,
@@ -92,6 +93,11 @@ class ChatList extends Component {
         }
     }
 
+    UNSAFE_componentWillMount() {
+        const { liked } = this.state
+        this.props.updateUser(liked)
+    }
+
     handleSmallAnimatedIconRef = (ref) => {
         this.smallAnimatedIcon = ref
     }
@@ -104,6 +110,7 @@ class ChatList extends Component {
             this.setState({
                 chatColor: liked ? '#fff' : '#a3a6ae', chatBackground: liked ? '#142A3B' : '#fff'
             })
+            this.props.updateUser(liked)
         })
     }
 
@@ -125,64 +132,64 @@ class ChatList extends Component {
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0 }}>
                     <Body style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer()) }>
+                        <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}>
                             <Image
-                            source={require('../../assets/images/left.png')}
-                        />
+                                source={require('../../assets/images/left.png')}
+                            />
                         </TouchableOpacity>
-                    <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>Facebook</Text>
-                    <TouchableOpacity
-                        style={{ alignSelf: 'flex-end', paddingRight: 10 }}
-                        activeOpacity={1}
-                        onPress={this.handleOnPressLike}
-                    >
-                        <AnimatedIcon
-                            ref={this.handleSmallAnimatedIconRef}
-                            name={liked ? 'ios-sunny' : 'ios-moon'}
-                            color={liked ? 'yellow' : '#a3a6ae'}
-                            size={35}
-                            style={styles.icon}
-                        />
-                    </TouchableOpacity>
+                        <Text style={{ fontSize: 24, marginLeft: -20, textAlign: 'center', color: chatColor }}>Facebook</Text>
+                        <TouchableOpacity
+                            style={{ alignSelf: 'flex-end', paddingRight: 10 }}
+                            activeOpacity={1}
+                            onPress={this.handleOnPressLike}
+                        >
+                            <AnimatedIcon
+                                ref={this.handleSmallAnimatedIconRef}
+                                name={liked ? 'ios-sunny' : 'ios-moon'}
+                                color={liked ? 'yellow' : '#a3a6ae'}
+                                size={35}
+                                style={styles.icon}
+                            />
+                        </TouchableOpacity>
                     </Body>
                 </Header>
-            <ScrollView>
-                <List style={{ borderTopColor: 'white', borderTopWidth: 0.3 }}>
-                    {!create ? list.map((v, i) => {
-                        return (
-                            <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
-                                <Left>
-                                    <Thumbnail source={{ uri: v.avatar_url }} />
-                                </Left>
-                                <Body>
-                                    <Text style={{ color: chatColor }}>{v.title}</Text>
-                                    <Text note>{v.subtitle}</Text>
-                                </Body>
-                                <Right>
-                                    <Text note>3:43 pm</Text>
-                                </Right>
-                            </ListItem>
-                        )
-                    }) : list.map((v, i) => {
-                        return (
-                            <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
-                                <Left>
-                                    <Thumbnail source={{ uri: v.avatar_url }} />
-                                </Left>
-                                <Body>
-                                    <Text style={{ color: chatColor }}>{v.title}</Text>
-                                    <Text note style={{ paddingBottom: 5, paddingTop: 5 }}>{v.status}</Text>
-                                </Body>
-                                <Right>
-                                    <Text note>3:43 pm</Text>
-                                </Right>
-                            </ListItem>
-                        )
-                    })
-                    }
-                </List>
-            </ScrollView>
-                { !create && <ActionButton buttonColor="#009FFF" size={62} renderIcon={() => <Icon name="add" color="#fff" />} onPress={() => this.setState({ create: true })} /> }
+                <ScrollView>
+                    <List style={{ borderTopColor: 'white', borderTopWidth: 0.3 }}>
+                        {!create ? list.map((v, i) => {
+                            return (
+                                <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
+                                    <Left>
+                                        <Thumbnail source={{ uri: v.avatar_url }} />
+                                    </Left>
+                                    <Body>
+                                        <Text style={{ color: chatColor }}>{v.title}</Text>
+                                        <Text note>{v.subtitle}</Text>
+                                    </Body>
+                                    <Right>
+                                        <Text note>3:43 pm</Text>
+                                    </Right>
+                                </ListItem>
+                            )
+                        }) : list.map((v, i) => {
+                            return (
+                                <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
+                                    <Left>
+                                        <Thumbnail source={{ uri: v.avatar_url }} />
+                                    </Left>
+                                    <Body>
+                                        <Text style={{ color: chatColor }}>{v.title}</Text>
+                                        <Text note style={{ paddingBottom: 5, paddingTop: 5 }}>{v.status}</Text>
+                                    </Body>
+                                    <Right>
+                                        <Text note>3:43 pm</Text>
+                                    </Right>
+                                </ListItem>
+                            )
+                        })
+                        }
+                    </List>
+                </ScrollView>
+                {!create && <ActionButton buttonColor="#009FFF" size={62} renderIcon={() => <Icon name="add" color="#fff" />} onPress={() => this.setState({ create: true })} />}
             </SafeAreaView >
         );
     }
@@ -205,13 +212,13 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     console.log("mapToState", state.authReducer)
     return {
-        user: "state.authReducer.user"
+        nightMode: state.authReducer.bool
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateUser: (user) => dispatch(loginUser(user))
+        updateUser: (bool) => dispatch(loginUser(bool))
     }
 }
 

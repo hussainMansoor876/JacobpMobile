@@ -18,8 +18,11 @@ import {
 import styles from "./style";
 import * as Animatable from 'react-native-animatable';
 import FontIcon from 'react-native-vector-icons/FontAwesome'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { loginUser } from '../../Redux/actions/authActions'
 
 const AnimatedIcon = Animatable.createAnimatableComponent(FontIcon)
+const AnimatedMaterial = Animatable.createAnimatableComponent(MaterialCommunityIcons)
 
 const drawerCover = require("../../assets/images/illustration.png");
 
@@ -69,7 +72,7 @@ class MainSideBar extends Component {
           name: "Twitter",
           route: "Twitter",
           icon: "twitter",
-          bg: "#53A737",
+          bg: "#1c9deb",
           image: require('../../assets/images/minus.png')
 
         },
@@ -89,35 +92,105 @@ class MainSideBar extends Component {
           types: "9",
           image: require('../../assets/images/minus.png')
         },
+      ],
+      applicationList: [
+        {
+          name: "Mail",
+          route: "Facebook",
+          icon: "gmail",
+          bg: "#3b579d",
+          image: require("../../assets/images/schedule.png")
+        },
+        {
+          name: "Contacts",
+          route: "Instagram",
+          icon: "contacts",
+          bg: "#F0B601",
+          types: "4",
+          image: require('../../assets/images/day3.png')
+
+        },
+        {
+          name: "Calendar",
+          route: "Team",
+          icon: "calendar-text",
+          bg: "#C5F442",
+          types: "5",
+          image: require('../../assets/images/week.png')
+
+        },
+        {
+          name: "File Manager",
+          route: "WhatsApp",
+          icon: "file-document-edit",
+          bg: "#3FBB25",
+          types: "9",
+          image: require('../../assets/images/minus.png')
+        },
       ]
     }
   }
 
   render() {
-    const { listData } = this.state
+    const { listData, applicationList } = this.state
+    const { bool } = this.props
+    console.log('bool', bool)
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <Container>
           <Content
             bounces={false}
-            style={{ flex: 1, backgroundColor: "#fff", top: -1 }}
+            style={{ flex: 1, backgroundColor: bool ? '#142A3B' : '#fff', top: -1 }}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <TouchableOpacity>
-                <Image
-                  style={{ height: 50, width: 50 }}
-                  source={require('../../assets/images/left.png')}
-                />
-              </TouchableOpacity>
+              <Text style={{ padding: 15, fontSize: 22, fontWeight: '700', color: bool ? '#fff' : 'black' }}>
+                dash
+                <Text style={{ fontSize: 22, fontWeight: '100', color: 'blue' }}>
+                  forge
+                </Text>
+              </Text>
               <ReactIcons
                 onPress={() => this.props.navigation.dispatch(DrawerActions.closeDrawer())}
                 containerStyle={{ padding: 15 }}
                 name="x"
+                color={bool ? '#fff' : 'black'}
                 type="feather"
               />
             </View>
             <Image source={drawerCover} style={styles.drawerCover} />
-            <Text style={{ marginLeft: 22, fontSize: 20 }}>Chats</Text>
+            <Text style={{ marginLeft: 22, fontSize: 20, color: bool ? '#fff' : 'black' }}>APPLICATIONS</Text>
+            <List>
+              {
+                applicationList.map((v, i) => {
+                  return (
+                    <ListItem
+                      button
+                      noBorder
+                      onPress={() => this.props.navigation.navigate(v.route)}
+                      key={i}
+                    >
+                      <Left>
+                        <AnimatedMaterial
+                          name={v.icon}
+                          color={v.bg}
+                          size={22}
+                          style={styles.icon}
+                        />
+                        <Text style={{
+                          fontWeight: Platform.OS === "ios" ? "500" : "400",
+                          fontSize: 16,
+                          marginLeft: 20,
+                          color: bool ? '#fff' : 'black'
+                        }}>
+                          {v.name}
+                        </Text>
+                      </Left>
+                    </ListItem>
+                  )
+                })
+              }
+            </List>
+            <Text style={{ marginLeft: 22, fontSize: 20, color: bool ? '#fff' : 'black' }}>CHATS</Text>
             <List>
               {
                 listData.map((v, i) => {
@@ -126,6 +199,7 @@ class MainSideBar extends Component {
                       button
                       noBorder
                       onPress={() => this.props.navigation.navigate(v.route)}
+                      key={i}
                     >
                       <Left>
                         <AnimatedIcon
@@ -134,7 +208,12 @@ class MainSideBar extends Component {
                           size={22}
                           style={styles.icon}
                         />
-                        <Text style={styles.text}>
+                        <Text style={{
+                          fontWeight: Platform.OS === "ios" ? "500" : "400",
+                          fontSize: 16,
+                          marginLeft: 20,
+                          color: bool ? '#fff' : 'black'
+                        }}>
                           {v.name}
                         </Text>
                       </Left>
@@ -152,9 +231,9 @@ class MainSideBar extends Component {
 
 
 const mapStateToProps = (state) => {
-  console.log("mapToState", state.authReducer)
+  console.log("Main", state.authReducer)
   return {
-    user: "state.authReducer.user"
+    bool: state.authReducer.bool
   }
 }
 
