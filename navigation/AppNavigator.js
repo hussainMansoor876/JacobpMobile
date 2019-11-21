@@ -43,7 +43,14 @@ const Drawer = createDrawerNavigator(
         NHToast: { screen: Screen.Home },
         Actionsheet: { screen: Screen.Home },
         NHAccordion: { screen: Screen.Home },
-        NHDatePicker: { screen: Screen.Home }
+        NHDatePicker: { screen: Screen.Home },
+        Facebook: { screen: FacebookChatScreen },
+        IMessage: { screen: IMessageChatScreen  },
+        Instagram: { screen: InstagramChatScreen },
+        Team: { screen: TeamChatScreen },
+        Twitter: { screen: TwitterChatScreen },
+        Website: { screen: WebsiteChatScreen },
+        WhatsApp: { screen: WhatsAppChatScreen }
     },
     {
         initialRouteName: "Schedule",
@@ -75,12 +82,12 @@ const MainDrawer = createDrawerNavigator(
 
 
 
-const DrawerNavigatorApp = createAppContainer(Drawer)
-const MainDrawerNavigatorApp = createAppContainer(MainDrawer)
+// const DrawerNavigatorApp = createAppContainer(Drawer)
+const MainDrawerNavigatorApp = createAppContainer(Drawer)
 
 
 
 export {
-    DrawerNavigatorApp,
+    // DrawerNavigatorApp,
     MainDrawerNavigatorApp
 };

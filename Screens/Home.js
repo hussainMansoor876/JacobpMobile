@@ -11,6 +11,7 @@ import Timeline from './ListViewData'
 
 
 
+
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -124,12 +125,14 @@ class Home extends React.Component {
                 </View>
                 <Card style={{ paddingBottom: 20 }}>
                     <View style={{ flexDirection: 'row', paddingTop: 10, paddingLeft: 10, justifyContent: 'space-between', alignItems: 'center', paddingRight: 10 }}>
-                        <FeatherIcon
-                            name="arrow-left"
-                            size={40}
-                            // thin={true}
-                            iconStyle={{ width: 200 }}
-                        />
+                        <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}>
+                            <FeatherIcon
+                                name="arrow-left"
+                                size={40}
+                                // thin={true}
+                                iconStyle={{ width: 200 }}
+                            />
+                        </TouchableOpacity>
                         <Text style={{ fontSize: 22 }}>May</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Icon

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image, TouchableOpacity, View, SafeAreaView, ScrollView } from "react-native";
 import { Icon as ReactIcons } from 'react-native-elements'
+import MainSideBar from './MainSiderBar'
 import {
   Content,
   Text,
@@ -14,6 +15,7 @@ import {
   CheckBox
 } from "native-base";
 import styles from "./style";
+import { DrawerActions } from 'react-navigation-drawer'
 
 const drawerCover = require("../../assets/images/illustration.png");
 const drawerImage = require("../../assets/images/illustration.png");
@@ -229,6 +231,7 @@ class SideBar extends Component {
     this.state = {
       shadowOffsetWidth: 1,
       shadowRadius: 4,
+      main: false,
       listData: [
         {
           name: "Schedule",
@@ -309,7 +312,12 @@ class SideBar extends Component {
   }
 
   render() {
-    const { listData, listBottom } = this.state
+    const { listData, listBottom, main } = this.state
+    if (main) {
+      return (
+        <MainSideBar {...this.props} />
+      )
+    }
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <Container>
@@ -318,17 +326,19 @@ class SideBar extends Component {
             style={{ flex: 1, backgroundColor: "#fff", top: -1 }}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.setState({ main: true })}>
                 <Image
                   style={{ height: 50, width: 50 }}
                   source={require('../../assets/images/left.png')}
                 />
               </TouchableOpacity>
-              <ReactIcons
-                containerStyle={{ padding: 15 }}
-                name="x"
-                type="feather"
-              />
+              <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.closeDrawer())}>
+                <ReactIcons
+                  containerStyle={{ padding: 15 }}
+                  name="x"
+                  type="feather"
+                />
+              </TouchableOpacity>
             </View>
             <Image source={drawerCover} style={styles.drawerCover} />
             {/* <Image square style={styles.drawerImage} source={drawerImage} /> */}
