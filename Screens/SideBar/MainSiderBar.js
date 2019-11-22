@@ -35,6 +35,15 @@ class MainSideBar extends Component {
       shadowRadius: 4,
       listData: [
         {
+          name: "Contacts",
+          route: "Instagram",
+          icon: "contacts",
+          bg: "#F0B601",
+          types: "4",
+          image: require('../../assets/images/day3.png')
+
+        },
+        {
           name: "Facebook",
           route: "Facebook",
           icon: "facebook",
@@ -102,15 +111,6 @@ class MainSideBar extends Component {
           image: require("../../assets/images/schedule.png")
         },
         {
-          name: "Contacts",
-          route: "Instagram",
-          icon: "contacts",
-          bg: "#F0B601",
-          types: "4",
-          image: require('../../assets/images/day3.png')
-
-        },
-        {
           name: "Calendar",
           route: "Team",
           icon: "calendar-text",
@@ -133,32 +133,30 @@ class MainSideBar extends Component {
 
   render() {
     const { listData, applicationList } = this.state
-    const { bool } = this.props
-    console.log('bool', bool)
+    const { bool } = this.state
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <Container>
           <Content
             bounces={false}
-            style={{ flex: 1, backgroundColor: bool ? '#142A3B' : '#fff', top: -1 }}
+            style={{ flex: 1, backgroundColor: '#645AFF', top: -1 }}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text style={{ padding: 15, fontSize: 22, fontWeight: '700', color: bool ? '#fff' : 'black' }}>
+              {/* <Text style={{ padding: 15, fontSize: 22, fontWeight: '700', color: bool ? '#fff' : 'black' }}>
                 dash
                 <Text style={{ fontSize: 22, fontWeight: '100', color: 'blue' }}>
                   forge
                 </Text>
-              </Text>
+              </Text> */}
               <ReactIcons
                 onPress={() => this.props.navigation.dispatch(DrawerActions.closeDrawer())}
                 containerStyle={{ padding: 15 }}
                 name="x"
-                color={bool ? '#fff' : 'black'}
+                color='#fff'
                 type="feather"
               />
             </View>
-            <Image source={drawerCover} style={styles.drawerCover} />
-            <Text style={{ marginLeft: 22, fontSize: 20, color: bool ? '#fff' : 'black' }}>APPLICATIONS</Text>
+            {/* <Text style={{ marginLeft: 22, fontSize: 20, color: '#fff' }}>APPLICATIONS</Text> */}
             <List>
               {
                 applicationList.map((v, i) => {
@@ -180,7 +178,7 @@ class MainSideBar extends Component {
                           fontWeight: Platform.OS === "ios" ? "500" : "400",
                           fontSize: 16,
                           marginLeft: 20,
-                          color: bool ? '#fff' : 'black'
+                          color: '#fff'
                         }}>
                           {v.name}
                         </Text>
@@ -190,7 +188,7 @@ class MainSideBar extends Component {
                 })
               }
             </List>
-            <Text style={{ marginLeft: 22, fontSize: 20, color: bool ? '#fff' : 'black' }}>CHATS</Text>
+            {/* <Text style={{ marginLeft: 22, fontSize: 20, color: '#fff' }}>CHATS</Text> */}
             <List>
               {
                 listData.map((v, i) => {
@@ -212,7 +210,7 @@ class MainSideBar extends Component {
                           fontWeight: Platform.OS === "ios" ? "500" : "400",
                           fontSize: 16,
                           marginLeft: 20,
-                          color: bool ? '#fff' : 'black'
+                          color: '#fff'
                         }}>
                           {v.name}
                         </Text>
