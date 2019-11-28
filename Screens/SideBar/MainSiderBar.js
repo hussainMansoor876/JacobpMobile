@@ -3,6 +3,7 @@ import { Image, TouchableOpacity, View, SafeAreaView, ScrollView, StyleSheet } f
 import { DrawerActions } from 'react-navigation-drawer';
 import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux'
+import ScalingDrawer from 'react-native-scaling-drawer';
 import {
   Content,
   Text,
