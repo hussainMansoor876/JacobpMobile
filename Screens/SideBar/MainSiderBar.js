@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Image, TouchableOpacity, View, SafeAreaView, ScrollView, StyleSheet } from "react-native";
-import { DrawerActions } from 'react-navigation-drawer';
+// import { DrawerActions } from 'react-navigation-drawer';
 import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux'
 import ScalingDrawer from 'react-native-scaling-drawer';

@@ -15,7 +15,7 @@ import {
   CheckBox
 } from "native-base";
 import styles from "./style";
-import { DrawerActions } from 'react-navigation-drawer'
+// import { DrawerActions } from '@react-navigation/routers';
 
 const drawerCover = require("../../assets/images/illustration.png");
 const drawerImage = require("../../assets/images/illustration.png");
@@ -332,7 +332,7 @@ class SideBar extends Component {
                   source={require('../../assets/images/left.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.closeDrawer())}>
+              <TouchableOpacity onPress={() => console.log("Hello")}>
                 <ReactIcons
                   containerStyle={{ padding: 15 }}
                   name="x"
