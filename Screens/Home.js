@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { Icon, Badge, ListItem } from 'react-native-elements';
 import FeatherIcon from "react-native-feather1s";
 import Timeline from './ListViewData'
+// import { DrawerActions } from 'react-navigation/src/routers/';
+
 
 
 
@@ -64,7 +66,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        console.log('this', this.props.navigation)
+        console.log('this', this.props)
         SplashScreen.hide();
     }
 
@@ -124,7 +126,7 @@ class Home extends React.Component {
                 </View>
                 <Card style={{ paddingBottom: 20 }}>
                     <View style={{ flexDirection: 'row', paddingTop: 10, paddingLeft: 10, justifyContent: 'space-between', alignItems: 'center', paddingRight: 10 }}>
-                        <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}>
+                        <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                             <FeatherIcon
                                 name="arrow-left"
                                 size={40}

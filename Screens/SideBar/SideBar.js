@@ -372,6 +372,7 @@ class SideBar extends Component {
 
   render() {
     const { listData, listBottom, main, listDataSocial } = this.state
+    console.log('this.SideBar', this.props)
     if (main) {
       return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -461,6 +462,7 @@ class SideBar extends Component {
                     <ListItem
                       button
                       noBorder
+                      key={i}
                       onPress={() => this.props.navigation.navigate(v.route)}
                     >
                       <Left>

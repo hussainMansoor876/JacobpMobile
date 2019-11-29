@@ -104,9 +104,6 @@ let defaultScalingDrawerConfig = {
 class CustomDrawerView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            open: false
-        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -132,18 +129,16 @@ class CustomDrawerView extends Component {
     };
 
     render() {
-        const { open } = this.state
         const { routes, index } = this.props.navigation.state;
         const ActiveScreen = this.props.router.getComponentForState(this.props.navigation.state);
 
         return (
             <ScalingDrawer
                 ref={ref => this._drawer = ref}
-                content={<SideBar navigation={this.props.navigation} />}
+                content={<SideBar {...this.props} />}
                 {...defaultScalingDrawerConfig}
-                contentWrapperStyle={{ borderColor: 'black', borderWidth: 10, }}
                 onClose={() => console.log('close')}
-                onOpen={() => this.setState({ open: true })}
+                onOpen={() => console.log('open')}
             >
                 <ActiveScreen
 
@@ -161,7 +156,7 @@ class CustomDrawerView extends Component {
 
 const AppNavigator = StackRouter(
     {
-        Schedule: { screen: () => <Screen.Home /> },
+        Schedule: { screen: (props) => <Screen.Home {...props} /> },
         Day: { screen: () => <Screen.CalendarMeeting /> },
         day3: { screen: () => <Screen.Falcon /> },
         Week: { screen: () => <Screen.Login /> },
