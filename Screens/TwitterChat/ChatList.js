@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
-// import { DrawerActions } from '@react-navigation/routers';
 import ActionButton from 'react-native-action-button';
 import * as Animatable from 'react-native-animatable';
 import Ionicons from 'react-native-vector-icons/Ionicons';

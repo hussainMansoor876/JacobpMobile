@@ -112,13 +112,6 @@ class MainSideBar extends Component {
                     style={styles.icon}
                   />
                 </Item>
-                {/* <ReactIcons
-                onPress={() => this.props.navigation.dispatch(DrawerActions.closeDrawer())}
-                containerStyle={{ padding: 15 }}
-                name="x"
-                color='#fff'
-                type="feather"
-              /> */}
               </View>
               <List>
                 {

@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 import CustomDrawer from './navigation/AppNavigator'
 import { screensEnabled } from 'react-native-screens';
-import Chat from './Screens/Dummy'
 
 screensEnabled();
 

@@ -4,7 +4,6 @@ import SplashScreen from 'react-native-splash-screen'
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import { Card, CardItem, Body, Button } from 'native-base'
 import { connect } from 'react-redux';
-import { DrawerActions } from 'react-navigation-drawer'
 import { Icon, Badge, ListItem } from 'react-native-elements';
 import FeatherIcon from "react-native-feather1s";
 import Timeline from './ListViewData'
@@ -115,7 +114,7 @@ class Home extends React.Component {
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ position: 'absolute', bottom: 30, right: 0, width: 100, height: 100 }}>
                     <Button light style={{ backgroundColor: '#FF7052', justifyContent: 'center', alignItems: 'center', borderRadius: 50, height: 70, width: 70 }}
-                        onPress={() => this.props.navigation.dispatch(DrawerActions.toggleDrawer())}
+                        onPress={() => console.log("Hello")}
                     >
                         <Icon
                             name="add"

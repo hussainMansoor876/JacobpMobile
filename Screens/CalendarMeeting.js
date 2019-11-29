@@ -5,7 +5,6 @@ import { Button } from 'native-base'
 import { connect } from 'react-redux';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { Icon } from 'react-native-elements'
-import { DrawerActions } from 'react-navigation-drawer'
 
 
 class CalendarMeeting extends React.Component {

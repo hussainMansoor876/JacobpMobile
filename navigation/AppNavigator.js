@@ -1,19 +1,18 @@
-// import * as Screen from '../Screens'
+import * as Screen from '../Screens'
 import React, { Component } from 'react'
 import { View, StatusBar, TouchableOpacity, Text } from 'react-native';
 import { createAppContainer, createNavigator, StackRouter, addNavigationHelpers, createNavigationContainer } from 'react-navigation';
 import ScalingDrawer from 'react-native-scaling-drawer';
 // import { createDrawerNavigator } from 'react-navigation-drawer'
 import SideBar from '../Screens/SideBar/SideBar'
-import MainSideBar from '../Screens/SideBar/MainSiderBar'
+// import MainSideBar from '../Screens/SideBar/MainSiderBar'
 import FacebookChatScreen from '../Screens/FacebookChat/ChatList'
-// import IMessageChatScreen from '../Screens/IMessageChat/ChatList'
-// import InstagramChatScreen from '../Screens/InstaGramChat/ChatList'
-// import TeamChatScreen from '../Screens/TeamChat/ChatList'
+import IMessageChatScreen from '../Screens/IMessageChat/ChatList'
+import InstagramChatScreen from '../Screens/InstaGramChat/ChatList'
+import TeamChatScreen from '../Screens/TeamChat/ChatList'
 import TwitterChatScreen from '../Screens/TwitterChat/ChatList'
-// import WebsiteChatScreen from '../Screens/WebsiteChat/ChatList'
+import WebsiteChatScreen from '../Screens/WebsiteChat/ChatList'
 import WhatsAppChatScreen from '../Screens/WhatsAppChat/ChatList'
-import Dummy from '../Screens/Dummy'
 
 
 
@@ -97,7 +96,7 @@ import Dummy from '../Screens/Dummy'
 
 
 let defaultScalingDrawerConfig = {
-    scalingFactor: 0.6,
+    scalingFactor: 0.75,
     minimizeFactor: 0.6,
     swipeOffset: 20
 };
@@ -105,6 +104,9 @@ let defaultScalingDrawerConfig = {
 class CustomDrawerView extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            open: false
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -130,6 +132,7 @@ class CustomDrawerView extends Component {
     };
 
     render() {
+        const { open } = this.state
         const { routes, index } = this.props.navigation.state;
         const ActiveScreen = this.props.router.getComponentForState(this.props.navigation.state);
 
@@ -138,10 +141,12 @@ class CustomDrawerView extends Component {
                 ref={ref => this._drawer = ref}
                 content={<SideBar navigation={this.props.navigation} />}
                 {...defaultScalingDrawerConfig}
+                contentWrapperStyle={{ borderColor: 'black', borderWidth: 10, }}
                 onClose={() => console.log('close')}
-                onOpen={() => console.log('open')}
+                onOpen={() => this.setState({ open: true })}
             >
                 <ActiveScreen
+
                     navigation={addNavigationHelpers({
                         ...this.props.navigation,
                         state: routes[index],
@@ -154,17 +159,54 @@ class CustomDrawerView extends Component {
     }
 }
 
-const AppNavigator = StackRouter({
-    Home: { screen: () => <Dummy /> },
-    Profile: { screen: () => <Dummy /> },
-    Wins: { screen: () => <Dummy /> },
-    Detail: {
-        screen: () => <Dummy />,
-        path: 'detail'
+const AppNavigator = StackRouter(
+    {
+        Schedule: { screen: () => <Screen.Home /> },
+        Day: { screen: () => <Screen.CalendarMeeting /> },
+        day3: { screen: () => <Screen.Falcon /> },
+        Week: { screen: () => <Screen.Login /> },
+        Month: { screen: () => <Screen.Signup /> },
+        Invitation: { screen: () => <Screen.NewMeeting /> },
+        Events: { screen: () => <Screen.Home /> },
+        Birthdays: { screen: () => <Screen.Home /> },
+        Holidays: { screen: () => <Screen.Home /> },
+        NHFab: { screen: () => <Screen.Home /> },
+        NHForm: { screen: () => <Screen.Home /> },
+        NHIcon: { screen: () => <Screen.Home /> },
+        NHLayout: { screen: () => <Screen.Home /> },
+        NHList: { screen: () => <Screen.Home /> },
+        ListSwipe: { screen: () => <Screen.Home /> },
+        NHRadio: { screen: () => <Screen.Home /> },
+        NHSearchbar: { screen: () => <Screen.Home /> },
+        NHSpinner: { screen: () => <Screen.Home /> },
+        NHPicker: { screen: () => <Screen.Home /> },
+        NHTab: { screen: () => <Screen.Home /> },
+        NHThumbnail: { screen: () => <Screen.Home /> },
+        NHTypography: { screen: () => <Screen.Home /> },
+        Segment: { screen: () => <Screen.Home /> },
+        NHToast: { screen: () => <Screen.Home /> },
+        Actionsheet: { screen: () => <Screen.Home /> },
+        NHAccordion: { screen: () => <Screen.Home /> },
+        NHDatePicker: { screen: () => <Screen.Home /> },
+        Facebook: { screen: () => <FacebookChatScreen /> },
+        IMessage: { screen: () => <IMessageChatScreen /> },
+        Instagram: { screen: () => <InstagramChatScreen /> },
+        Team: { screen: () => <TeamChatScreen /> },
+        Twitter: { screen: () => <TwitterChatScreen /> },
+        Website: { screen: () => <WebsiteChatScreen /> },
+        WhatsApp: { screen: () => <WhatsAppChatScreen /> }
+    },
+    {
+        initialRouteName: "Schedule",
+        drawerType: 'slide',
+        hideStatusBar: true,
+        statusBarAnimation: true,
+        contentOptions: {
+            activeTintColor: "#e91e63"
+        },
+        contentComponent: props => <SideBar {...props} />
     }
-}, {
-    initialRouteName: 'Home',
-});
+);
 
 const CustomDrawer = createNavigationContainer(createNavigator(AppNavigator)(CustomDrawerView));
 
