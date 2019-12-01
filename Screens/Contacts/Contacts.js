@@ -46,6 +46,22 @@ class Contacts extends Component {
                             />
                         </Item>
                     </View>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                        <View style={{ height: 70, width: 70, backgroundColor: '#ff89Ae', justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}>
+                            <Text style={{ color: '#fff', fontSize: 26 }} >
+                                JP
+                        </Text>
+                        </View>
+                        <View style={{ padding: 20 }}>
+                            <Text style={{ color: '#fff', fontSize: 20 }}>Jacob Pink</Text>
+                            <Text style={{ color: 'rgba(255,255,255,0.5)' }}>My Card</Text>
+                        </View>
+                    </View>
+                    <ScrollView>
+                        <View>
+
+                        </View>
+                    </ScrollView>
                 </View>
             </SafeAreaView >
         );
