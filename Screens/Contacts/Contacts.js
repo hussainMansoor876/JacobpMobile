@@ -26,14 +26,14 @@ class Contacts extends Component {
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: '#000000' }}>
                 <View style={{ margin: 10 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 10 }}>
                         <Text style={{ color: '#0080ff' }}>Groups</Text>
                         <AnimatedIcon
                             name="plus"
                             color="#0080ff"
                         />
                     </View>
-                    <View style={{ paddingTop: 20 }}>
+                    <View style={{ paddingTop: 20, paddingLeft: 10 }}>
                         <Text style={{ color: '#fff', fontSize: 26, fontWeight: 'bold' }}>Contacts</Text>
                         <Item style={{ paddingLeft: 12, paddingRight: 12, borderRadius: 15, backgroundColor: '#100E13', borderColor: '#100E13', marginTop: 10 }}>
                             <AnimatedEvilIcons name="search" color="#fff" size={20} />
@@ -46,17 +46,18 @@ class Contacts extends Component {
                             />
                         </Item>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10, paddingLeft: 10 }}>
                         <View style={{ height: 70, width: 70, backgroundColor: '#ff89Ae', justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}>
                             <Text style={{ color: '#fff', fontSize: 26 }} >
                                 JP
                         </Text>
                         </View>
-                        <View style={{ padding: 20 }}>
+                        <View style={{ paddingTop: 10, padding: 20 }}>
                             <Text style={{ color: '#fff', fontSize: 20 }}>Jacob Pink</Text>
                             <Text style={{ color: 'rgba(255,255,255,0.5)' }}>My Card</Text>
                         </View>
                     </View>
+                    <Text style={{ backgroundColor: '#2A272C', color: '#fff', paddingLeft: 20 }}>A</Text>
                     <ScrollView>
                         <View>
 
