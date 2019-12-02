@@ -3,12 +3,13 @@ import { Image, Dimensions, SafeAreaView, ScrollView, StyleSheet, TouchableOpaci
 import { Item, Icon, Input, Text, List, Body, ListItem, Left, Thumbnail, Right } from 'native-base';
 import * as Animatable from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient'
 
 const AnimatedIcon = Animatable.createAnimatableComponent(Feather)
-const AnimatedEvilIcons = Animatable.createAnimatableComponent(EvilIcons)
+const AnimatedIonicons = Animatable.createAnimatableComponent(Ionicons)
 const AnimatedFontAwesome = Animatable.createAnimatableComponent(FontAwesome)
 
 
@@ -26,8 +27,31 @@ class ViewContacts extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#000000' }}>
-
+            <SafeAreaView style={{ flex: 1 }}>
+                <LinearGradient colors={['#100E13', '#100E13']} style={{ flex: 1 }}>
+                    <View style={{ margin: 10 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 10 }}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <AnimatedIonicons
+                                    name="ios-arrow-back"
+                                    color="#0080ff"
+                                    size={30}
+                                    style={{ marginRight: 5 }}
+                                />
+                                <Text style={{ color: '#0080ff', marginTop: 3 }}>Contacts</Text>
+                            </View>
+                            <Text style={{ color: '#0080ff', marginTop: 3 }}>Edit</Text>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#A7ADBD', height: 100, width: 100, borderRadius: 50 }}>
+                                <Text style={{ fontSize: 50, color: '#fff', textAlign: 'center' }}>A</Text>
+                            </View>
+                        </View>
+                        <Text style={{ color: '#fff', textAlign: 'center', marginTop: 15, fontSize: 26 }}>
+                            ABC DE
+                        </Text>
+                    </View>
+                </LinearGradient>
             </SafeAreaView >
         );
     }

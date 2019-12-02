@@ -91,6 +91,7 @@ class Contacts extends Component {
                         <Text style={{ color: '#0080ff' }}>Groups</Text>
                         <AnimatedIcon
                             name="plus"
+                            size={20}
                             color="#0080ff"
                         />
                     </View>
