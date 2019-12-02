@@ -19,66 +19,63 @@ class Contacts extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            show: false,
             list: [
                 {
                     title: 'Amy Farha',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
                 },
                 {
                     title: 'Chris Jackson',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
                 },
                 {
                     title: 'Farha',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
                 },
                 {
                     title: 'Chris Jackson',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
                 },
                 {
                     title: 'Amy',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
                 },
                 {
                     title: 'Chris',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
                 },
                 {
                     title: 'Amy Jackson',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
                 },
                 {
                     title: 'Jackson Jackson',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
                 },
                 {
                     title: 'Jackson Farha',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
                 },
                 {
                     title: 'Chris Farha',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                    subtitle: 'Doing what you like will always keep you happy . .',
-                    status: 'Designer'
+                },
+                {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
+                },
+                {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
+                }, {
+                    title: 'Chris Farha',
                 },
             ]
         }
@@ -86,7 +83,7 @@ class Contacts extends Component {
 
 
     render() {
-        const { list } = this.state
+        const { list, show } = this.state
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: '#000000' }}>
                 <View style={{ margin: 10 }}>
@@ -126,13 +123,10 @@ class Contacts extends Component {
                         <List style={{ borderTopColor: 'white', borderTopWidth: 0.3 }}>
                             {list.map((v, i) => {
                                 return (
-                                    <ListItem avatar key={i} onPress={() => this.setState({ chat: true })}>
+                                    <ListItem style={{ marginLeft: -5 }} avatar key={i} onPress={() => this.setState({ show: true })}>
                                         <Body>
                                             <Text style={{ color: '#fff' }}>{v.title}</Text>
                                         </Body>
-                                        <Right>
-                                            <Text note>3:43 pm</Text>
-                                        </Right>
                                     </ListItem>
                                 )
                             })}
