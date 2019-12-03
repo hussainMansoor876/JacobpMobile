@@ -119,6 +119,30 @@ class ViewContacts extends Component {
                                 <Text style={{ color: '#0186ff', fontSize: 14 }}>pay</Text>
                             </View>
                         </View>
+                        <ScrollView>
+                            <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
+                                <Text style={{ color: '#fff', fontSize: 14 }}>mobile</Text>
+                                <Text style={{ color: '#0186ff', fontSize: 15 }}>(347) 787-345-765</Text>
+                            </View>
+                            <View style={{ padding: 10, paddingBottom: 50, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
+                                <Text style={{ color: '#fff', fontSize: 14 }}>Notes</Text>
+                            </View>
+                            <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
+                                <Text style={{ color: '#0186ff', fontSize: 16 }}>Send Message</Text>
+                            </View>
+                            <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
+                                <Text style={{ color: '#0186ff', fontSize: 16 }}>Share Contact</Text>
+                            </View>
+                            <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
+                                <Text style={{ color: '#0186ff', fontSize: 16 }}>Add to Favorites</Text>
+                            </View>
+                            <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
+                                <Text style={{ color: '#FC3F3C', fontSize: 16 }}>Add to Emergency Contacts</Text>
+                            </View>
+                            <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
+                                <Text style={{ color: '#0186ff', fontSize: 16 }}>Share my Location</Text>
+                            </View>
+                        </ScrollView>
                     </View>
                 </LinearGradient>
             </SafeAreaView >
