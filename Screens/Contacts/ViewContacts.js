@@ -7,10 +7,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const AnimatedIcon = Animatable.createAnimatableComponent(Feather)
 const AnimatedIonicons = Animatable.createAnimatableComponent(Ionicons)
 const AnimatedFontAwesome = Animatable.createAnimatableComponent(FontAwesome)
+const AnimatedMaterialCommunityIcons = Animatable.createAnimatableComponent(MaterialCommunityIcons)
 
 
 
@@ -50,6 +52,73 @@ class ViewContacts extends Component {
                         <Text style={{ color: '#fff', textAlign: 'center', marginTop: 15, fontSize: 26 }}>
                             ABC DE
                         </Text>
+                        <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', margin: 10 }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <View style={{
+                                    backgroundColor: '#0186ff', height: 50, width: 50, justifyContent: 'center', alignItems: 'center',
+                                    borderRadius: 50
+                                }}>
+                                    <AnimatedMaterialCommunityIcons
+                                        name="chat"
+                                        color="#fff"
+                                        size={30}
+                                    />
+                                </View>
+                                <Text style={{ color: '#0186ff', fontSize: 14 }}>message</Text>
+                            </View>
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <View style={{
+                                    backgroundColor: '#0186ff', height: 50, width: 50, justifyContent: 'center',
+                                    borderRadius: 50, alignItems: 'center'
+                                }}>
+                                    <AnimatedIonicons
+                                        name="ios-call"
+                                        color="#fff"
+                                        size={30}
+                                    />
+                                </View>
+                                <Text style={{ color: '#0186ff', fontSize: 14 }}>mobile</Text>
+                            </View>
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <View style={{
+                                    backgroundColor: '#0186ff', height: 50, width: 50, justifyContent: 'center',
+                                    borderRadius: 50, alignItems: 'center'
+                                }}>
+                                    <AnimatedMaterialCommunityIcons
+                                        name="video"
+                                        color="#fff"
+                                        size={30}
+                                    />
+                                </View>
+                                <Text style={{ color: '#0186ff', fontSize: 14 }}>video</Text>
+                            </View>
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <View style={{
+                                    backgroundColor: '#0186ff', height: 50, width: 50, justifyContent: 'center',
+                                    borderRadius: 50, alignItems: 'center'
+                                }}>
+                                    <AnimatedIonicons
+                                        name="ios-mail"
+                                        color="#fff"
+                                        size={30}
+                                    />
+                                </View>
+                                <Text style={{ color: '#0186ff', fontSize: 14 }}>mail</Text>
+                            </View>
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <View style={{
+                                    backgroundColor: '#0186ff', height: 50, width: 50, justifyContent: 'center',
+                                    borderRadius: 50, alignItems: 'center'
+                                }}>
+                                    <AnimatedFontAwesome
+                                        name="dollar"
+                                        color="#fff"
+                                        size={30}
+                                    />
+                                </View>
+                                <Text style={{ color: '#0186ff', fontSize: 14 }}>pay</Text>
+                            </View>
+                        </View>
                     </View>
                 </LinearGradient>
             </SafeAreaView >
