@@ -95,6 +95,7 @@ class ChatList extends Component {
     UNSAFE_componentWillMount() {
         const { liked } = this.state
         this.props.updateUser(liked)
+        console.log('props***', this.props)
     }
 
     handleSmallAnimatedIconRef = (ref) => {

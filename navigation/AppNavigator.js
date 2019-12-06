@@ -135,7 +135,12 @@ class CustomDrawerView extends Component {
         return (
             <ScalingDrawer
                 ref={ref => this._drawer = ref}
-                content={<SideBar {...this.props} />}
+                content={<SideBar {...this.props} navigation={addNavigationHelpers({
+                    ...this.props.navigation,
+                    state: routes[index],
+                    openDrawer: () => this._drawer.open(),
+                    closeDrawer: () => this._drawer.close()
+                })} />}
                 {...defaultScalingDrawerConfig}
                 onClose={() => console.log('close')}
                 onOpen={() => console.log('open')}
@@ -184,7 +189,7 @@ const AppNavigator = StackRouter(
         Actionsheet: { screen: () => <Screen.Home /> },
         NHAccordion: { screen: () => <Screen.Home /> },
         NHDatePicker: { screen: () => <Screen.Home /> },
-        Facebook: { screen: () => <FacebookChatScreen /> },
+        Facebook: { screen: (props) => <FacebookChatScreen {...props} /> },
         IMessage: { screen: () => <IMessageChatScreen /> },
         Instagram: { screen: () => <InstagramChatScreen /> },
         Team: { screen: () => <TeamChatScreen /> },

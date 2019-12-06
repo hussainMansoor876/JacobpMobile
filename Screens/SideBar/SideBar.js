@@ -240,6 +240,11 @@ class SideBar extends Component {
     }
   }
 
+  process(v){
+    this.props.navigation.navigate(v)
+    this.props.navigation.closeDrawer()
+  }
+
   render() {
     const { listData, listBottom, main, listDataSocial } = this.state
     console.log('this.SideBar', this.props)
@@ -270,11 +275,10 @@ class SideBar extends Component {
                         <ListItem
                           button
                           noBorder
-                          onPress={() => this.props.navigation.navigate(v.route)}
+                          onPress={() => this.process(v.route)}
                           key={i}
                         >
                           <Left>
-                            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                               <AnimatedIcon
                                 name={v.icon}
                                 color={v.bg}
@@ -289,7 +293,6 @@ class SideBar extends Component {
                               }}>
                                 {v.name.toLocaleUpperCase()}
                               </Text>
-                            </TouchableOpacity>
                           </Left>
                         </ListItem>
                       )
