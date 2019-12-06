@@ -189,7 +189,7 @@ class ChatList extends Component {
                 <KeyboardAvoidingView
                     resetScrollToCoords={{ x: 0, y: 0 }}
                     behavior={Platform.OS === "ios" ? "padding" : null}
-                    keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+                    keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 100}
                     style={{ flex: 1 }}
                 >
                     {!liked ? <GiftedChat

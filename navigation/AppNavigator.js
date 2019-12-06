@@ -146,6 +146,7 @@ class CustomDrawerView extends Component {
                         ...this.props.navigation,
                         state: routes[index],
                         openDrawer: () => this._drawer.open(),
+                        closeDrawer: () => this._drawer.close()
                     })}
                     dynamicDrawerValue={(type, val) => this.setDynamicDrawerValue(type, val)}
                 />

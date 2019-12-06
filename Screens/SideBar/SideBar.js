@@ -95,137 +95,7 @@ const datas = [
     icon: "checkmark-circle",
     bg: "#EB6B23",
     image: require('../../assets/images/minus.png')
-  },
-  // {
-  //   name: "Date Picker",
-  //   route: "NHDatePicker",
-  //   icon: "calendar",
-  //   bg: "#EB6B23",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Deck Swiper",
-  //   route: "NHDeckSwiper",
-  //   icon: "swap",
-  //   bg: "#3591FA",
-  //   types: "2",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Fab",
-  //   route: "NHFab",
-  //   icon: "help-buoy",
-  //   bg: "#EF6092",
-  //   types: "2",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Form & Inputs",
-  //   route: "NHForm",
-  //   icon: "call",
-  //   bg: "#EFB406",
-  //   types: "12",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Icon",
-  //   route: "NHIcon",
-  //   icon: "information-circle",
-  //   bg: "#bfe9ea",
-  //   types: "4",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Layout",
-  //   route: "NHLayout",
-  //   icon: "grid",
-  //   bg: "#9F897C",
-  //   types: "5",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "List",
-  //   route: "NHList",
-  //   icon: "lock",
-  //   bg: "#5DCEE2",
-  //   types: "8",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "ListSwipe",
-  //   route: "ListSwipe",
-  //   icon: "code-working",
-  //   bg: "#C5F442",
-  //   types: "3",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Picker",
-  //   route: "NHPicker",
-  //   icon: "arrow-dropdown",
-  //   bg: "#F50C75",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Radio",
-  //   route: "NHRadio",
-  //   icon: "radio-button-on",
-  //   bg: "#6FEA90",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "SearchBar",
-  //   route: "NHSearchbar",
-  //   icon: "search",
-  //   bg: "#29783B",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Segment",
-  //   route: "Segment",
-  //   icon: "menu",
-  //   bg: "#0A2C6B",
-  //   types: "3",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Spinner",
-  //   route: "NHSpinner",
-  //   icon: "navigate",
-  //   bg: "#BE6F50",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Tabs",
-  //   route: "NHTab",
-  //   icon: "home",
-  //   bg: "#AB6AED",
-  //   types: "3",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Thumbnail",
-  //   route: "NHThumbnail",
-  //   icon: "image",
-  //   bg: "#cc0000",
-  //   types: "2",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Toast",
-  //   route: "NHToast",
-  //   icon: "albums",
-  //   bg: "#C5F442",
-  //   types: "6",
-  //   image: require('../../assets/images/minus.png')
-  // },
-  // {
-  //   name: "Typography",
-  //   route: "NHTypography",
-  //   icon: "paper",
-  //   bg: "#48525D",
-  //   image: require('../../assets/images/minus.png')
-  // }
+  }
 ];
 
 class SideBar extends Component {
@@ -404,20 +274,22 @@ class SideBar extends Component {
                           key={i}
                         >
                           <Left>
-                            <AnimatedIcon
-                              name={v.icon}
-                              color={v.bg}
-                              size={22}
-                              style={styles.icon}
-                            />
-                            <Text style={{
-                              fontWeight: Platform.OS === "ios" ? "500" : "400",
-                              fontSize: 16,
-                              marginLeft: 20,
-                              color: '#fff'
-                            }}>
-                              {v.name.toLocaleUpperCase()}
-                            </Text>
+                            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                              <AnimatedIcon
+                                name={v.icon}
+                                color={v.bg}
+                                size={22}
+                                style={styles.icon}
+                              />
+                              <Text style={{
+                                fontWeight: Platform.OS === "ios" ? "500" : "400",
+                                fontSize: 16,
+                                marginLeft: 20,
+                                color: '#fff'
+                              }}>
+                                {v.name.toLocaleUpperCase()}
+                              </Text>
+                            </TouchableOpacity>
                           </Left>
                         </ListItem>
                       )
