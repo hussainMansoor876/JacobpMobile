@@ -105,7 +105,7 @@ class ViewContacts extends Component {
                                 </View>
                                 <Text style={{ color: '#0186ff', fontSize: 14 }}>mail</Text>
                             </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            {/* <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={{
                                     backgroundColor: '#0186ff', height: 50, width: 50, justifyContent: 'center',
                                     borderRadius: 50, alignItems: 'center'
@@ -117,7 +117,7 @@ class ViewContacts extends Component {
                                     />
                                 </View>
                                 <Text style={{ color: '#0186ff', fontSize: 14 }}>pay</Text>
-                            </View>
+                            </View> */}
                         </View>
                         <ScrollView>
                             <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
@@ -136,9 +136,9 @@ class ViewContacts extends Component {
                             <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
                                 <Text style={{ color: '#0186ff', fontSize: 16 }}>Add to Favorites</Text>
                             </View>
-                            <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
+                            {/* <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
                                 <Text style={{ color: '#FC3F3C', fontSize: 16 }}>Add to Emergency Contacts</Text>
-                            </View>
+                            </View> */}
                             <View style={{ padding: 10, borderBottomColor: '#202025', borderBottomWidth: 1 }}>
                                 <Text style={{ color: '#0186ff', fontSize: 16 }}>Share my Location</Text>
                             </View>

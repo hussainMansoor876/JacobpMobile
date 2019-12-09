@@ -188,9 +188,12 @@ class ChatList extends Component {
                 </Header>
                 <KeyboardAvoidingView
                     resetScrollToCoords={{ x: 0, y: 0 }}
-                    behavior={Platform.OS === "ios" ? "padding" : null}
-                    keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 100}
+                    behavior={'padding'}
+                    keyboardVerticalOffset={25}
                     style={{ flex: 1 }}
+                // behavior={Platform.OS === "ios" ? "padding" : null}
+                // keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 25}
+                // style={{ flex: 1 }}
                 >
                     {!liked ? <GiftedChat
                         messages={this.state.messages}
@@ -214,7 +217,6 @@ class ChatList extends Component {
                             renderBubble={this.renderBubbleDark.bind(this)}
                             renderSend={this.renderSend.bind(this)}
                             extraData={this.state}
-                            alwaysShowSend={true}
                             user={{
                                 _id: 1,
                             }}
