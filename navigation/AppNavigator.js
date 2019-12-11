@@ -162,8 +162,8 @@ class CustomDrawerView extends Component {
 const AppNavigator = StackRouter(
     {
         Schedule: { screen: (props) => <Screen.Home {...props} /> },
-        Day: { screen: () => <Screen.CalendarMeeting /> },
-        day3: { screen: () => <Screen.Falcon /> },
+        Day: { screen: (props) => <Screen.CalendarMeeting {...props} /> },
+        day3: { screen: (props) => <Screen.Falcon {...props} /> },
         Week: { screen: () => <Screen.Login /> },
         Month: { screen: () => <Screen.Signup /> },
         Invitation: { screen: () => <Screen.NewMeeting /> },

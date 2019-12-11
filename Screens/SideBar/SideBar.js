@@ -240,14 +240,13 @@ class SideBar extends Component {
     }
   }
 
-  process(v){
+  process(v) {
     this.props.navigation.navigate(v)
     this.props.navigation.closeDrawer()
   }
 
   render() {
     const { listData, listBottom, main, listDataSocial } = this.state
-    console.log('this.SideBar', this.props)
     if (main) {
       return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -279,20 +278,20 @@ class SideBar extends Component {
                           key={i}
                         >
                           <Left>
-                              <AnimatedIcon
-                                name={v.icon}
-                                color={v.bg}
-                                size={22}
-                                style={styles.icon}
-                              />
-                              <Text style={{
-                                fontWeight: Platform.OS === "ios" ? "500" : "400",
-                                fontSize: 16,
-                                marginLeft: 20,
-                                color: '#fff'
-                              }}>
-                                {v.name.toLocaleUpperCase()}
-                              </Text>
+                            <AnimatedIcon
+                              name={v.icon}
+                              color={v.bg}
+                              size={22}
+                              style={styles.icon}
+                            />
+                            <Text style={{
+                              fontWeight: Platform.OS === "ios" ? "500" : "400",
+                              fontSize: 16,
+                              marginLeft: 20,
+                              color: '#fff'
+                            }}>
+                              {v.name.toLocaleUpperCase()}
+                            </Text>
                           </Left>
                         </ListItem>
                       )
@@ -319,7 +318,7 @@ class SideBar extends Component {
                   source={require('../../assets/images/left.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => console.log("Hello")}>
+              <TouchableOpacity onPress={() => this.props.navigation.closeDrawer()}>
                 <ReactIcons
                   containerStyle={{ padding: 15 }}
                   name="x"
@@ -329,7 +328,7 @@ class SideBar extends Component {
             </View>
             <Image source={drawerCover} style={styles.drawerCover} />
             {/* <Image square style={styles.drawerImage} source={drawerImage} /> */}
-            <Text style={{ textAlign: 'center' }}>View</Text>
+            <Text style={{ paddingLeft: '28%' }}>View</Text>
             <List>
               {
                 listData.map((v, i) => {
@@ -338,7 +337,7 @@ class SideBar extends Component {
                       button
                       noBorder
                       key={i}
-                      onPress={() => this.props.navigation.navigate(v.route)}
+                      onPress={() => this.process(v.route)}
                     >
                       <Left>
                         {/* <Icon
@@ -374,14 +373,14 @@ class SideBar extends Component {
                 })
               }
             </List>
-            <Text style={{ textAlign: 'center' }}>Show</Text>
+            <Text style={{ paddingLeft: '28%' }}>Show</Text>
             <List>
               {listBottom.map((v, i) => {
                 return (
                   <ListItem
                     button
                     noBorder
-                    onPress={() => this.props.navigation.navigate(v.route)}
+                    onPress={() => this.process(v.route)}
                   >
                     <Left>
                       <CheckBox style={{ marginLeft: -8, marginRight: 8, borderRadius: 8 }} checked={false} />
