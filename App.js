@@ -24,7 +24,7 @@ class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Provider store={store} >
-          <Contacts />
+          <CustomDrawer />
         </Provider>
       </View>
     );

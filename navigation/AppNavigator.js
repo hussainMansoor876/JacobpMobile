@@ -146,7 +146,6 @@ class CustomDrawerView extends Component {
                 onOpen={() => console.log('open')}
             >
                 <ActiveScreen
-
                     navigation={addNavigationHelpers({
                         ...this.props.navigation,
                         state: routes[index],

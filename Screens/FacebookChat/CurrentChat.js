@@ -205,6 +205,7 @@ class ChatList extends Component {
                         renderSend={this.renderSend.bind(this)}
                         extraData={this.state}
                         alwaysShowSend={true}
+                        textInputStyle={{ marginBottom: 20 }}
                         user={{
                             _id: 1,
                         }}
@@ -216,6 +217,7 @@ class ChatList extends Component {
                             // renderUsernameOnMessage={true}
                             renderBubble={this.renderBubbleDark.bind(this)}
                             renderSend={this.renderSend.bind(this)}
+                            textInputStyle={{ marginBottom: 20 }}
                             extraData={this.state}
                             user={{
                                 _id: 1,

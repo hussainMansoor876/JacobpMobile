@@ -306,7 +306,7 @@ class SideBar extends Component {
       )
     }
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, paddingBottom: 30 }}>
         <Container>
           <Content
             bounces={false}
