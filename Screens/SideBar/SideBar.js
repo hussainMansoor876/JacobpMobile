@@ -246,20 +246,23 @@ class SideBar extends Component {
     this.props.navigation.closeDrawer()
   }
 
+  process1() {
+    this.props.mainSidebar(true)
+  }
+
   UNSAFE_componentWillMount() {
     // this.props.mainSidebar(false)
     console.log('sideBar', this.props)
   }
 
-  close(){
+  close() {
     this.props.navigation.closeDrawer()
     this.props.mainSidebar(false)
   }
 
   render() {
-    const { listData, listBottom, listDataSocial } = this.state
-    const { main } = this.props
-    if (main) {
+    const { listData, listBottom, main, listDataSocial } = this.state
+    if (this.props.main) {
       return (
         <SafeAreaView style={{ flex: 1 }}>
           <Container>
@@ -324,7 +327,7 @@ class SideBar extends Component {
             style={{ flex: 1, backgroundColor: "#fff", top: -1 }}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <TouchableOpacity onPress={() => this.props.mainSidebar(true)}>
+              <TouchableOpacity onPress={() => this.process1()}>
                 <Image
                   style={{ height: 50, width: 50 }}
                   source={require('../../assets/images/left.png')}

@@ -14,6 +14,7 @@ import TeamChatScreen from '../Screens/TeamChat/ChatList'
 import TwitterChatScreen from '../Screens/TwitterChat/ChatList'
 import WebsiteChatScreen from '../Screens/WebsiteChat/ChatList'
 import WhatsAppChatScreen from '../Screens/WhatsAppChat/ChatList'
+import { mainSidebar } from '../Redux/actions/authActions'
 
 
 
@@ -129,7 +130,7 @@ class CustomDrawerView extends Component {
         this.forceUpdate();
     };
 
-    componentDidMount(){
+    componentDidMount() {
         console.log('App', this.props)
     }
 
@@ -147,8 +148,8 @@ class CustomDrawerView extends Component {
                     closeDrawer: () => this._drawer.close()
                 })} />}
                 {...defaultScalingDrawerConfig}
-                onClose={() => console.log('close')}
-                onOpen={() => console.log('open')}
+                onClose={() => this.props.mainSidebar(false)}
+                onOpen={() => this.props.mainSidebar(false)}
             >
                 <ActiveScreen
                     navigation={addNavigationHelpers({
@@ -157,6 +158,7 @@ class CustomDrawerView extends Component {
                         openDrawer: () => this._drawer.open(),
                         closeDrawer: () => this._drawer.close()
                     })}
+                    style={{ backgroundColor: 'black' }}
                     dynamicDrawerValue={(type, val) => this.setDynamicDrawerValue(type, val)}
                 />
             </ScalingDrawer>
@@ -219,13 +221,13 @@ const mapStateToProps = (state) => {
     // console.log("mapToState", state.authReducer)
     return {
         user: "state.authReducer.user",
-        main: state.authReducer.main
+        // main: state.authReducer.main
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateUser: (user) => dispatch(loginUser(user))
+        mainSidebar: (main) => dispatch(mainSidebar(main))
     }
 }
 
