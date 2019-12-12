@@ -30,7 +30,7 @@ class ChatList extends Component {
             list: [
                 {
                     title: 'Amy Farha',
-                    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                    avatar_url: 'https://avatars0.githubusercontent.com/u/35415573?s=400&u=7585be6ddd43c201b02168c1fe36fd5e33a06bca&v=4',
                     subtitle: 'Doing what you like will always keep you happy . .',
                     status: 'Designer'
                 },
