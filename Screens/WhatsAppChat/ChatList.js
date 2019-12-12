@@ -124,7 +124,7 @@ class ChatList extends Component {
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0 }}>
                     <Body style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <TouchableOpacity onPress={() => console.log("Hello")}>
+                        <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                             <Image
                                 source={require('../../assets/images/left.png')}
                             />
