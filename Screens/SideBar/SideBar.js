@@ -18,7 +18,7 @@ import styles from "./style";
 import FontIcon from 'react-native-vector-icons/FontAwesome'
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient'
-import mainSidebar from '../../Redux/actions/authActions'
+import { mainSidebar } from '../../Redux/actions/authActions'
 const AnimatedIcon = Animatable.createAnimatableComponent(FontIcon)
 
 const drawerCover = require("../../assets/images/illustration.png");
@@ -246,13 +246,19 @@ class SideBar extends Component {
     this.props.navigation.closeDrawer()
   }
 
-  UNSAFE_componentWillMount(){
+  UNSAFE_componentWillMount() {
     // this.props.mainSidebar(false)
     console.log('sideBar', this.props)
   }
 
+  close(){
+    this.props.navigation.closeDrawer()
+    this.props.mainSidebar(false)
+  }
+
   render() {
-    const { listData, listBottom, main, listDataSocial } = this.state
+    const { listData, listBottom, listDataSocial } = this.state
+    const { main } = this.props
     if (main) {
       return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -318,13 +324,13 @@ class SideBar extends Component {
             style={{ flex: 1, backgroundColor: "#fff", top: -1 }}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <TouchableOpacity onPress={() => this.setState({ main: true })}>
+              <TouchableOpacity onPress={() => this.props.mainSidebar(true)}>
                 <Image
                   style={{ height: 50, width: 50 }}
                   source={require('../../assets/images/left.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.props.navigation.closeDrawer()}>
+              <TouchableOpacity onPress={() => this.close()}>
                 <ReactIcons
                   containerStyle={{ padding: 15 }}
                   name="x"
@@ -408,8 +414,8 @@ class SideBar extends Component {
 const mapStateToProps = (state) => {
   // console.log("mapToState", state.authReducer)
   return {
-      user: "state.authReducer.user",
-      main: state.authReducer.main
+    user: "state.authReducer.user",
+    main: state.authReducer.main
   }
 }
 

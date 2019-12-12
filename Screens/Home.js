@@ -66,12 +66,8 @@ class Home extends React.Component {
         this._renderItem = this._renderItem.bind(this)
     }
 
-    componentDidMount() {
-        console.log('this', this.props)
-    }
 
-    componentWillMount() {
-        this.props.mainSidebar(false)
+    componentDidMount() {
         SplashScreen.hide();
     }
 
