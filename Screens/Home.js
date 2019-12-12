@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Icon, Badge, ListItem } from 'react-native-elements';
 import FeatherIcon from "react-native-feather1s";
 import Timeline from './ListViewData'
+import { mainSidebar } from '../Redux/actions/authActions'
 // import { DrawerActions } from 'react-navigation/src/routers/';
 
 
@@ -67,8 +68,13 @@ class Home extends React.Component {
 
     componentDidMount() {
         console.log('this', this.props)
+    }
+
+    componentWillMount() {
+        this.props.mainSidebar(false)
         SplashScreen.hide();
     }
+
 
     _renderItem({ item, index }) {
         const { screenWidth } = this.state
@@ -202,13 +208,14 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     // console.log("mapToState", state.authReducer)
     return {
-        user: "state.authReducer.user"
+        user: "state.authReducer.user",
+        main: state.authReducer.main
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateUser: (user) => dispatch(loginUser(user))
+        mainSidebar: (main) => dispatch(mainSidebar(main))
     }
 }
 

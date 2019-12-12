@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Image, TouchableOpacity, View, SafeAreaView, ScrollView } from "react-native";
 import { Icon as ReactIcons } from 'react-native-elements'
-import MainSideBar from './MainSiderBar'
+import { connect } from 'react-redux';
 import {
   Content,
   Text,
@@ -18,6 +18,7 @@ import styles from "./style";
 import FontIcon from 'react-native-vector-icons/FontAwesome'
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient'
+import mainSidebar from '../../Redux/actions/authActions'
 const AnimatedIcon = Animatable.createAnimatableComponent(FontIcon)
 
 const drawerCover = require("../../assets/images/illustration.png");
@@ -245,6 +246,11 @@ class SideBar extends Component {
     this.props.navigation.closeDrawer()
   }
 
+  UNSAFE_componentWillMount(){
+    // this.props.mainSidebar(false)
+    console.log('sideBar', this.props)
+  }
+
   render() {
     const { listData, listBottom, main, listDataSocial } = this.state
     if (main) {
@@ -399,4 +405,19 @@ class SideBar extends Component {
   }
 }
 
-export default SideBar;
+const mapStateToProps = (state) => {
+  // console.log("mapToState", state.authReducer)
+  return {
+      user: "state.authReducer.user",
+      main: state.authReducer.main
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    mainSidebar: (main) => dispatch(mainSidebar(main))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
+

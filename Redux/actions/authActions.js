@@ -5,7 +5,14 @@ const loginUser = (bool) => {
     }
 }
 
+const mainSidebar = (main) => {
+    return {
+        type: "UPDATE_SIDEBAR",
+        main
+    }
+}
 
 export {
-    loginUser
+    loginUser,
+    mainSidebar
 }

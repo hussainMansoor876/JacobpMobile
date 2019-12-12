@@ -5,6 +5,7 @@ import { createAppContainer, createNavigator, StackRouter, addNavigationHelpers,
 import ScalingDrawer from 'react-native-scaling-drawer';
 // import { createDrawerNavigator } from 'react-navigation-drawer'
 import SideBar from '../Screens/SideBar/SideBar'
+import { connect } from 'react-redux';
 // import MainSideBar from '../Screens/SideBar/MainSiderBar'
 import FacebookChatScreen from '../Screens/FacebookChat/ChatList'
 import IMessageChatScreen from '../Screens/IMessageChat/ChatList'
@@ -128,6 +129,10 @@ class CustomDrawerView extends Component {
         this.forceUpdate();
     };
 
+    componentDidMount(){
+        console.log('App', this.props)
+    }
+
     render() {
         const { routes, index } = this.props.navigation.state;
         const ActiveScreen = this.props.router.getComponentForState(this.props.navigation.state);
@@ -164,12 +169,12 @@ const AppNavigator = StackRouter(
         Schedule: { screen: (props) => <Screen.Home {...props} /> },
         Day: { screen: (props) => <Screen.CalendarMeeting {...props} /> },
         day3: { screen: (props) => <Screen.Falcon {...props} /> },
-        Week: { screen: () => <Screen.Login /> },
-        Month: { screen: () => <Screen.Signup /> },
-        Invitation: { screen: () => <Screen.NewMeeting /> },
-        Events: { screen: () => <Screen.Home /> },
-        Birthdays: { screen: () => <Screen.Home /> },
-        Holidays: { screen: () => <Screen.Home /> },
+        Week: { screen: (props) => <Screen.Login /> },
+        Month: { screen: (props) => <Screen.Signup /> },
+        Invitation: { screen: (props) => <Screen.NewMeeting /> },
+        Events: { screen: (props) => <Screen.Home {...props} /> },
+        Birthdays: { screen: (props) => <Screen.Home {...props} /> },
+        Holidays: { screen: (props) => <Screen.Home {...props} /> },
         NHFab: { screen: () => <Screen.Home /> },
         NHForm: { screen: () => <Screen.Home /> },
         NHIcon: { screen: () => <Screen.Home /> },
@@ -189,12 +194,12 @@ const AppNavigator = StackRouter(
         NHAccordion: { screen: () => <Screen.Home /> },
         NHDatePicker: { screen: () => <Screen.Home /> },
         Facebook: { screen: (props) => <FacebookChatScreen {...props} /> },
-        IMessage: { screen: () => <IMessageChatScreen /> },
-        Instagram: { screen: () => <InstagramChatScreen /> },
-        Team: { screen: () => <TeamChatScreen /> },
-        Twitter: { screen: () => <TwitterChatScreen /> },
-        Website: { screen: () => <WebsiteChatScreen /> },
-        WhatsApp: { screen: () => <WhatsAppChatScreen /> }
+        IMessage: { screen: (props) => <IMessageChatScreen {...props} /> },
+        Instagram: { screen: (props) => <InstagramChatScreen {...props} /> },
+        Team: { screen: (props) => <TeamChatScreen {...props} /> },
+        Twitter: { screen: (props) => <TwitterChatScreen {...props} /> },
+        Website: { screen: (props) => <WebsiteChatScreen {...props} /> },
+        WhatsApp: { screen: (props) => <WhatsAppChatScreen {...props} /> }
     },
     {
         initialRouteName: "Schedule",
@@ -210,5 +215,18 @@ const AppNavigator = StackRouter(
 
 const CustomDrawer = createNavigationContainer(createNavigator(AppNavigator)(CustomDrawerView));
 
+const mapStateToProps = (state) => {
+    // console.log("mapToState", state.authReducer)
+    return {
+        user: "state.authReducer.user",
+        main: state.authReducer.main
+    }
+}
 
-export default CustomDrawer;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateUser: (user) => dispatch(loginUser(user))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomDrawer)
