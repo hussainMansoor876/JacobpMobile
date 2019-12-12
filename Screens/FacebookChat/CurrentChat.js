@@ -129,7 +129,7 @@ class ChatList extends Component {
                 containerStyle={{ flex: 1 }}
                 {...props}
             >
-                <View style={{ marginRight: 10, marginBottom: bottom }}>
+                <View style={{ marginRight: 10, marginBottom: bottom + 5 }}>
                     <Material
                         name={'arrow-right-circle'}
                         color={'#0078FF'}
@@ -215,19 +215,14 @@ class ChatList extends Component {
                 <KeyboardAvoidingView
                     resetScrollToCoords={{ x: 0, y: 0 }}
                     behavior={'padding'}
-                    // keyboardVerticalOffset={25}
                     style={{ flex: 1 }}
                     enabled
-                // behavior={Platform.OS === "ios" ? "padding" : null}
-                // keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 25}
-                // style={{ flex: 1 }}
                 >
                     {!liked ? <GiftedChat
                         messages={this.state.messages}
                         onSend={messages => this.onSend(messages)}
                         isAnimated={true}
                         showAvatarForEveryMessage={true}
-                        // renderUsernameOnMessage={true}
                         renderBubble={this.renderBubbleLight.bind(this)}
                         renderSend={this.renderSend.bind(this)}
                         extraData={this.state}
@@ -242,7 +237,6 @@ class ChatList extends Component {
                             onSend={messages => this.onSend(messages)}
                             isAnimated={true}
                             showAvatarForEveryMessage={true}
-                            // renderUsernameOnMessage={true}
                             renderBubble={this.renderBubbleDark.bind(this)}
                             renderSend={this.renderSend.bind(this)}
                             textInputStyle={{ marginBottom: bottom }}

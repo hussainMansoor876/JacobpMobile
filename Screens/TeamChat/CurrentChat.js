@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Dimensions, SafeAreaView, KeyboardAvoidingView, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Image, Dimensions, SafeAreaView, KeyboardAvoidingView, StyleSheet, View, TouchableOpacity, Keyboard } from 'react-native'
 import { Container, Header, Body, Thumbnail, Text } from 'native-base';
 import { GiftedChat, Bubble, Send } from 'react-native-gifted-chat'
 import * as Animatable from 'react-native-animatable';
@@ -22,7 +22,8 @@ class ChatList extends Component {
             chatColor: '#a3a6ae',
             leftBubbleColor: '#f1f1f0',
             on: false,
-            liked: false
+            liked: false,
+            bottom: 25
         }
     }
 
@@ -99,13 +100,13 @@ class ChatList extends Component {
 
 
     renderSend(props) {
-        const { liked } = this.state
+        const { liked, bottom } = this.state
         return (
             <Send
                 containerStyle={{ flex: 1 }}
                 {...props}
             >
-                <View style={{ marginRight: 10, marginBottom: 5 }}>
+                <View style={{ marginRight: 10, marginBottom: bottom + 5 }}>
                     <Material
                         name={'arrow-right-circle'}
                         color={!liked ? '#0D3E56' : '#3BA1AE'}
@@ -129,8 +130,32 @@ class ChatList extends Component {
         })
     }
 
+    componentDidMount() {
+        this.keyboardDidShowListener = Keyboard.addListener(
+            'keyboardDidShow',
+            this._keyboardDidShow.bind(this),
+        )
+        this.keyboardDidHideListener = Keyboard.addListener(
+            'keyboardDidHide',
+            this._keyboardDidHide.bind(this),
+        )
+    }
+
+    componentWillUnmount() {
+        this.keyboardDidShowListener.remove();
+        this.keyboardDidHideListener.remove();
+    }
+
+    _keyboardDidShow() {
+        this.setState({ bottom: 25 })
+    }
+
+    _keyboardDidHide() {
+        this.setState({ bottom: 0 })
+    }
+
     render() {
-        const { chatColor, chatBackground, liked } = this.state
+        const { chatColor, chatBackground, liked, bottom } = this.state
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: chatBackground }}>
                 <Header style={{ backgroundColor: chatBackground, borderBottomWidth: 0, height: 80 }}>
@@ -166,9 +191,9 @@ class ChatList extends Component {
                 </Header>
                 <KeyboardAvoidingView
                     resetScrollToCoords={{ x: 0, y: 0 }}
-                    behavior={Platform.OS === "ios" ? "padding" : null}
-                    keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+                    behavior={'padding'}
                     style={{ flex: 1 }}
+                    enabled
                 >
                     {!liked ? <GiftedChat
                         messages={this.state.messages}
@@ -178,6 +203,8 @@ class ChatList extends Component {
                         // renderUsernameOnMessage={true}
                         renderBubble={this.renderBubbleLight.bind(this)}
                         renderSend={this.renderSend.bind(this)}
+                        textInputStyle={{ marginBottom: bottom }}
+                        scrollToBottom={true}
                         extraData={this.state}
                         alwaysShowSend={true}
                         user={{
@@ -191,6 +218,8 @@ class ChatList extends Component {
                             // renderUsernameOnMessage={true}
                             renderBubble={this.renderBubbleDark.bind(this)}
                             renderSend={this.renderSend.bind(this)}
+                            textInputStyle={{ marginBottom: bottom }}
+                            scrollToBottom={true}
                             extraData={this.state}
                             alwaysShowSend={true}
                             user={{
