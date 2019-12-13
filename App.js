@@ -19,6 +19,7 @@ class App extends React.Component {
 
   componentDidMount() {
     SplashScreen.hide()
+    console.log(this.props)
   }
 
   render() {

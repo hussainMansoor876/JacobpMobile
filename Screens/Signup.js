@@ -5,7 +5,7 @@ import Reinput from 'reinput'
 import { Button } from 'native-base'
 import AppIntro from './AppIntro'
 import { connect } from 'react-redux';
-import { createAccount } from '../Redux/actions/authActions'
+import { createAccount, SideView } from '../Redux/actions/authActions'
 
 
 class Signup extends React.Component {
@@ -77,13 +77,15 @@ class Signup extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        create: state.authReducer.create
+        create: state.authReducer.create,
+        side: state.authReducer.side
     }
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-        createAccount: (create) => dispatch(createAccount(create))
+        createAccount: (create) => dispatch(createAccount(create)),
+        SideView: (side) => dispatch(SideView(side))
     }
   }
   

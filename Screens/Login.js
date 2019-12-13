@@ -5,7 +5,8 @@ import Reinput from 'reinput'
 import { Button } from 'native-base'
 import SignUp from './Signup'
 import { connect } from 'react-redux';
-import { createAccount } from '../Redux/actions/authActions'
+import { createAccount, SideView } from '../Redux/actions/authActions'
+import CustomDrawer from '../navigation/AppNavigator'
 
 
 class Login extends React.Component {
@@ -13,7 +14,8 @@ class Login extends React.Component {
     super(props);
     this.state = {
       screenWidth: Dimensions.get('window').width,
-      screenHeight: Dimensions.get('window').height
+      screenHeight: Dimensions.get('window').height,
+      show: false
     }
   }
 
@@ -22,10 +24,14 @@ class Login extends React.Component {
   }
 
   render() {
-    const { screenHeight, screenWidth } = this.state
+    const { screenHeight, screenWidth, show } = this.state
     const { create } = this.props
-    console.log(this.props)
-    if (create) {
+    if (show) {
+      return (
+        <CustomDrawer />
+      )
+    }
+    else if (create) {
       return (
         <SignUp />
       )
@@ -60,7 +66,7 @@ class Login extends React.Component {
               />
             </View>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginRight: 30 }}>
-              <Button rounded light style={{ width: screenWidth / 4, justifyContent: 'center', alignItems: 'center' }}>
+              <Button onPress={() => this.setState({ show: true })} rounded light style={{ width: screenWidth / 4, justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ textAlign: 'center', color: '#7540EE' }}>Login</Text>
               </Button>
               <Button transparent>
@@ -83,13 +89,15 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-      create: state.authReducer.create
+    create: state.authReducer.create,
+    side: state.authReducer.side
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      createAccount: (create) => dispatch(createAccount(create))
+    createAccount: (create) => dispatch(createAccount(create)),
+    SideView: (side) => dispatch(SideView(side))
   }
 }
 

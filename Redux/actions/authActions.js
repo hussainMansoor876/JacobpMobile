@@ -19,8 +19,16 @@ const createAccount = (create) => {
     }
 }
 
+const SideView = (side) => {
+    return {
+        type: "SIDE_VIEW",
+        side
+    }
+}
+
 export {
     loginUser,
     mainSidebar,
-    createAccount
+    createAccount,
+    SideView
 }

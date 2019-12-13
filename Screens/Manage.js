@@ -5,6 +5,7 @@ import { Button } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements'
+import CustomDrawer  from '../navigation/AppNavigator'
 
 
 
@@ -13,7 +14,8 @@ class Manage extends React.Component {
         super(props);
         this.state = {
             screenWidth: Dimensions.get('window').width,
-            screenHeight: Dimensions.get('window').height
+            screenHeight: Dimensions.get('window').height,
+            show: false
         }
     }
 
@@ -22,10 +24,16 @@ class Manage extends React.Component {
     }
 
     render() {
+        const { show } = this.state
+        if (show) {
+            return (
+                <CustomDrawer />
+            )
+        }
         return (
             <View style={{ flex: 1, backgroundColor: '#1C162E' }}>
                 <LinearGradient colors={['#1C162E', '#1C162E']} style={styles.linearGradient}>
-                    <View style={{ flex: 1, paddingLeft: 15 }}>
+                    <View style={{ flex: 1 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
                             <TouchableOpacity>
                                 <Icon
@@ -36,7 +44,7 @@ class Manage extends React.Component {
                                     iconStyle={{ width: 200 }}
                                 />
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.setState({ show: true })}>
                                 <Text style={styles.buttonText}>Add all</Text>
                             </TouchableOpacity>
                         </View>

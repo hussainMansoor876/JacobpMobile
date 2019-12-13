@@ -9,6 +9,9 @@ const reducer = (state = {}, action) => {
         case "CREATE_ACCOUNT": {
             return { ...state, create: action.create }
         }
+        case "SIDE_VIEW": {
+            return {...state, side: action.side}
+        }
         default: {
             return state;
         }

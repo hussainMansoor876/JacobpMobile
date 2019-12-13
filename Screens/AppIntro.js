@@ -5,6 +5,7 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import SplashScreen from 'react-native-splash-screen'
 import { Icon, Button } from 'react-native-elements'
 import Navigator from '../navigation/AppNavigator'
+import Manage from './Manage'
 
 const styles = StyleSheet.create({
   mainContent: {
@@ -146,7 +147,7 @@ export default class AppIntro extends React.Component {
     const { screenHeight, screenWidth, showApp } = this.state
     if (showApp) {
       return (
-        <Navigator />
+        <Manage />
       )
     }
     return <AppIntroSlider
