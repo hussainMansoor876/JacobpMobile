@@ -5,6 +5,7 @@ import store from './Redux/store';
 import CustomDrawer from './navigation/AppNavigator'
 import Contacts from './Screens/Contacts/Contacts'
 import CalendarScreen from './Screens/CalendarMeeting'
+import Login from './Screens/Login'
 import { screensEnabled } from 'react-native-screens';
 
 screensEnabled();
@@ -24,7 +25,7 @@ class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Provider store={store} >
-          <CustomDrawer />
+          <Login />
         </Provider>
       </View>
     );

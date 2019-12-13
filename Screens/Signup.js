@@ -4,6 +4,8 @@ import SplashScreen from 'react-native-splash-screen'
 import Reinput from 'reinput'
 import { Button } from 'native-base'
 import AppIntro from './AppIntro'
+import { connect } from 'react-redux';
+import { createAccount } from '../Redux/actions/authActions'
 
 
 class Signup extends React.Component {
@@ -63,7 +65,7 @@ class Signup extends React.Component {
                     <View style={{ height: screenHeight / 9, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft: 30, marginRight: 20, marginTop: 20 }}>
                         <Text style={{ fontSize: 18, paddingRight: 5 }}>Already have an account.
                         </Text>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+                        <TouchableOpacity onPress={() => this.props.createAccount(false)}>
                             <Text style={{ fontSize: 18, color: '#7540EE' }}>Login</Text>
                         </TouchableOpacity>
                     </View>
@@ -73,4 +75,16 @@ class Signup extends React.Component {
     }
 }
 
-export default Signup;
+const mapStateToProps = (state) => {
+    return {
+        create: state.authReducer.create
+    }
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        createAccount: (create) => dispatch(createAccount(create))
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Signup)

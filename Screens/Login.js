@@ -3,6 +3,9 @@ import { View, Dimensions, Text, Image, KeyboardAvoidingView, ScrollView, Toucha
 import SplashScreen from 'react-native-splash-screen'
 import Reinput from 'reinput'
 import { Button } from 'native-base'
+import SignUp from './Signup'
+import { connect } from 'react-redux';
+import { createAccount } from '../Redux/actions/authActions'
 
 
 class Login extends React.Component {
@@ -20,6 +23,13 @@ class Login extends React.Component {
 
   render() {
     const { screenHeight, screenWidth } = this.state
+    const { create } = this.props
+    console.log(this.props)
+    if (create) {
+      return (
+        <SignUp />
+      )
+    }
     return (
       <ScrollView style={{ width: screenWidth, height: screenHeight, backgroundColor: '#fff' }}>
         <KeyboardAvoidingView
@@ -61,7 +71,7 @@ class Login extends React.Component {
           <View style={{ height: screenHeight / 9, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft: -50, marginLeft: 30, marginRight: 20, marginTop: 20 }}>
             <Text style={{ fontSize: 16, paddingRight: 5 }}>No account?
             </Text>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Signup')}>
+            <TouchableOpacity onPress={() => this.props.createAccount(true)}>
               <Text style={{ fontSize: 16, color: '#FF7052' }}>Create one</Text>
             </TouchableOpacity>
           </View>
@@ -71,4 +81,16 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+      create: state.authReducer.create
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      createAccount: (create) => dispatch(createAccount(create))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
