@@ -82,11 +82,17 @@ class Contacts extends Component {
         }
     }
 
+    changeChat() {
+        this.setState({
+            show: false
+        })
+    }
+
 
     render() {
         const { list, show } = this.state
         if (show) {
-            return <ViewConatcs />
+            return <ViewConatcs changeChat={() => this.changeChat()} />
         }
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: '#000000' }}>

@@ -160,7 +160,7 @@ class SideBar extends Component {
       listDataSocial: [
         {
           name: "Contacts",
-          route: "Instagram",
+          route: "Contacts",
           icon: "wechat",
           bg: "#4DCAE0",
           types: "4",

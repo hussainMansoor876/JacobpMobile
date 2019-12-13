@@ -33,15 +33,17 @@ class ViewContacts extends Component {
                 <LinearGradient colors={['#100E13', '#100E13']} style={{ flex: 1 }}>
                     <View style={{ margin: 10 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 10 }}>
-                            <View style={{ flexDirection: 'row' }}>
-                                <AnimatedIonicons
-                                    name="ios-arrow-back"
-                                    color="#0080ff"
-                                    size={30}
-                                    style={{ marginRight: 5 }}
-                                />
-                                <Text style={{ color: '#0080ff', marginTop: 3 }}>Contacts</Text>
-                            </View>
+                            <TouchableOpacity onPress={() => this.props.changeChat()}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <AnimatedIonicons
+                                        name="ios-arrow-back"
+                                        color="#0080ff"
+                                        size={30}
+                                        style={{ marginRight: 5 }}
+                                    />
+                                    <Text style={{ color: '#0080ff', marginTop: 3 }}>Contacts</Text>
+                                </View>
+                            </TouchableOpacity>
                             <Text style={{ color: '#0080ff', marginTop: 3 }}>Edit</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>

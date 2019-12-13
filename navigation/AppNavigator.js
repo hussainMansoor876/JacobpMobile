@@ -14,6 +14,7 @@ import TeamChatScreen from '../Screens/TeamChat/ChatList'
 import TwitterChatScreen from '../Screens/TwitterChat/ChatList'
 import WebsiteChatScreen from '../Screens/WebsiteChat/ChatList'
 import WhatsAppChatScreen from '../Screens/WhatsAppChat/ChatList'
+import ContactsScreen from '../Screens/Contacts/Contacts'
 import { mainSidebar } from '../Redux/actions/authActions'
 
 
@@ -168,40 +169,114 @@ class CustomDrawerView extends Component {
 
 const AppNavigator = StackRouter(
     {
-        Schedule: { screen: (props) => <Screen.Home {...props} /> },
-        Day: { screen: (props) => <Screen.CalendarMeeting {...props} /> },
-        day3: { screen: (props) => <Screen.Falcon {...props} /> },
-        Week: { screen: (props) => <Screen.Login /> },
-        Month: { screen: (props) => <Screen.Signup /> },
-        Invitation: { screen: (props) => <Screen.NewMeeting /> },
-        Events: { screen: (props) => <Screen.Home {...props} /> },
-        Birthdays: { screen: (props) => <Screen.Home {...props} /> },
-        Holidays: { screen: (props) => <Screen.Home {...props} /> },
-        NHFab: { screen: () => <Screen.Home /> },
-        NHForm: { screen: () => <Screen.Home /> },
-        NHIcon: { screen: () => <Screen.Home /> },
-        NHLayout: { screen: () => <Screen.Home /> },
-        NHList: { screen: () => <Screen.Home /> },
-        ListSwipe: { screen: () => <Screen.Home /> },
-        NHRadio: { screen: () => <Screen.Home /> },
-        NHSearchbar: { screen: () => <Screen.Home /> },
-        NHSpinner: { screen: () => <Screen.Home /> },
-        NHPicker: { screen: () => <Screen.Home /> },
-        NHTab: { screen: () => <Screen.Home /> },
-        NHThumbnail: { screen: () => <Screen.Home /> },
-        NHTypography: { screen: () => <Screen.Home /> },
-        Segment: { screen: () => <Screen.Home /> },
-        NHToast: { screen: () => <Screen.Home /> },
-        Actionsheet: { screen: () => <Screen.Home /> },
-        NHAccordion: { screen: () => <Screen.Home /> },
-        NHDatePicker: { screen: () => <Screen.Home /> },
-        Facebook: { screen: (props) => <FacebookChatScreen {...props} /> },
-        IMessage: { screen: (props) => <IMessageChatScreen {...props} /> },
-        Instagram: { screen: (props) => <InstagramChatScreen {...props} /> },
-        Team: { screen: (props) => <TeamChatScreen {...props} /> },
-        Twitter: { screen: (props) => <TwitterChatScreen {...props} /> },
-        Website: { screen: (props) => <WebsiteChatScreen {...props} /> },
-        WhatsApp: { screen: (props) => <WhatsAppChatScreen {...props} /> }
+        Schedule: {
+            screen: (props) => <Screen.Home {...props} />
+        },
+        Day: {
+            screen: (props) => <Screen.CalendarMeeting {...props} />
+        },
+        day3: {
+            screen: (props) => <Screen.Falcon {...props} />
+        },
+        Week: {
+            screen: (props) => <Screen.Login />
+        },
+        Month: {
+            screen: (props) => <Screen.Signup />
+        },
+        Invitation: {
+            screen: (props) => <Screen.NewMeeting />
+        },
+        Events: {
+            screen: (props) => <Screen.Home {...props
+            } />
+        },
+        Birthdays: {
+            screen: (props) => <Screen.Home {...props
+            } />
+        },
+        Holidays: {
+            screen: (props) => <Screen.Home {...props
+            } />
+        },
+        NHFab: {
+            screen: () => <Screen.Home />
+        },
+        NHForm: {
+            screen: () => <Screen.Home />
+        },
+        NHIcon: {
+            screen: () => <Screen.Home />
+        },
+        NHLayout: {
+            screen: () => <Screen.Home />
+        },
+        NHList: {
+            screen: () => <Screen.Home />
+        },
+        ListSwipe: {
+            screen: () => <Screen.Home />
+        },
+        NHRadio: {
+            screen: () => <Screen.Home />
+        },
+        NHSearchbar: {
+            screen: () => <Screen.Home />
+        },
+        NHSpinner: {
+            screen: () => <Screen.Home />
+        },
+        NHPicker: {
+            screen: () => <Screen.Home />
+        },
+        NHTab: {
+            screen: () => <Screen.Home />
+        },
+        NHThumbnail: {
+            screen: () => <Screen.Home />
+        },
+        NHTypography: {
+            screen: () => <Screen.Home />
+        },
+        Segment: {
+            screen: () => <Screen.Home />
+        },
+        NHToast: {
+            screen: () => <Screen.Home />
+        },
+        Actionsheet: {
+            screen: () => <Screen.Home />
+        },
+        NHAccordion: {
+            screen: () => <Screen.Home />
+        },
+        NHDatePicker: {
+            screen: () => <Screen.Home />
+        },
+        Facebook: {
+            screen: (props) => <FacebookChatScreen {...props} />
+        },
+        IMessage: {
+            screen: (props) => <IMessageChatScreen {...props} />
+        },
+        Instagram: {
+            screen: (props) => <InstagramChatScreen {...props} />
+        },
+        Team: {
+            screen: (props) => <TeamChatScreen {...props} />
+        },
+        Twitter: {
+            screen: (props) => <TwitterChatScreen {...props} />
+        },
+        Website: {
+            screen: (props) => <WebsiteChatScreen {...props} />
+        },
+        WhatsApp: {
+            screen: (props) => <WhatsAppChatScreen {...props} />
+        },
+        Contacts: {
+            screen: (props) => <ContactsScreen {...props} />
+        }
     },
     {
         initialRouteName: "Schedule",
