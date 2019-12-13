@@ -129,11 +129,11 @@ class ChatList extends Component {
                 containerStyle={{ flex: 1 }}
                 {...props}
             >
-                <View style={{ marginRight: 10, marginBottom: bottom + 5 }}>
+                <View style={{ marginRight: 10, marginBottom: bottom }}>
                     <Material
                         name={'arrow-right-circle'}
                         color={'#0078FF'}
-                        size={35}
+                        size={40}
                         style={styles.icon}
                     />
                 </View>
