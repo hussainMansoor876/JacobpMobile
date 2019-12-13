@@ -106,11 +106,11 @@ class ChatList extends Component {
                 containerStyle={{ flex: 1 }}
                 {...props}
             >
-                <View style={{ marginRight: 10, marginBottom: bottom + 5 }}>
+                <View style={{ marginRight: 10, marginBottom: bottom }}>
                     <Material
                         name={'arrow-right-circle'}
                         color={!liked ? '#0D3E56' : '#3BA1AE'}
-                        size={35}
+                        size={40}
                         style={styles.icon}
                     />
                 </View>
@@ -200,7 +200,6 @@ class ChatList extends Component {
                         onSend={messages => this.onSend(messages)}
                         isAnimated={true}
                         showAvatarForEveryMessage={true}
-                        // renderUsernameOnMessage={true}
                         renderBubble={this.renderBubbleLight.bind(this)}
                         renderSend={this.renderSend.bind(this)}
                         textInputStyle={{ marginBottom: bottom }}
@@ -215,7 +214,6 @@ class ChatList extends Component {
                             onSend={messages => this.onSend(messages)}
                             isAnimated={true}
                             showAvatarForEveryMessage={true}
-                            // renderUsernameOnMessage={true}
                             renderBubble={this.renderBubbleDark.bind(this)}
                             renderSend={this.renderSend.bind(this)}
                             textInputStyle={{ marginBottom: bottom }}
