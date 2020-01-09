@@ -11,6 +11,10 @@ import { createAccount, SideView } from '../Redux/actions/authActions'
 import CustomDrawer from '../navigation/AppNavigator'
 import { argonTheme, tabs } from '../constants'
 import { Button, Select, Icon, Input, Header, Switch } from "../components/";
+import { Icon as RIcon } from 'react-native-elements'
+import * as Animatable from 'react-native-animatable';
+import AntDesign from 'react-native-vector-icons/FontAwesome5';
+const AntDesignIcon = Animatable.createAnimatableComponent(AntDesign)
 
 const { width } = Dimensions.get("screen");
 
@@ -32,66 +36,34 @@ class Login extends React.Component {
     const { screenHeight, screenWidth, show } = this.state
     const { create } = this.props
     // return (
-    //   <Block flex>
-    //     <Text size={16} style={styles.title}>
-    //       Buttons
-    //     </Text>
+    //   <Block flex style={styles.group}>
     //     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-    //       <Block center>
-    //         <Button textStyle={{ fontFamily: 'open-sans-bold' }} color="default" style={styles.button}>
-    //           DEFAULT
-    //         </Button>
-    //       </Block>
-    //       <Block center>
-    //         <Button
-    //           color="secondary"
-    //           textStyle={{ fontFamily: 'open-sans-bold', color: "black" }}
-    //           style={styles.button}
-    //         >
-    //           SECONDARY
-    //         </Button>
-    //       </Block>
-    //       <Block center>
-    //         <Button textStyle={{ fontFamily: 'open-sans-bold' }} style={styles.button}>PRIMARY</Button>
-    //       </Block>
-    //       <Block center>
-    //         <Button textStyle={{ fontFamily: 'open-sans-bold' }} color="info" style={styles.button}>
-    //           INFO
-    //         </Button>
-    //       </Block>
-    //       <Block center>
-    //         <Button textStyle={{ fontFamily: 'open-sans-bold' }} color="success" style={styles.button}>
-    //           SUCCESS
-    //         </Button>
-    //       </Block>
-    //       <Block center>
-    //         <Button textStyle={{ fontFamily: 'open-sans-bold' }} color="warning" style={styles.button}>
-    //           WARNING
-    //         </Button>
-    //       </Block>
-    //       <Block center>
-    //         <Button textStyle={{ fontFamily: 'open-sans-bold' }} color="error" style={styles.button}>
-    //           ERROR
-    //         </Button>
-    //       </Block>
-    //       <Block row space="evenly">
-    //         <Block flex left>
-    //           <Select
-    //             defaultIndex={1}
-    //             options={["01", "02", "03", "04", "05"]}
+    //       <Input right placeholder="Regular" iconContent={<Block />} />
+    //     </Block>
+    //     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
+    //       <Input
+    //         right
+    //         placeholder="Regular Custom"
+    //         style={{
+    //           borderColor: argonTheme.COLORS.INFO,
+    //           borderRadius: 4,
+    //           backgroundColor: "#fff"
+    //         }}
+    //         iconContent={<Block />}
+    //       />
+    //     </Block>
+    //     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
+    //       <Input
+    //         placeholder="Icon left"
+    //         iconContent={
+    //           <AntDesignIcon
+    //             name={'user'}
+    //             color={'grey'}
+    //             size={22}
+    //             style={styles.icon}
     //           />
-    //         </Block>
-    //         <Block flex center>
-    //           <Button textStyle={{ fontFamily: 'open-sans-bold', fontSize: 12 }} small center color="default" style={styles.optionsButton}>
-    //             DELETE
-    //           </Button>
-    //         </Block>
-    //         <Block flex={1.25} right>
-    //           <Button textStyle={{ fontFamily: 'open-sans-bold', fontSize: 12 }} center color="default" style={styles.optionsButton}>
-    //             SAVE FOR LATER
-    //           </Button>
-    //         </Block>
-    //       </Block>
+    //         }
+    //       />
     //     </Block>
     //   </Block>
     // );
@@ -129,16 +101,35 @@ class Login extends React.Component {
             <Text style={{ fontSize: 16, color: '#25265E' }}>You can use <Text style={{ color: '#7540EE' }}>Face ID</Text>
               {'\n'}to authenticate in the future
           </Text>
-            <View style={{ marginTop: 20, marginRight: 30 }}>
-              <Reinput label='E-mail address' keyboardType="email-address" />
+            <View style={{ marginTop: 20, marginRight: 30, marginBottom: 15 }}>
+              {/* <Reinput label='E-mail address' keyboardType="email-address" />
               <Reinput label='Password' secureTextEntry={true}
+              /> */}
+              <Input
+                right
+                placeholder="Email"
+                style={{
+                  borderColor: argonTheme.COLORS.INFO,
+                  borderRadius: 4,
+                  backgroundColor: "#fff",
+                  marginBottom: 10
+                }}
+                iconContent={
+                  <AntDesignIcon
+                    name={'user'}
+                    color={argonTheme.COLORS.INFO}
+                    size={20}
+                    style={styles.icon}
+                  />
+                }
               />
+              <Input right placeholder="Regular" iconContent={<Block />} />
             </View>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginRight: 30 }}>
               <Button style={{ flex: 1, marginRight: 20, backgroundColor: '#7540EE' }} textStyle={{ fontFamily: 'open-sans-bold' }} color="info">
-              LOGIN
+                LOGIN
             </Button>
-            {/* <Button style={{ flex: 1 }} textStyle={{ fontFamily: 'open-sans-bold' }} color="info" >
+              {/* <Button style={{ flex: 1 }} textStyle={{ fontFamily: 'open-sans-bold' }} color="info" >
               INFO
             </Button>
               <Button onPress={() => this.setState({ show: true })} rounded light style={{ width: screenWidth / 4, justifyContent: 'center', alignItems: 'center' }}>
@@ -219,6 +210,11 @@ const styles = StyleSheet.create({
     height: theme.SIZES.BASE * 3.5,
     borderRadius: theme.SIZES.BASE * 1.75,
     justifyContent: "center"
+  },
+  icon: {
+    paddingRight: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
