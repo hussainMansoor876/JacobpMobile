@@ -13,8 +13,11 @@ import { argonTheme, tabs } from '../constants'
 import { Button, Select, Icon, Input, Header, Switch } from "../components/";
 import { Icon as RIcon } from 'react-native-elements'
 import * as Animatable from 'react-native-animatable';
-import AntDesign from 'react-native-vector-icons/FontAwesome5';
-const AntDesignIcon = Animatable.createAnimatableComponent(AntDesign)
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Feather from 'react-native-vector-icons/Feather'
+const AntDesignIcon = Animatable.createAnimatableComponent(FontAwesome5)
+
+const FeatherIcon = Animatable.createAnimatableComponent(Feather)
 
 const { width } = Dimensions.get("screen");
 
@@ -24,7 +27,9 @@ class Login extends React.Component {
     this.state = {
       screenWidth: Dimensions.get('window').width,
       screenHeight: Dimensions.get('window').height,
-      show: false
+      show: false,
+      focus: false,
+      focus1: false
     }
   }
 
@@ -33,40 +38,8 @@ class Login extends React.Component {
   }
 
   render() {
-    const { screenHeight, screenWidth, show } = this.state
+    const { screenHeight, screenWidth, show, focus, focus1 } = this.state
     const { create } = this.props
-    // return (
-    //   <Block flex style={styles.group}>
-    //     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-    //       <Input right placeholder="Regular" iconContent={<Block />} />
-    //     </Block>
-    //     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-    //       <Input
-    //         right
-    //         placeholder="Regular Custom"
-    //         style={{
-    //           borderColor: argonTheme.COLORS.INFO,
-    //           borderRadius: 4,
-    //           backgroundColor: "#fff"
-    //         }}
-    //         iconContent={<Block />}
-    //       />
-    //     </Block>
-    //     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-    //       <Input
-    //         placeholder="Icon left"
-    //         iconContent={
-    //           <AntDesignIcon
-    //             name={'user'}
-    //             color={'grey'}
-    //             size={22}
-    //             style={styles.icon}
-    //           />
-    //         }
-    //       />
-    //     </Block>
-    //   </Block>
-    // );
     if (show) {
       return (
         <CustomDrawer />
@@ -106,10 +79,12 @@ class Login extends React.Component {
               <Reinput label='Password' secureTextEntry={true}
               /> */}
               <Input
+                onFocus={() => this.setState({ focus: true })}
+                onBlur={() => this.setState({ focus: false })}
                 right
                 placeholder="Email"
                 style={{
-                  borderColor: argonTheme.COLORS.INFO,
+                  borderColor: focus ? argonTheme.COLORS.INFO : argonTheme.COLORS.DEFAULT,
                   borderRadius: 4,
                   backgroundColor: "#fff",
                   marginBottom: 10
@@ -117,13 +92,32 @@ class Login extends React.Component {
                 iconContent={
                   <AntDesignIcon
                     name={'user'}
-                    color={argonTheme.COLORS.INFO}
+                    color={focus ? argonTheme.COLORS.INFO : argonTheme.COLORS.DEFAULT}
                     size={20}
                     style={styles.icon}
                   />
                 }
               />
-              <Input right placeholder="Regular" iconContent={<Block />} />
+              <Input
+                right
+                onFocus={() => this.setState({ focus1: true })}
+                onBlur={() => this.setState({ focus1: false })}
+                placeholder="Password"
+                style={{
+                  borderColor: focus1 ? argonTheme.COLORS.INFO : argonTheme.COLORS.DEFAULT,
+                  borderRadius: 4,
+                  backgroundColor: "#fff",
+                  marginBottom: 10
+                }}
+                iconContent={
+                  <FeatherIcon
+                    name={'lock'}
+                    color={focus1 ? argonTheme.COLORS.INFO : argonTheme.COLORS.DEFAULT}
+                    size={20}
+                    style={styles.icon}
+                  />
+                }
+              />
             </View>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginRight: 30 }}>
               <Button style={{ flex: 1, marginRight: 20, backgroundColor: '#7540EE' }} textStyle={{ fontFamily: 'open-sans-bold' }} color="info">
